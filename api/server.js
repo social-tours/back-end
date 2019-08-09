@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("../routes/userRoutes");
 
 const server = express();
 

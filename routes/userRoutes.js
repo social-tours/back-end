@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const db = {Users : []};
+const db = [];
 const tokenService = require("../auth/tokenService");
 
 module.exports = server => {
@@ -22,11 +22,13 @@ async function register(req, res) {
 
   password = bcrypt.hashSync(password, 10);
   user = { ...req.body, password };
+  maxid = db.length + 1;
+  user.id = maxid.toString();
   if (!user.first_name || !user.last_name || !user.email || !user.password)
     res.status(400).json({ message: "All fields are required" });
 
   try {
-    const result = await db("Users").insert(user);
+    const result = await db.push(user);
     if (result) return res.status(201).json({ message: "User created" });
 
     return res.status(400).json({ message: "Something went wrong." });
@@ -46,9 +48,7 @@ async function login(req, res) {
   const { email, password } = req.body;
 
   try {
-    const user = await db("Users")
-      .where({ email })
-      .first();
+    const user = db.find(value => value.email = email);
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = tokenService.generateToken(user);
       res.status(200).json({
@@ -74,9 +74,7 @@ async function users(req, res) {
 
   try {
     if (id) {
-      const user = await db("Users")
-        .where({ id })
-        .first();
+      const user = db.find(value => value.id === id);
 
       if (user) {
         res.status(200).json(user);
@@ -84,7 +82,7 @@ async function users(req, res) {
         res.status(404).json({ message: "user not found" });
       }
     } else {
-      const users = await db("Users");
+      const users = await db
       res.status(200).json(users);
     }
   } catch (err) {

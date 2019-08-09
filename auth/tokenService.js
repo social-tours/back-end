@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken"); // installed this library
 
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || 'test';
 
 module.exports = {
   generateToken
