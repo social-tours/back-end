@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "server": "node index.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-session-knex": "^1.4.0",
