@@ -1,44 +1,71 @@
 // Update with your config settings.
+require('dotenv').config() // activate module to read environmental variables
+
 
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
+    useNullAsDefault: true,
     connection: {
-      filename: './dev.sqlite3'
-    }
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
+      connectionString: process.env.DEV_DB_URL,
+      ssl: true
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      directory: './data/migrations'
+    },
+    seeds: {
+      directory: './data/seeds'
+    },
+    debug: true
+  },
+
+    testing: {
+    client: 'pg',
+    useNullAsDefault: true,
+    connection: {
+      connectionString: process.env.TEST_DB_URL,
+      ssl: true
+    },
+    migrations: {
+      directory: './data/migrations'
+    },
+    seeds: {
+      directory: './data/seeds/testing' // disposable generic boilerplate tables, not dev data
+    },
+    debug: false // too verbose of an operation
+    },
+
+  staging: {
+    client: 'pg',
+    useNullAsDefault: true,
+    connection: {
+      connectionString: process.env.STAGING_DB_URL,
+      ssl: true
+    },
+    migrations: {
+      directory: './data/migrations'
+    },
+    seeds: {
+      directory: './data/seeds'
+    },
+    debug: true // could be either
   },
 
   production: {
-    client: 'postgresql',
+    client: 'pg',
+    useNullAsDefault: true,
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
+      connectionString: process.env.DATABASE_URL,
+      ssl: true
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      directory: './data/migrations'
+    },
+    seeds: {
+      directory: './data/seeds'
+    },
+    debug: false
   }
 
 };
