@@ -22,8 +22,6 @@ exports.up = function(knex, Promise) {
         .string('path', 255)
         .notNullable()
         .unique() // will there be more than 1 path per log?
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         //user_id
@@ -31,24 +29,20 @@ exports.up = function(knex, Promise) {
         .integer('user_id')
         .unique()
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
 
         // exception
         tbl
         .varchar('exception', 255)
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
 
         // created_at
-        tbl.timestamps('created_at',true,true)
+        tbl
+        .string('created_at', 255)
         .notNullable()
+        .timestamps('created_at').defaultTo(knex.fn.now())
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
 
     });  

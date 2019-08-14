@@ -20,8 +20,6 @@ exports.up = function(knex, Promise) {
         .integer('user_id')
         .unique()
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
 
         // interest_id int - db doesnt state this is a FK but the table its linked to doesnt have this FK either
@@ -31,8 +29,6 @@ exports.up = function(knex, Promise) {
         .inTable('Usertypes')
         .unique()
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
     });  
 };

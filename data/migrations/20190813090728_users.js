@@ -31,8 +31,6 @@ exports.up = function(knex, Promise) {
         .string('first_name', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
      
         // last_name
@@ -40,8 +38,6 @@ exports.up = function(knex, Promise) {
         .string('last_name', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
      
         // gender
@@ -49,8 +45,6 @@ exports.up = function(knex, Promise) {
         .string('gender', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         // city
@@ -58,8 +52,6 @@ exports.up = function(knex, Promise) {
         .string('city', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         // state_province
@@ -67,8 +59,6 @@ exports.up = function(knex, Promise) {
         .string('state_province', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         // country
@@ -76,8 +66,6 @@ exports.up = function(knex, Promise) {
         .string('country', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         // email
@@ -85,8 +73,6 @@ exports.up = function(knex, Promise) {
         .string('email', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         // password
@@ -94,8 +80,6 @@ exports.up = function(knex, Promise) {
         .password('password', 128)
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ; 
         
         //type
@@ -103,16 +87,13 @@ exports.up = function(knex, Promise) {
         .integer('type')
         .unique()
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
 
         // created_at
-        tbl.timestamps('created_at',true,true)
+        tbl
+        .timestamps('created_at').defaultTo(knex.fn.now())
         .notNullable()
         .unique()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
     });  
 };

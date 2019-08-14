@@ -24,8 +24,6 @@ exports.up = function(knex, Promise) {
         .inTable('Users')
         .unique()
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
         
         // influencer_id int [note: 'FK to Users id']
@@ -35,12 +33,11 @@ exports.up = function(knex, Promise) {
         .inTable('Users')
         .unique()
         .notNullable()
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         ;
  
         // created_at
-        tbl.timestamps('created_at',true,true)
+        tbl
+        .timestamps('created_at').defaultTo(knex.fn.now())
         .notNullable()
         .unique();
     });  
