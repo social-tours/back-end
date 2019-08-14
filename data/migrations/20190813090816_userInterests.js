@@ -27,8 +27,6 @@ exports.up = function(knex, Promise) {
         .integer('interest_id')
         .references('id')
         .inTable('Usertypes')
-        .unique()
-        .notNullable()
         ; 
     });  
 };

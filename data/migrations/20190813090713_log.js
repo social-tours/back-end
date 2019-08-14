@@ -20,29 +20,30 @@ exports.up = function(knex, Promise) {
         // path
         tbl
         .string('path', 255)
-        .notNullable()
         .unique() // will there be more than 1 path per log?
         ; 
         
         //user_id
         tbl
         .integer('user_id')
-        .unique()
-        .notNullable()
+        .references('id')
+        .inTable('users')
         ;
 
         // exception
         tbl
         .varchar('exception', 255)
-        .notNullable()
         ;
 
         // created_at
         tbl
-        .string('created_at', 255)
-        .notNullable()
         .timestamps('created_at').defaultTo(knex.fn.now())
-        .unique()
+        ;
+
+        // updated_at
+        tbl
+        .timestamps('updated_at').defaultTo(knex.fn.now())
+        .notNullable()
         ;
 
     });  

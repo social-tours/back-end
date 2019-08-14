@@ -22,8 +22,6 @@ exports.up = function(knex, Promise) {
         .integer('user_id')
         .references('id')
         .inTable('Users')
-        .unique()
-        .notNullable()
         ;
         
         // influencer_id int [note: 'FK to Users id']
@@ -31,15 +29,19 @@ exports.up = function(knex, Promise) {
         .integer('influencer_id')
         .references('id')
         .inTable('Users')
-        .unique()
-        .notNullable()
         ;
  
         // created_at
         tbl
         .timestamps('created_at').defaultTo(knex.fn.now())
         .notNullable()
-        .unique();
+        ;
+
+        // updated_at
+        tbl
+        .timestamps('updated_at').defaultTo(knex.fn.now())
+        .notNullable()
+        ;
     });  
 };
 
