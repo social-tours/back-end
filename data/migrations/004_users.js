@@ -22,7 +22,7 @@ End of Source Review
 */
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('users', function(tbl) {
+    return knex.schema.createTable('Users', function(tbl) {
         // id int PK
         tbl.increments()
         ; 
@@ -91,7 +91,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('users');
+    return knex.schema.dropTableIfExists('Users');
 
 };
 

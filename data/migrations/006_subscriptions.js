@@ -13,7 +13,7 @@ dbdiagram: https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 */
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('subscriptions', function(tbl) {
+    return knex.schema.createTable('Subscriptions', function(tbl) {
         // id
         tbl.increments(); 
         
@@ -46,7 +46,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('subscriptions');
+    return knex.schema.dropTableIfExists('Subscriptions');
 
 };
 

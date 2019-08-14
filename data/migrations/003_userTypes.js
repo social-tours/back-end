@@ -10,7 +10,7 @@ dbdiagram: https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 */
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('userTypes', function(tbl) {
+    return knex.schema.createTable('UserTypes', function(tbl) {
         // id int PK
         tbl.increments(); 
         
@@ -35,7 +35,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('userTypes');
+    return knex.schema.dropTableIfExists('UserTypes');
 
 };
 

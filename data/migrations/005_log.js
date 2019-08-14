@@ -13,14 +13,14 @@ End of Source Review
 */
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('log', function(tbl) {
+    return knex.schema.createTable('Log', function(tbl) {
         // id
         tbl.increments(); 
     
         // path
         tbl
         .string('path', 255)
-        .unique() // will there be more than 1 path per log?
+        .unique() // will there be more than 1 path per Log?
         ; 
         
         //user_id
@@ -50,7 +50,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('log');
+    return knex.schema.dropTableIfExists('Log');
 
 };
 
