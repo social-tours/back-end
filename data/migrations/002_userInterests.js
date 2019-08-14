@@ -30,13 +30,13 @@ exports.up = function(knex, Promise) {
         
         // created_at
         tbl
-        .timestamps('created_at').defaultTo(knex.fn.now())
+        .timestamp('created_at').defaultTo(knex.fn.now())
         .notNullable()
         ;
 
         // updated_at
         tbl
-        .timestamps('updated_at')
+        .timestamp('updated_at')
         .notNullable()
         ; 
     });  
@@ -74,13 +74,13 @@ exports.up = function(knex, Promise) {
       
       // created_at
       tbl
-      .timestamps('created_at').defaultTo(knex.fn.now())
+      .timestamp('created_at').defaultTo(knex.fn.now())
       .notNullable()
       ;
 
       // updated_at
       tbl
-      .timestamps('updated_at')
+      .timestamp('updated_at')
       .notNullable()
       ; 
   });  
