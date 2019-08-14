@@ -42,7 +42,7 @@ exports.up = function(knex, Promise) {
 
         // updated_at
         tbl
-        .timestamps('updated_at').defaultTo(knex.fn.now())
+        .timestamps('updated_at')
         .notNullable()
         ;
 

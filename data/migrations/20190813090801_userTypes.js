@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
         tbl
         .string('description', 255)
         .notNullable()
-        .unique() // will there be more than 1 description per userType?
+        .unique()
 
         // created_at
         tbl
@@ -28,7 +28,7 @@ exports.up = function(knex, Promise) {
 
         // updated_at
         tbl
-        .timestamps('updated_at').defaultTo(knex.fn.now())
+        .timestamps('updated_at')
         .notNullable()
         ; 
     });  
