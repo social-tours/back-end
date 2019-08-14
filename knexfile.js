@@ -1,6 +1,4 @@
-// Update with your config settings.
 require('dotenv').config() // activate module to read environmental variables
-
 
 module.exports = {
 
