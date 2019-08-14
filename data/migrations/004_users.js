@@ -68,7 +68,7 @@ exports.up = function(knex, Promise) {
         
         // password
         tbl
-        .password('password', 128)
+        .string('password', 128)
         ; 
         
         //type
@@ -86,7 +86,6 @@ exports.up = function(knex, Promise) {
         // updated_at
         tbl
         .timestamp('updated_at')
-        .notNullable()
         ;
     });  
 };
