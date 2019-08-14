@@ -19,6 +19,17 @@ exports.up = function(knex, Promise) {
         .string('description', 255)
         .notNullable()
         .unique() // will there be more than 1 description per userType?
+
+        // created_at
+        tbl
+        .timestamps('created_at').defaultTo(knex.fn.now())
+        .notNullable()
+        ;
+
+        // updated_at
+        tbl
+        .timestamps('updated_at').defaultTo(knex.fn.now())
+        .notNullable()
         ; 
     });  
 };

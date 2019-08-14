@@ -10,6 +10,7 @@ dbdiagram: https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 
 */
 
+/*
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('interests', function(tbl) {
         // id int PK
@@ -30,3 +31,4 @@ exports.down = function(knex, Promise) {
 };
 
 
+ */

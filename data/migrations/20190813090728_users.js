@@ -83,6 +83,12 @@ exports.up = function(knex, Promise) {
         .timestamps('created_at').defaultTo(knex.fn.now())
         .notNullable()
         ;
+        
+        // updated_at
+        tbl
+        .timestamps('updated_at').defaultTo(knex.fn.now())
+        .notNullable()
+        ;
     });  
 };
 
