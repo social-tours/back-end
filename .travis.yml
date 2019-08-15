@@ -1,0 +1,10 @@
+language: node_js
+rvm: 
+  - 8.12
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+  # https://docs.travis-ci.com/user/database-setup/#postgresql
+  # The default user for accessing the local PostgreSQL server is postgres with a blank password.
