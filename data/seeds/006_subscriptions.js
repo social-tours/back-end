@@ -1,13 +1,11 @@
+exports.seed = async function(knex) {
+  await knex('Subscriptions').insert([
+    { id: 1,
+      user_id: 1, // FK ID in 'Users' table
+      influencer_id: 1, // FK ID in 'Users' table
+      created_at: 'August 14 2019',
+      updated_at: 'August 15 2019'
+    } 
 
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+  ])
+}
