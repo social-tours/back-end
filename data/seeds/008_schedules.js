@@ -10,6 +10,5 @@ exports.seed = async function(knex) {
       created_at: 'August 14 2019',
       updated_at: 'August 15 2019'
     } 
-
   ])
 }

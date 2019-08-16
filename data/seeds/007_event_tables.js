@@ -1,13 +1,25 @@
+exports.seed = async function(knex) {
+  await knex('EventTypes').insert([
+    { id: 1,
+      description: "Concert",
+      created_at: 'August 14 2019',
+      updated_at: 'August 15 2019'
+    } 
 
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+  ])
+}
+
+exports.seed = async function(knex) {
+  await knex('Events').insert([
+    { id: 1,
+      type: 1, // FK ID in 'EventTypes' table
+      title: "See Bifunkal Orchestra", 
+      description: "Orchestrated Blues and Funk", 
+      event_image: 'Bifunkal Image Here',
+      capacity: 5000,
+      created_at: 'August 14 2019',
+      updated_at: 'August 15 2019'
+    } 
+
+  ])
+}
