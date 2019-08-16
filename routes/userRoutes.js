@@ -17,15 +17,15 @@ module.exports = server => {
  */
 async function register(req, res) {
   // implement user registration
-  let { password } = req.body;
-  let user;
 
-  password = bcrypt.hashSync(password, 10);
-  user = { ...req.body, password };
-  maxid = db.length + 1;
-  user.id = maxid.toString();
+  let user = req.body;
   if (!user.first_name || !user.last_name || !user.email || !user.password)
     res.status(400).json({ message: "All fields are required" });
+
+  let hash = bcrypt.hashSync(user.password, 10);
+  user.password = hash;
+  maxid = db.length + 1;
+  user.id = maxid.toString();
 
   try {
     const result = await db.push(user);
