@@ -9,4 +9,4 @@ before_script:
   # https://docs.travis-ci.com/user/database-setup/#postgresql
   # The default user for accessing the local PostgreSQL server is postgres with a blank password.
 script: 
-  - npm run test
+  - npm run travis
