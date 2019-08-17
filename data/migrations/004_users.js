@@ -43,6 +43,11 @@ exports.up = function(knex, Promise) {
         tbl
         .string('gender', 128)
         ; 
+
+        // birthday
+        tbl
+        .date('birth_date')
+        ;
         
         // city
         tbl

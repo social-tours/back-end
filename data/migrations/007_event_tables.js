@@ -10,7 +10,7 @@ exports.up = async function(knex) {
   await knex.schema.createTable('Events', tbl => {
     tbl.increments('id')
     tbl.integer('type')
-      references('id')
+      .references('id')
       .inTable('EventTypes')
     tbl.string('title', 128).notNullable()
     tbl.string('description', 1000)
