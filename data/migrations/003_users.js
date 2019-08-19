@@ -24,80 +24,60 @@ End of Source Review
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('Users', function(tbl) {
         // id int PK
-        tbl.increments()
-        ; 
+        tbl.increments(); 
     
         // first_name
         tbl
         .string('first_name', 128)
-        .notNullable()
-        ; 
+        .notNullable(); 
      
         // last_name
         tbl
         .string('last_name', 128)
-        .notNullable()
-        ; 
+        .notNullable(); 
      
         // gender
-        tbl
-        .string('gender', 128)
-        ; 
+        tbl.string('gender', 128); 
 
         // birthday
-        tbl
-        .date('birth_date')
-        ;
+        tbl.date('birth_date');
         
         // city
-        tbl
-        .string('city', 128)
-        ; 
+        tbl.string('city', 128); 
         
         // state_province
-        tbl
-        .string('state_province', 128)
-        ; 
+        tbl.string('state_province', 128); 
         
         // country
-        tbl
-        .string('country', 128)
-        ; 
+        tbl.string('country', 128); 
         
         // email
         tbl
         .string('email', 128)
         .notNullable()
-        .unique()
-        ; 
+        .unique(); 
         
         // password
         tbl
-        .string('password', 128)
-        ; 
+        .string('password', 128); 
         
         //type
         tbl
         .integer('type')
-        .notNullable()
-        ;
+        .notNullable();
 
         // created_at
         tbl
         .timestamp('created_at').defaultTo(knex.fn.now())
-        .notNullable()
-        ;
+        .notNullable();
         
         // updated_at
-        tbl
-        .timestamp('updated_at')
-        ;
+        tbl.timestamp('updated_at');
     });  
 };
 
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('Users');
-
 };
 
 
