@@ -18,9 +18,7 @@ exports.up = function(knex, Promise) {
 		tbl.increments();
 
 		// path
-		tbl
-			.string('path', 255)
-			.unique(); // will there be more than 1 path per Log?
+		tbl.string('path', 255)
 
 		//user_id
 		tbl
