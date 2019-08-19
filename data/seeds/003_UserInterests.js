@@ -1,6 +1,8 @@
 exports.seed = async function(knex) {
+  // Insert seed entries
   await knex('Interests').insert([
-    { id: 1,
+    {
+      id: 1,
       name: 'Netflix Binging',
     },
     {
@@ -12,9 +14,7 @@ exports.seed = async function(knex) {
       name: 'Music'
     }
   ])
-}
 
-exports.seed = async function(knex) {
   await knex('UserInterests').insert([
     { id: 1,
       user_id: 2,

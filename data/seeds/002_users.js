@@ -37,7 +37,7 @@ exports.seed = async function(knex) {
       last_name: 'Brady',
       user_name: 'cbrady',
       gender: 'Female',
-      birth_date: '1995',
+      birth_date: '1995-10-05',
       city: 'Chicago',
       state_province: 'IL',
       country: 'USA',
