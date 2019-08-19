@@ -35,6 +35,9 @@ exports.up = function(knex, Promise) {
         tbl
         .string('last_name', 128)
         .notNullable(); 
+
+        // user_name
+        tbl.string('user_name')
      
         // gender
         tbl.string('gender', 128); 
