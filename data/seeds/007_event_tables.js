@@ -1,15 +1,14 @@
 exports.seed = async function(knex) {
+  // Insert seed entries
   await knex('EventTypes').insert([
-    { id: 1,
+    {
+      id: 1,
       description: "Concert",
       created_at: '2019-08-14',
       updated_at: '2019-08-15'
-    } 
-
+    }
   ])
-}
 
-exports.seed = async function(knex) {
   await knex('Events').insert([
     { id: 1,
       type: 1, // FK ID in 'EventTypes' table
@@ -20,6 +19,5 @@ exports.seed = async function(knex) {
       created_at: '2019-08-14',
       updated_at: '2019-08-15'
     } 
-
   ])
 }
