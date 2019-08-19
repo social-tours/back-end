@@ -1,6 +1,6 @@
 const cleaner = require('knex-cleaner')
 
-exports.seed = function(knex) {
+exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await cleaner.clean(knex, {
     node: `delete`,
