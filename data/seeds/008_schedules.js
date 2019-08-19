@@ -6,9 +6,9 @@ exports.seed = async function(knex) {
       title: 'Bifunkal',
       description: 'Blues band from Chicago',
       start_time: '05:00 PM',
-      end_time: 'October 15 2019',
-      created_at: 'August 14 2019',
-      updated_at: 'August 15 2019'
+      end_time: '08:00 PM',
+      created_at: '2019-08-14',
+      updated_at: '2019-08-15'
     } 
   ])
 }
