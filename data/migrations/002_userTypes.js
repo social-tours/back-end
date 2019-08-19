@@ -23,20 +23,15 @@ exports.up = function(knex, Promise) {
         // created_at
         tbl
         .timestamp('created_at').defaultTo(knex.fn.now())
-        .notNullable()
-        ;
+        .notNullable();
 
         // updated_at
-        tbl
-        .timestamp('updated_at')
-        .notNullable()
-        ; 
+        tbl.timestamp('updated_at');
     });  
 };
 
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('UserTypes');
-
 };
 
 
