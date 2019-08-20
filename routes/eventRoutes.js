@@ -28,7 +28,7 @@ router.get('/', async (req,res, next) => {
 router.get('/:eventId', async (req,res,next) => {
 
     // grab even from param
-    const eventId = req.params;
+    const {eventId} = req.params;
 
     // search database for event
 
@@ -51,7 +51,7 @@ router.get('/:eventId', async (req,res,next) => {
 
 // put
 router.put('/:eventId', async (req,res, next) => {
-    const eventId = req.params;
+    const {eventId} = req.params;
 
     try {
         let event = await db.fetchEvent(eventId);
@@ -96,7 +96,7 @@ router.post('/', async (req, res, next) => {
 
 // delete
 router.delete('/:eventId', async (req, res, next) => {
-    const eventId = req.params;
+    const {eventId} = req.params;
 
     try {
         // deleteEvent should return boolean -- T if successful, F is not
