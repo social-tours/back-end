@@ -10,28 +10,27 @@ dbdiagram: https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 */
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('UserTypes', function(tbl) {
-        // id int PK
-        tbl.increments(); 
-        
-        // description VARCHAR(255)
-        tbl
-        .string('description', 255)
-        .notNullable()
-        .unique()
+	return knex.schema.createTable("UserTypes", function(tbl) {
+		// id int PK
+		tbl.increments();
 
-        // created_at
-        tbl
-        .timestamp('created_at').defaultTo(knex.fn.now())
-        .notNullable();
+		// description VARCHAR(255)
+		tbl
+			.string("description", 255)
+			.notNullable()
+			.unique();
 
-        // updated_at
-        tbl.timestamp('updated_at');
-    });  
+		// created_at
+		tbl
+			.timestamp("created_at")
+			.defaultTo(knex.fn.now())
+			.notNullable();
+
+		// updated_at
+		tbl.timestamp("updated_at");
+	});
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('UserTypes');
+	return knex.schema.dropTableIfExists("UserTypes");
 };
-
-
