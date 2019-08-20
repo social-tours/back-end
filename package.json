@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "test": "jest --watch --verbose",
+    "travis": "jest --verbose",
     "start": "node index.js",
     "server": "node index.js",
     "dev": "nodemon index.js",
