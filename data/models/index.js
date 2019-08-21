@@ -2,10 +2,21 @@
 const db = require("../dbConfig");
 
 // ==== Global Database Methods ==== //
+/**
+ * Database model to get all records in a table
+ * @param {string} table
+ * @returns result - array of table contents
+ */
 function findAll(table) {
 	return db(table).orderBy("id");
 }
 
+/**
+ * Database model to get a single record by id
+ * @param {*} table
+ * @param {*} id
+ * @returns result - database record
+ */
 async function findById(table, id) {
 	let result = await db(table)
 		.where({ id })
@@ -14,6 +25,12 @@ async function findById(table, id) {
 	return result;
 }
 
+/**
+ * Database model to add a record
+ * @param {*} table
+ * @param {*} data
+ * @returns results - newly created record
+ */
 async function addRecord(table, data) {
 	try {
 		const [results] = await db(table)
@@ -26,6 +43,13 @@ async function addRecord(table, data) {
 	}
 }
 
+/**
+ * Database method to update existing record
+ * @param {*} table
+ * @param {*} id
+ * @param {*} data
+ * @returns result - updated record
+ */
 async function updateRecord(table, id, data) {
 	try {
 		const count = await db(table)
@@ -41,6 +65,12 @@ async function updateRecord(table, id, data) {
 	}
 }
 
+/**
+ * Database method to remove record from the database
+ * @param {*} table
+ * @param {*} id
+ * @returns delete confirmation message in a json object
+ */
 async function removeRecord(table, id) {
 	try {
 		const count = await db(table)
