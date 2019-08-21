@@ -25,6 +25,8 @@ describe("Models testing", () => {
 		}
 	});
 
+	afterAll(() => db.destroy())
+
 	describe("findAll", () => {
 		it("find all records in specified tables", async () => {
 			// Seed with test data
