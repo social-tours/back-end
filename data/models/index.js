@@ -19,9 +19,23 @@ async function addRecord(table, data) {
 		const [results] = await db(table)
 			.insert(data)
 			.returning("*");
-		console.log(`addRecord results`, results);
 
 		return results;
+	} catch (err) {
+		return err;
+	}
+}
+
+async function updateRecord(table, id, data) {
+	try {
+		const count = await db(table)
+			.where({ id })
+			.update(data)
+			.update("updated_at", db.fn.now());
+
+		if (count > 0) {
+			return findById(table, id);
+		}
 	} catch (err) {
 		return err;
 	}
@@ -31,5 +45,6 @@ module.exports = {
 	db,
 	findAll,
 	findById,
-	addRecord
+	addRecord,
+	updateRecord
 };

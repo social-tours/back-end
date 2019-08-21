@@ -173,4 +173,35 @@ describe("Models testing", () => {
 			expect(data[1].first_name).toBe("George");
 		});
 	});
+
+	describe("updateRecord", () => {
+		it("update record by id", async () => {
+			// Seed with test data
+			const testData = [
+				{
+					id: 1,
+					name: "Netflix Binging"
+				},
+				{
+					id: 2,
+					name: "Weightlifting"
+				},
+				{
+					id: 3,
+					name: "Music"
+				}
+			];
+
+			await db("Interests").insert(testData);
+
+			// Run model
+			const id = 1;
+			const newData = { name: "Skydiving" };
+			const data = await Models.updateRecord("Interests", id, newData);
+
+			// Validate model
+			expect(data.name).toBe("Skydiving");
+			expect(data.updated_at).not.toBeNull();
+		});
+	});
 });
