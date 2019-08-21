@@ -25,7 +25,7 @@ describe("Models testing", () => {
 		}
 	});
 
-	describe("findAll()", () => {
+	describe("findAll", () => {
 		it("find all records in specified tables", async () => {
 			// Seed with test data
 			const userTypes = [
@@ -92,7 +92,7 @@ describe("Models testing", () => {
 		});
 	});
 
-	describe("findById()", () => {
+	describe("findById", () => {
 		it("find record by id", async () => {
 			// Seed with test data
 			const userTypes = [
@@ -202,6 +202,48 @@ describe("Models testing", () => {
 			// Validate model
 			expect(data.name).toBe("Skydiving");
 			expect(data.updated_at).not.toBeNull();
+		});
+	});
+
+	describe("removeRecord", () => {
+		// Seed with test data
+		const testData = [
+			{
+				id: 1,
+				name: "Netflix Binging"
+			},
+			{
+				id: 2,
+				name: "Weightlifting"
+			},
+			{
+				id: 3,
+				name: "Music"
+			}
+		];
+
+		const id = 2;
+
+		beforeEach(async () => {
+			await db("Interests").insert(testData);
+		});
+
+		it("confirm test data exists in the database", async () => {
+			const data = await db("Interests");
+			expect(data[2].id).toEqual(3);
+		});
+
+		it("confirm record is deleted", async () => {
+			const data = await Models.removeRecord("Interests", id);
+			expect(data).toEqual({ message: `1 record deleted` });
+		});
+
+		it("confirm record no longer exists", async () => {
+			await Models.removeRecord("Interests", id);
+			const data = await db("Interests")
+				.where({ id })
+				.first();
+			expect(data).toBeUndefined();
 		});
 	});
 });

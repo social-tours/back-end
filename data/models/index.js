@@ -41,10 +41,26 @@ async function updateRecord(table, id, data) {
 	}
 }
 
+async function removeRecord(table, id) {
+	try {
+		const count = await db(table)
+			.where({ id })
+			.del();
+		if (count > 0) {
+			return {
+				message: `${count} ${count > 1 ? "records" : "record"} deleted`
+			};
+		}
+	} catch (err) {
+		return err;
+	}
+}
+
 module.exports = {
 	db,
 	findAll,
 	findById,
 	addRecord,
-	updateRecord
+	updateRecord,
+	removeRecord
 };
