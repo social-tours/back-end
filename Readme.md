@@ -1,3 +1,13 @@
+# Social Tours API Documentation
+
+#### Endpoint
+
+https://prod-socialtours.herokuapp.com/api
+
+#### ER Diagram
+
+https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
+
 ## Data Models
 
 <dl>
@@ -20,7 +30,7 @@
 
 <a name="findAll"></a>
 
-## findAll(table) ⇒
+### findAll(table) ⇒
 
 Database model to get all records in a table
 
@@ -33,7 +43,7 @@ Database model to get all records in a table
 
 <a name="findById"></a>
 
-## findById(table, id) ⇒
+### findById(table, id) ⇒
 
 Database model to get a single record by id
 
@@ -47,7 +57,7 @@ Database model to get a single record by id
 
 <a name="addRecord"></a>
 
-## addRecord(table, data) ⇒
+### addRecord(table, data) ⇒
 
 Database model to add a record
 
@@ -61,7 +71,7 @@ Database model to add a record
 
 <a name="updateRecord"></a>
 
-## updateRecord(table, id, data) ⇒
+### updateRecord(table, id, data) ⇒
 
 Database method to update existing record
 
@@ -76,7 +86,7 @@ Database method to update existing record
 
 <a name="removeRecord"></a>
 
-## removeRecord(table, id) ⇒
+### removeRecord(table, id) ⇒
 
 Database method to remove record from the database
 
