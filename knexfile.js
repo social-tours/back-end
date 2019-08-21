@@ -8,6 +8,7 @@ module.exports = {
 			connectionString: process.env.DEV_DB_URL,
 			ssl: true
 		},
+		pool: { min: 0, max: 7},
 		migrations: {
 			directory: "./data/migrations"
 		},
@@ -24,6 +25,7 @@ module.exports = {
 			connectionString: process.env.TEST_DB_URL,
 			ssl: true
 		},
+				pool: { min: 0, max: 7},
 		migrations: {
 			directory: "./data/migrations"
 		},
@@ -40,6 +42,7 @@ module.exports = {
 			connectionString: process.env.STAGING_DB_URL,
 			ssl: true
 		},
+				pool: { min: 0, max: 7},
 		migrations: {
 			directory: "./data/migrations"
 		},
@@ -56,6 +59,7 @@ module.exports = {
 			connectionString: process.env.DATABASE_URL,
 			ssl: true
 		},
+				pool: { min: 0, max: 7},
 		migrations: {
 			directory: "./data/migrations"
 		},
