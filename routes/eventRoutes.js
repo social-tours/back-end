@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const db = require('../data/models');
 
-// DB methods don't exist yet, will need to refactor once data/models is complete
-
-// get all events
+/**
+ * Method to retrieve all events from the database
+ * @returns sends all events in the database as a response
+ */
 router.get('/', async (req,res, next) => {
     try {
-        // grab all events from db
-        const events = await db.fetchEvents();
-        // try to send the data back
+        const events = await db.findAll('Events');
 
         if (events){
             res.status(200).json({events});
@@ -19,21 +18,18 @@ router.get('/', async (req,res, next) => {
     catch(err){
         console.log(err);
     }
-    
-
-    // catch error, if any
 })
 
-// get one event
+/**
+ * Method to retrieve a specific event from the database
+ * @param {number} eventId
+ * @returns rends the requested event as a response
+ */
 router.get('/:eventId', async (req,res,next) => {
-
-    // grab even from param
     const {eventId} = req.params;
 
-    // search database for event
-
     try {
-        const event = await db.fetchEvent(eventId);
+        const event = await db.findById('Events', eventId);
 
         if (event){
             res.status(200).json({event});
@@ -49,17 +45,21 @@ router.get('/:eventId', async (req,res,next) => {
 
 })
 
-// put
+/**
+ * Method to edit an event
+ * @param {number} eventId
+ * @returns message indicating edit was successful or not
+ */
 router.put('/:eventId', async (req,res, next) => {
     const {eventId} = req.params;
 
     try {
-        let event = await db.fetchEvent(eventId);
+        let event = await db.findById('Events', eventId);
 
         if (event){
             const payload = req.body;
             event = {...payload};
-            const newEvent = await db.updateEvent(eventId, event);
+            const newEvent = await db.updateRecord('Events', eventId, event);
 
             if (newEvent){
                 res.status(200).json({"message" : `successly updated event - ${eventId}`});
@@ -75,13 +75,15 @@ router.put('/:eventId', async (req,res, next) => {
 
 })
 
-// post
+/**
+ * Method to add one event to the database
+ * @returns sends a response to the requester indicating whether or not record creation was successful
+ */
 router.post('/', async (req, res, next) => {
     const newEvent = req.body;
 
     try {
-        // expecting db method to return event ID
-        const eventId = db.addEvent(newEvent);
+        const eventId = db.addRecord('Events', newEvent);
 
         if (event){
             res.status(201).json({"messsage" : `Created new event - ${eventId}`})
@@ -94,13 +96,15 @@ router.post('/', async (req, res, next) => {
 
 })
 
-// delete
+/**
+ * Method to remove an Event
+ * @returns sends a response to requester indicating whether or not deletion was successful
+ */
 router.delete('/:eventId', async (req, res, next) => {
     const {eventId} = req.params;
 
     try {
-        // deleteEvent should return boolean -- T if successful, F is not
-        const event = db.deleteEvent(eventId);
+        const event = db.removeRecord('Events', eventId);
 
         if (event){
             res.status(200).message({"message" : `successfully deleted event - ${eventId}`});
@@ -113,5 +117,4 @@ router.delete('/:eventId', async (req, res, next) => {
 
 })
 
-// export
 module.exports = router;
