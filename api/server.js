@@ -11,6 +11,11 @@ const server = express();
 
 server.use(express.json(), helmet(), cors());
 
+// Sanity Check
+server.get('/', (req, res) => {
+  res.status(200).json({ api: 'up' });
+});
+
 // Route handling
 server.use('/api/events', eventRoutes);
 userRoutes(server);
