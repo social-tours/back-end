@@ -12,7 +12,7 @@ const server = express();
 server.use(express.json(), helmet(), cors());
 
 // Route handling
-server.use('/event', eventRoutes);
+server.use('/api/events', eventRoutes);
 userRoutes(server);
 
 module.exports = server;
