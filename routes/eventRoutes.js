@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const db = require('../data/models');
+const jwtCheck = require('../auth/tokenService');
 
 /**
  * Method to retrieve all events from the database
  * @returns sends all events in the database as a response
  */
-router.get('/', async (req,res, next) => {
+router.get('/', jwtCheck, async (req,res, next) => {
     try {
         const events = await db.findAll('Events');
 
@@ -25,7 +26,7 @@ router.get('/', async (req,res, next) => {
  * @param {number} eventId
  * @returns rends the requested event as a response
  */
-router.get('/:eventId', async (req,res,next) => {
+router.get('/:eventId', jwtCheck, async (req,res,next) => {
     const {eventId} = req.params;
 
     try {
@@ -50,7 +51,7 @@ router.get('/:eventId', async (req,res,next) => {
  * @param {number} eventId
  * @returns message indicating edit was successful or not
  */
-router.put('/:eventId', async (req,res, next) => {
+router.put('/:eventId', jwtCheck, async (req,res, next) => {
     const {eventId} = req.params;
 
     try {
@@ -79,7 +80,7 @@ router.put('/:eventId', async (req,res, next) => {
  * Method to add one event to the database
  * @returns sends a response to the requester indicating whether or not record creation was successful
  */
-router.post('/', async (req, res, next) => {
+router.post('/', jwtCheck, async (req, res, next) => {
     const newEvent = req.body;
 
     try {
@@ -100,7 +101,7 @@ router.post('/', async (req, res, next) => {
  * Method to remove an Event
  * @returns sends a response to requester indicating whether or not deletion was successful
  */
-router.delete('/:eventId', async (req, res, next) => {
+router.delete('/:eventId', jwtCheck, async (req, res, next) => {
     const {eventId} = req.params;
 
     try {
