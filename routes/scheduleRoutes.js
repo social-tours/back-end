@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const db = require('../data/models');
+const jwtCheck = require('../auth/tokenService');
 
 /**
  * Method to retrieve all schedules from the database
  * @returns sends all schedules in the database as a response
  */
-router.get('/', async (req,res, next) => {
+router.get('/', jwtCheck, async (req,res, next) => {
     try {
         const schedules = await db.findAll('Schedules');
 
@@ -25,7 +26,7 @@ router.get('/', async (req,res, next) => {
  * @param {number} scheduleId
  * @returns sends the requested schedule as a response
  */
-router.get('/:scheduleId', async (req,res,next) => {
+router.get('/:scheduleId', jwtCheck, async (req,res,next) => {
     const {scheduleId} = req.params;
 
     try {
@@ -50,7 +51,7 @@ router.get('/:scheduleId', async (req,res,next) => {
  * @param {number} scheduleId
  * @returns message indicating edit was successful or not
  */
-router.put('/:scheduleId', async (req,res, next) => {
+router.put('/:scheduleId', jwtCheck, async (req,res, next) => {
     const {scheduleId} = req.params;
 
     try {
@@ -79,7 +80,7 @@ router.put('/:scheduleId', async (req,res, next) => {
  * Method to add  schedules to the database
  * @returns sends a response to the requester indicating whether or not record creation was successful
  */
-router.post('/', async (req, res, next) => {
+router.post('/', jwtCheck, async (req, res, next) => {
     const newSchedule = req.body;
 
     try {
@@ -100,7 +101,7 @@ router.post('/', async (req, res, next) => {
  * Method to remove a schedule
  * @returns sends a response to requester indicating whether or not deletion was successful
  */
-router.delete('/:scheduleId', async (req, res, next) => {
+router.delete('/:scheduleId', jwtCheck, async (req, res, next) => {
     const {scheduleId} = req.params;
 
     try {
