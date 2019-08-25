@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const db = require('../data/models');
+const jwtCheck = require('../auth/tokenService');
 
 /**
  * Method to retrieve all tickets from the database
  * @returns sends all tickets in the database as a response
  */
-router.get('/', async (req,res, next) => {
+router.get('/', jwtCheck, async (req,res, next) => {
     try {
         const tickets = await db.findAll('Tickets');
 
@@ -25,7 +26,7 @@ router.get('/', async (req,res, next) => {
  * @param {number} ticketId
  * @returns sends the requested ticket as a response
  */
-router.get('/:ticketId', async (req,res,next) => {
+router.get('/:ticketId', jwtCheck, async (req,res,next) => {
     const {ticketId} = req.params;
 
     try {
@@ -50,7 +51,7 @@ router.get('/:ticketId', async (req,res,next) => {
  * @param {number} ticketId
  * @returns message indicating edit was successful or not
  */
-router.put('/:ticketId', async (req,res, next) => {
+router.put('/:ticketId', jwtCheck, async (req,res, next) => {
     const {ticketId} = req.params;
 
     try {
@@ -79,7 +80,7 @@ router.put('/:ticketId', async (req,res, next) => {
  * Method to add  tickets to the database
  * @returns sends a response to the requester indicating whether or not record creation was successful
  */
-router.post('/', async (req, res, next) => {
+router.post('/', jwtCheck, async (req, res, next) => {
     const newTicket = req.body;
 
     try {
@@ -100,7 +101,7 @@ router.post('/', async (req, res, next) => {
  * Method to remove a ticket
  * @returns sends a response to requester indicating whether or not deletion was successful
  */
-router.delete('/:ticketId', async (req, res, next) => {
+router.delete('/:ticketId', jwtCheck, async (req, res, next) => {
     const {ticketId} = req.params;
 
     try {
