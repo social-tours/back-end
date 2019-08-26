@@ -5,7 +5,7 @@ const db = require("../dbConfig");
 /**
  * Database model to get all records in a table
  * @param {string} table
- * @returns result - array of table contents
+ * @returns array of table records
  */
 function findAll(table) {
 	return db(table).orderBy("id");
@@ -13,9 +13,9 @@ function findAll(table) {
 
 /**
  * Database model to get a single record by id
- * @param {*} table
- * @param {*} id
- * @returns result - database record
+ * @param {string} table
+ * @param {integer} id
+ * @returns database record
  */
 async function findById(table, id) {
 	let result = await db(table)
@@ -27,9 +27,9 @@ async function findById(table, id) {
 
 /**
  * Database model to add a record
- * @param {*} table
- * @param {*} data
- * @returns results - newly created record
+ * @param {string} table
+ * @param {object} data
+ * @returns newly created record
  */
 async function addRecord(table, data) {
 	try {
@@ -45,10 +45,10 @@ async function addRecord(table, data) {
 
 /**
  * Database method to update existing record
- * @param {*} table
- * @param {*} id
- * @param {*} data
- * @returns result - updated record
+ * @param {string} table
+ * @param {integer} id
+ * @param {object} data
+ * @returns updated record
  */
 async function updateRecord(table, id, data) {
 	try {
@@ -67,9 +67,9 @@ async function updateRecord(table, id, data) {
 
 /**
  * Database method to remove record from the database
- * @param {*} table
- * @param {*} id
- * @returns delete confirmation message in a json object
+ * @param {string} table
+ * @param {integer} id
+ * @returns deletion confirmation message in a json object
  */
 async function removeRecord(table, id) {
 	try {
