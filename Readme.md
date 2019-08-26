@@ -32,12 +32,11 @@ https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 
 <a name="findAll"></a>
 
-### findAll(table) ⇒
-
+###findAll(table) ⇒
 Database model to get all records in a table
 
 **Kind**: global function  
-**Returns**: result - array of table contents
+**Returns**: array of table records
 
 | Param | Type                |
 | ----- | ------------------- |
@@ -45,57 +44,53 @@ Database model to get all records in a table
 
 <a name="findById"></a>
 
-### findById(table, id) ⇒
-
+###findById(table, id) ⇒
 Database model to get a single record by id
 
 **Kind**: global function  
-**Returns**: result - database record
+**Returns**: database record
 
-| Param | Type            |
-| ----- | --------------- |
-| table | <code>\*</code> |
-| id    | <code>\*</code> |
+| Param | Type                 |
+| ----- | -------------------- |
+| table | <code>string</code>  |
+| id    | <code>integer</code> |
 
 <a name="addRecord"></a>
 
-### addRecord(table, data) ⇒
-
+###addRecord(table, data) ⇒
 Database model to add a record
 
 **Kind**: global function  
-**Returns**: results - newly created record
+**Returns**: newly created record
 
-| Param | Type            |
-| ----- | --------------- |
-| table | <code>\*</code> |
-| data  | <code>\*</code> |
+| Param | Type                |
+| ----- | ------------------- |
+| table | <code>string</code> |
+| data  | <code>object</code> |
 
 <a name="updateRecord"></a>
 
-### updateRecord(table, id, data) ⇒
-
+###updateRecord(table, id, data) ⇒
 Database method to update existing record
 
 **Kind**: global function  
-**Returns**: result - updated record
+**Returns**: updated record
 
-| Param | Type            |
-| ----- | --------------- |
-| table | <code>\*</code> |
-| id    | <code>\*</code> |
-| data  | <code>\*</code> |
+| Param | Type                 |
+| ----- | -------------------- |
+| table | <code>string</code>  |
+| id    | <code>integer</code> |
+| data  | <code>object</code>  |
 
 <a name="removeRecord"></a>
 
-### removeRecord(table, id) ⇒
-
+###removeRecord(table, id) ⇒
 Database method to remove record from the database
 
 **Kind**: global function  
-**Returns**: delete confirmation message in a json object
+**Returns**: deletion confirmation message in a json object
 
-| Param | Type            |
-| ----- | --------------- |
-| table | <code>\*</code> |
-| id    | <code>\*</code> |
+| Param | Type                 |
+| ----- | -------------------- |
+| table | <code>string</code>  |
+| id    | <code>integer</code> |
