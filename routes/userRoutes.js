@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const db = require('../data/models');
-const jwtCheck = require('../auth/tokenService');
+const { jwtCheck } = require('../auth/tokenService');
 
 router.get('/', jwtCheck, async (req,res,next) => {
   try {
@@ -14,6 +14,8 @@ router.get('/', jwtCheck, async (req,res,next) => {
   } catch (err) {
     console.log(err);
     }
+
+    next();
 });
 
 router.get('/:userId', jwtCheck, async (req,res,next) => {

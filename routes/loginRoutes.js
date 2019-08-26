@@ -12,7 +12,7 @@ router.post('/', async (req,res,next) => {
         if (user && bcrypt.compareSync(password, user.password)) {
         // need to figure out correct way to authenticate with front end client
         // currently sending back a test bearer token from auth0 api
-        const token = process.env.auth0Token;
+        const token = '123456'
         res.status(200).json({
             message: "Login successful",
             user: {

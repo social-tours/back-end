@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const db = require('../data/models');
-const jwtCheck = require('../auth/tokenService');
+const { jwtCheck } = require('../auth/tokenService');
 
 /**
  * Method to retrieve all events from the database
