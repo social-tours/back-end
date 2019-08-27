@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const db = [];
+const db = require("../data/models/index.js");
 const router = require("express").Router();
 const tokenService = require("../auth/tokenService");
 
@@ -92,12 +92,24 @@ async function users(req, res) {
 }
 
 /**
- * Endpoint to get a list of users
+ * Endpoint to get a list of users - This should be restricted to admins only
  * @param req - request from client
  * @param res - response to client
  * @returns result - status code plus json
  */
-router.get("/", (req, res) => {});
+router.get("/", async (req, res, next) => {
+	try {
+		const users = await db.findAll();
+
+		if (users) {
+			res.status(200).json({ users });
+		} else {
+			res.status(404).json({ message: "No users found" });
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
 
 /**
  * Endpoint to get a user by ID
@@ -105,8 +117,19 @@ router.get("/", (req, res) => {});
  * @param res - response to client
  * @returns result - status code plus json
  */
-router.get("/:id", (req, res) => {
-	const { id } = req.params;
+router.get("/:id", async (req, res, next) => {
+	const { userId } = req.params;
+
+	try {
+		const user = await db.findById("Users", userId);
+		if (user) {
+			res.status(200).json({ user });
+		} else {
+			res.status(404).json({ message: "user not found" });
+		}
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 /**
