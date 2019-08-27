@@ -18,7 +18,7 @@ module.exports = {
     debug: true
   },
 
-    testing: {
+  testing: {
     client: 'pg',
     useNullAsDefault: true,
     connection: {
