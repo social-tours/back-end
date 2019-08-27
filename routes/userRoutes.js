@@ -99,7 +99,7 @@ async function users(req, res) {
  */
 router.get("/", async (req, res, next) => {
 	try {
-		const users = await db.findAll();
+		const users = await db.findAll("Users");
 
 		if (users) {
 			res.status(200).json({ users });
@@ -154,7 +154,7 @@ router.put("/:id", async (req, res) => {
 			if (newUser) {
 				res
 					.status(200)
-					.jason({ message: `successly updated event - ${eventId}` });
+					.jason({ message: `successly updated event - ${userId}` });
 			} else {
 				res.status(400).json({ message: "Could not update event" });
 			}
@@ -172,4 +172,19 @@ router.put("/:id", async (req, res) => {
  */
 router.delete("/id", async (req, res) => {
 	// Filtering and then Deleting
+	const userId = req.params;
+
+	try {
+		const user = db.removeRecord("Users", userId);
+
+		if (user) {
+			res
+				.status(200)
+				.message({ message: `successfully deleted user - ${userId}` });
+		} else {
+			res.status(400).message({ message: "not successfully deleted " });
+		}
+	} catch (error) {
+		console.log(error);
+	}
 });
