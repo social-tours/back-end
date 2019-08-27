@@ -37,7 +37,9 @@ https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 Database model to get all records in a table
 
 **Kind**: global function  
+
 **Returns**: result - array of table contents
+
 
 | Param | Type                |
 | ----- | ------------------- |
@@ -50,12 +52,21 @@ Database model to get all records in a table
 Database model to get a single record by id
 
 **Kind**: global function  
+
 **Returns**: result - database record
 
 | Param | Type            |
 | ----- | --------------- |
 | table | <code>\*</code> |
 | id    | <code>\*</code> |
+=======
+**Returns**: database record
+
+| Param | Type                 |
+| ----- | -------------------- |
+| table | <code>string</code>  |
+| id    | <code>integer</code> |
+
 
 <a name="addRecord"></a>
 
@@ -64,12 +75,21 @@ Database model to get a single record by id
 Database model to add a record
 
 **Kind**: global function  
+
 **Returns**: results - newly created record
 
 | Param | Type            |
 | ----- | --------------- |
 | table | <code>\*</code> |
 | data  | <code>\*</code> |
+=======
+**Returns**: newly created record
+
+| Param | Type                |
+| ----- | ------------------- |
+| table | <code>string</code> |
+| data  | <code>object</code> |
+
 
 <a name="updateRecord"></a>
 
@@ -78,6 +98,7 @@ Database model to add a record
 Database method to update existing record
 
 **Kind**: global function  
+
 **Returns**: result - updated record
 
 | Param | Type            |
@@ -85,6 +106,15 @@ Database method to update existing record
 | table | <code>\*</code> |
 | id    | <code>\*</code> |
 | data  | <code>\*</code> |
+=======
+**Returns**: updated record
+
+| Param | Type                 |
+| ----- | -------------------- |
+| table | <code>string</code>  |
+| id    | <code>integer</code> |
+| data  | <code>object</code>  |
+
 
 <a name="removeRecord"></a>
 
@@ -93,9 +123,18 @@ Database method to update existing record
 Database method to remove record from the database
 
 **Kind**: global function  
+
 **Returns**: delete confirmation message in a json object
 
 | Param | Type            |
 | ----- | --------------- |
 | table | <code>\*</code> |
 | id    | <code>\*</code> |
+=======
+**Returns**: deletion confirmation message in a json object
+
+| Param | Type                 |
+| ----- | -------------------- |
+| table | <code>string</code>  |
+| id    | <code>integer</code> |
+
