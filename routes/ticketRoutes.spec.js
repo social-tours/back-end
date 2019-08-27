@@ -1,7 +1,7 @@
 const request = require('supertest')
 
 const db = require('../data/dbConfig')
-const server = require('../server')
+const server = require('../api/server')
 
 describe('Tickets endpoint testing', () => {
   // Clean up database after each test
