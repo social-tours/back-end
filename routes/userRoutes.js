@@ -138,8 +138,30 @@ router.get("/:id", async (req, res, next) => {
  * @param res - response to client
  * @returns result - status code plus json
  */
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
 	// Filtering and then Deleting
+	const userId = req.params;
+
+	try {
+		// let user = await db.updateRecord("Users", userId, data);
+		let user = await db.findById(userId);
+
+		if (user) {
+			const payload = req.body;
+			data = { ...payload };
+			const newUser = await db.updateRecord("Users", userId, data);
+
+			if (newUser) {
+				res
+					.status(200)
+					.jason({ message: `successly updated event - ${eventId}` });
+			} else {
+				res.status(400).json({ message: "Could not update event" });
+			}
+		}
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 /**
@@ -148,6 +170,6 @@ router.put("/:id", (req, res) => {
  * @param res - response to client
  * @returns result - status code plus json
  */
-router.delete("/id", (req, res) => {
+router.delete("/id", async (req, res) => {
 	// Filtering and then Deleting
 });
