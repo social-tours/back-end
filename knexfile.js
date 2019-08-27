@@ -8,7 +8,7 @@ module.exports = {
 			connectionString: process.env.DEV_DB_URL,
 			ssl: true
 		},
-		pool: { min: 0, max: 7},
+		pool: { min: 0, max: 7 },
 		migrations: {
 			directory: "./data/migrations"
 		},
@@ -25,7 +25,7 @@ module.exports = {
 			connectionString: process.env.TEST_DB_URL,
 			ssl: true
 		},
-				pool: { min: 0, max: 7},
+		pool: { min: 0, max: 7 },
 		migrations: {
 			directory: "./data/migrations"
 		},
@@ -35,55 +35,6 @@ module.exports = {
 		debug: false // too verbose of an operation
 	},
 
-<<<<<<< HEAD
-  testing: {
-    client: 'pg',
-    useNullAsDefault: true,
-    connection: {
-      connectionString: process.env.TEST_DB_URL,
-      ssl: true
-    },
-    migrations: {
-      directory: './data/migrations'
-    },
-    seeds: {
-      directory: './data/seeds/testing' // disposable generic boilerplate tables, not dev data
-    },
-    debug: false // too verbose of an operation
-    },
-
-  staging: {
-    client: 'pg',
-    useNullAsDefault: true,
-    connection: {
-      connectionString: process.env.STAGING_DB_URL,
-      ssl: true
-    },
-    migrations: {
-      directory: './data/migrations'
-    },
-    seeds: {
-      directory: './data/seeds'
-    },
-    debug: true // could be either
-  },
-
-  production: {
-    client: 'pg',
-    useNullAsDefault: true,
-    connection: {
-      connectionString: process.env.DATABASE_URL,
-      ssl: true
-    },
-    migrations: {
-      directory: './data/migrations'
-    },
-    seeds: {
-      directory: './data/seeds'
-    },
-    debug: false
-  }
-=======
 	staging: {
 		client: "pg",
 		useNullAsDefault: true,
@@ -91,7 +42,7 @@ module.exports = {
 			connectionString: process.env.STAGING_DB_URL,
 			ssl: true
 		},
-				pool: { min: 0, max: 7},
+		pool: { min: 0, max: 7 },
 		migrations: {
 			directory: "./data/migrations"
 		},
@@ -100,7 +51,6 @@ module.exports = {
 		},
 		debug: true // could be either
 	},
->>>>>>> 1e28a1572af9eda67055ed7b2bef218d7135a9c4
 
 	production: {
 		client: "pg",
@@ -109,7 +59,7 @@ module.exports = {
 			connectionString: process.env.DATABASE_URL,
 			ssl: true
 		},
-				pool: { min: 0, max: 7},
+		pool: { min: 0, max: 7 },
 		migrations: {
 			directory: "./data/migrations"
 		},
