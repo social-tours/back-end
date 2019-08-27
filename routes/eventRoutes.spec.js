@@ -12,30 +12,46 @@ describe('Events endpoint testing', () => {
   describe('GET /events', () => {
     // Seed with test data
     const testData = [
-        { 
-            id: 1,
-            type: 1,
-            user_id: 1,
-            event_id: 1
-        },
-        { 
-            id: 2,
-            type: 1,
-            user_id: 2,
-            event_id: 2
-        },
-        { 
-            id: 3,
-            type: 1,
-            user_id: 3,
-            event_id: 3
-        },
-        { 
-            id: 4,
-            type: 1,
-            user_id: 4,
-            event_id: 4
-        } 
+        {
+			id: 1,
+			type: 1,
+			title: "See Bifunkal Orchestra",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 2,
+			type: 1,
+			title: "See Bifunkal Orchestra 2",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 3,
+			type: 1,
+			title: "See Bifunkal Orchestra 3",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 4,
+			type: 1,
+			title: "See Bifunkal Orchestra 4",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		}
     ]
 
     beforeEach(async () => {
@@ -56,30 +72,46 @@ describe('Events endpoint testing', () => {
   describe('GET /events/:id', () => {
     // Seed with test data
     const testData = [
-    { 
-        id: 1,
-        type: 1,
-        user_id: 1,
-        event_id: 1
-    },
-    { 
-        id: 2,
-        type: 1,
-        user_id: 2,
-        event_id: 2
-    },
-    { 
-        id: 3,
-        type: 1,
-        user_id: 3,
-        event_id: 3
-    },
-    { 
-        id: 4,
-        type: 1,
-        user_id: 4,
-        event_id: 4
-    } 
+        {
+			id: 1,
+			type: 1,
+			title: "See Bifunkal Orchestra",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 2,
+			type: 1,
+			title: "See Bifunkal Orchestra 2",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 3,
+			type: 1,
+			title: "See Bifunkal Orchestra 3",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 4,
+			type: 1,
+			title: "See Bifunkal Orchestra 4",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		}
 ]
 
     beforeEach(async () => {
@@ -90,7 +122,7 @@ describe('Events endpoint testing', () => {
       const id = 2
       const res = await request(server).get(`/api/events/${id}`)
       expect(res.status).toBe(200)
-      expect(res.body.event_id).toBe(testData[id-1].event_id)
+      expect(res.body.title).toBe(testData[id-1].title)
     })
 
     it('return 404 status code for missing record', async () => {
@@ -102,11 +134,15 @@ describe('Events endpoint testing', () => {
   })
 
   describe('POST /events', () => {
-    const testData = { 
+    const testData = {
         id: 1,
         type: 1,
-        user_id: 1,
-        event_id: 1
+        title: "See Bifunkal Orchestra",
+        description: "Orchestrated Blues and Funk",
+        event_image: "Bifunkal Image Here",
+        capacity: 5000,
+        created_at: "2019-08-14",
+        updated_at: "2019-08-15"
     }
 
     it('will receive status code that record was created', async () => {
@@ -117,38 +153,54 @@ describe('Events endpoint testing', () => {
     it('should receive the new event', async () => {
       const res = await request(server).post('/api/events').send(testData)
       expect(res.body.id).toBe(1)
-      expect(res.body.event_id).toBe(testData.event_id)
-      expect(res.body.user_id).toBe(testData.user_id)
+      expect(res.body.title).toBe(testData.title)
+      expect(res.body.description).toBe(testData.description)
     })
   })
 
   describe('UPDATE /events/:id', () => {
     // Seed with test data
     const testData = [
-        { 
-            id: 1,
-            type: 1,
-            user_id: 1,
-            event_id: 1
-        },
-        { 
-            id: 2,
-            type: 1,
-            user_id: 2,
-            event_id: 2
-        },
-        { 
-            id: 3,
-            type: 1,
-            user_id: 3,
-            event_id: 3
-        },
-        { 
-            id: 4,
-            type: 1,
-            user_id: 4,
-            event_id: 4
-        } 
+        {
+			id: 1,
+			type: 1,
+			title: "See Bifunkal Orchestra 1",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 2,
+			type: 1,
+			title: "See Bifunkal Orchestra 2",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 3,
+			type: 1,
+			title: "See Bifunkal Orchestra 3",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 4,
+			type: 1,
+			title: "See Bifunkal Orchestra 4",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		}
     ]
 
     beforeEach(async () => {
@@ -157,10 +209,10 @@ describe('Events endpoint testing', () => {
 
     it('update existing record', async () => {
       const id = 1
-      const updateData = { event_id: 6}
+      const updateData = { title: 6}
       const res = await request(server).put(`/api/events/${id}`).send(updateData)
       expect(res.status).toBe(200)
-      expect(res.body.event_id).toBe(updateData.event_id)
+      expect(res.body.title).toBe(updateData.title)
     })
 
     it(`test update timestamp`, async () => {
@@ -174,30 +226,46 @@ describe('Events endpoint testing', () => {
   describe('DELETE /events/:id', () => {
     // Seed with test data
     const testData = [
-        { 
-            id: 1,
-            type: 1,
-            user_id: 1,
-            event_id: 1
-        },
-        { 
-            id: 2,
-            type: 1,
-            user_id: 2,
-            event_id: 2
-        },
-        { 
-            id: 3,
-            type: 1,
-            user_id: 3,
-            event_id: 3
-        },
-        { 
-            id: 4,
-            type: 1,
-            user_id: 4,
-            event_id: 4
-        } 
+        {
+			id: 1,
+			type: 1,
+			title: "See Bifunkal Orchestra 1",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 2,
+			type: 1,
+			title: "See Bifunkal Orchestra 2",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 3,
+			type: 1,
+			title: "See Bifunkal Orchestra 3",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		},
+        {
+			id: 4,
+			type: 1,
+			title: "See Bifunkal Orchestra 4",
+			description: "Orchestrated Blues and Funk",
+			event_image: "Bifunkal Image Here",
+			capacity: 5000,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		}
     ]
 
     beforeEach(async () => {
