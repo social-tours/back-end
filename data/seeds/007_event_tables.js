@@ -13,6 +13,7 @@ exports.seed = async function(knex) {
 		{
 			id: 1,
 			type: 1, // FK ID in 'EventTypes' table
+			host_id: 2,
 			title: "See Bifunkal Orchestra",
 			description: "Orchestrated Blues and Funk",
 			event_image: "Bifunkal Image Here",
