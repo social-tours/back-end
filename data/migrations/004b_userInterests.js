@@ -1,32 +1,31 @@
 /* 
 -- Source Review -- 
 dbdiagram: https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
- Subscriptions {
+ UserInterests {
   id int PK
-  user_id int [note: 'FK to Users id']
-  influencer_id int [note: 'FK to Users id']
-  created_at TIMESTAMP
+  user_id int
+  interest_id int
 }
   End of Source Review
 
 */
 
 exports.up = function(knex, Promise) {
-	return knex.schema.createTable("Subscriptions", function(tbl) {
-		// id
+	return knex.schema.createTable("UserInterests", function(tbl) {
+		// id int PK
 		tbl.increments();
 
-		// user_id int [note: 'FK to Users id']
+		// user_id int PK from Users
 		tbl
 			.integer("user_id")
 			.references("id")
 			.inTable("Users");
 
-		// influencer_id int [note: 'FK to Users id']
+		// interest_id int - db doesnt state this is a FK but the table its linked to doesnt have this FK either
 		tbl
-			.integer("influencer_id")
+			.integer("interest_id")
 			.references("id")
-			.inTable("Users");
+			.inTable("Interests");
 
 		// created_at
 		tbl
@@ -40,5 +39,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-	return knex.schema.dropTableIfExists("Subscriptions");
+	return knex.schema.dropTableIfExists("UserInterests");
 };
