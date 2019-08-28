@@ -85,7 +85,7 @@ router.post('/', async (req, res, next) => {
     try {
         const eventId = await db.addRecord('Events', newEvent);
 
-        if (event){
+        if (eventId){
             res.status(201).json({"messsage" : `Created new event - ${eventId}`})
         } else {
             res.status(400).json({"message" : "Something went wrong. Could not create event."});
@@ -107,9 +107,9 @@ router.delete('/:eventId', async (req, res, next) => {
         const event = await db.removeRecord('Events', eventId);
 
         if (event){
-            res.status(200).message({"message" : `successfully deleted event - ${eventId}`});
+            res.status(200).json({"message" : `successfully deleted event - ${eventId}`});
         } else {
-            res.status(400).message({"message" : "not successful delete "});
+            res.status(400).json({"message" : "not successful delete "});
         }
     } catch (err) {
         console.log(err);
