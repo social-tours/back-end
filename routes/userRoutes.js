@@ -32,7 +32,7 @@ async function register(req, res) {
 		console.log(`Add user record: `, user);
 		const result = await db.addRecord("Users", user);
 		console.log(`Add new user results: `, result);
-		if (result) return res.status(201).json({ message: "User created" });
+		if (result) return res.status(201).json(result);
 
 		return res.status(400).json({ message: "Something went wrong." });
 	} catch (err) {
