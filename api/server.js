@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 const userRoutes = require("../routes/userRoutes");
+const eventRoutes = require('../routes/eventRoutes');
 
 const server = express();
 
@@ -16,6 +17,7 @@ server.get('/', (req, res) => {
 });
 
 // Route handling
+server.use('/api/events', eventRoutes);
 userRoutes(server);
 
 module.exports = server;
