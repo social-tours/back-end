@@ -6,7 +6,6 @@ const server = require('../api/server')
 describe('Events endpoint testing', () => {
   // Clean up database after each test
   afterEach(async () => {
-		await db('EventTypes').truncate();
     await db('Events').truncate()
   })
 
@@ -18,7 +17,7 @@ describe('Events endpoint testing', () => {
 			created_at: "2019-08-14",
 			updated_at: "2019-08-15"
 		};
-
+		await db('EventTypes').insert(typesData);
     const testData = [
         {
 			id: 1,
@@ -63,7 +62,7 @@ describe('Events endpoint testing', () => {
     ];
 
     beforeEach(async () => {
-			await db('EventTypes').insert(typesData);
+			
 			await db('Events').insert(testData);
     })
 
@@ -86,7 +85,7 @@ describe('Events endpoint testing', () => {
 			created_at: "2019-08-14",
 			updated_at: "2019-08-15"
 		};
-
+		await db('EventTypes').insert(typesData);
     const testData = [
         {
 			id: 1,
@@ -131,7 +130,7 @@ describe('Events endpoint testing', () => {
 ];
 
     beforeEach(async () => {
-			await db('EventTypes').insert(typesData);
+			
       await db('Events').insert(testData);
     })
 
@@ -183,7 +182,7 @@ describe('Events endpoint testing', () => {
 			created_at: "2019-08-14",
 			updated_at: "2019-08-15"
 		};
-
+		await db('EventTypes').insert(typesData);
     const testData = [
         {
 			id: 1,
@@ -228,7 +227,7 @@ describe('Events endpoint testing', () => {
     ]
 
     beforeEach(async () => {
-			await db('EventTypes').insert(typesData);
+			
       await db('Events').insert(testData);
     })
 
@@ -257,6 +256,8 @@ describe('Events endpoint testing', () => {
 			updated_at: "2019-08-15"
 		};
 
+		await db('EventTypes').insert(typesData);
+
     const testData = [
         {
 			id: 1,
@@ -301,7 +302,7 @@ describe('Events endpoint testing', () => {
     ]
 
     beforeEach(async () => {
-			await db('EventTypes').insert(typesData);
+			
       await db('Events').insert(testData);
     })
     
