@@ -16,19 +16,22 @@ module.exports = server => {
  * @returns res - status code plus json
  */
 async function register(req, res) {
+	console.log(`received user data: `, req.body);
 	// implement user registration
 	let { password } = req.body;
 	let user;
 
 	password = bcrypt.hashSync(password, 10);
 	user = { ...req.body, password };
-	maxid = db.length + 1;
-	user.id = maxid.toString();
-	if (!user.first_name || !user.last_name || !user.email || !user.password)
+	// maxid = db.length + 1;
+	// user.id = maxid.toString();
+	if (!user.email || !user.password)
 		res.status(400).json({ message: "All fields are required" });
 
 	try {
+		console.log(`Add user record: `, user);
 		const result = await db.addRecord("Users", user);
+		console.log(`Add new user results: `, result);
 		if (result) return res.status(201).json({ message: "User created" });
 
 		return res.status(400).json({ message: "Something went wrong." });
