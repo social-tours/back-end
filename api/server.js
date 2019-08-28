@@ -16,7 +16,7 @@ server.get("/", (req, res) => {
 	res.status(200).json({ api: "up" });
 });
 
-server.use("/api", (req, res) => {
+server.get("/api", (req, res) => {
 	res.send(`<center><h1>Welcome to the Social Tours API</h1></center>`);
 });
 
