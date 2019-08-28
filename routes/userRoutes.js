@@ -1,12 +1,12 @@
 const bcrypt = require("bcryptjs");
-const db = [];
-const { jwtCheck } = require("../auth/tokenService");
+const db = require("../data/models");
+//const { jwtCheck } = require("../auth/tokenService");
 
 module.exports = server => {
 	server.post("/api/register", register);
 	server.post("/api/login", login);
 	server.get("/api/users/:id", users);
-	server.get("/api/users", jwtCheck, users);
+	server.get("/api/users", users);
 };
 
 /**
@@ -28,7 +28,7 @@ async function register(req, res) {
 		res.status(400).json({ message: "All fields are required" });
 
 	try {
-		const result = await db.push(user);
+		const result = await db.addRecord("Users", user);
 		if (result) return res.status(201).json({ message: "User created" });
 
 		return res.status(400).json({ message: "Something went wrong." });
@@ -74,7 +74,7 @@ async function users(req, res) {
 
 	try {
 		if (id) {
-			const user = db.find(value => value.id === id);
+			const user = await db.findById("Users", id);
 
 			if (user) {
 				res.status(200).json(user);
@@ -82,7 +82,7 @@ async function users(req, res) {
 				res.status(404).json({ message: "user not found" });
 			}
 		} else {
-			const users = await db;
+			const users = await db.findAll("Users");
 			res.status(200).json(users);
 		}
 	} catch (err) {
