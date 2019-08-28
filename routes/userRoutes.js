@@ -1,12 +1,12 @@
 const bcrypt = require("bcryptjs");
 const db = [];
-const tokenService = require("../auth/tokenService");
+const { jwtCheck } = require("../auth/tokenService");
 
 module.exports = server => {
 	server.post("/api/register", register);
 	server.post("/api/login", login);
 	server.get("/api/users/:id", users);
-	server.get("/api/users", users);
+	server.get("/api/users", jwtCheck, users);
 };
 
 /**
