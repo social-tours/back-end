@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken"); // installed this library
 
-const secret = process.env.JWT_SECRET || 'test';
+const secret = process.env.JWT_SECRET || "test";
 
 module.exports = {
-  generateToken
+	generateToken
 };
 
 /**
@@ -12,14 +12,14 @@ module.exports = {
  * @returns {*} signed jwt
  */
 function generateToken(user) {
-  const payload = {
-    subject: user.id,
-    email: user.email
-  };
+	const payload = {
+		subject: user.id,
+		email: user.email
+	};
 
-  const options = {
-    expiresIn: "1d"
-  };
+	const options = {
+		expiresIn: "1d"
+	};
 
-  return jwt.sign(payload, secret, options);
+	return jwt.sign(payload, secret, options);
 }
