@@ -3,28 +3,26 @@ const request = require('supertest')
 const db = require('../data/dbConfig')
 const server = require('../api/server')
 
+const typesData = {
+	id: 1,
+	description: "Concert",
+	created_at: "2019-08-14",
+	updated_at: "2019-08-15"
+};
+try {
+	let types = db('EventTypes').where({id : 1});
 
-
-describe('Events endpoint testing', async () => {
-	// Clean up database after each test
-
-	const typesData = {
-		id: 1,
-		description: "Concert",
-		created_at: "2019-08-14",
-		updated_at: "2019-08-15"
-	};
-	try {
-		let types = await db('EventTypes').where({id : 1});
-
-		if (!types){
-			types = await db('EventTypes').insert(typesData);
-		}
-	} catch (err){
-		console.log(err);
+	if (!types){
+		types =  db('EventTypes').insert(typesData);
 	}
-	
+} catch (err){
+	console.log(err);
+}
 
+
+
+describe('Events endpoint testing',  () => {
+	// Clean up database after each test
 
   afterEach(async () => {
     await db('Events').truncate()
