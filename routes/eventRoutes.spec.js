@@ -6,11 +6,19 @@ const server = require('../api/server')
 describe('Events endpoint testing', () => {
   // Clean up database after each test
   afterEach(async () => {
+		await db('EventTypes')
     await db('Events').truncate()
   })
 
   describe('GET /events', () => {
-    // Seed with test data
+		// Seed with test data
+		const typesData = {
+			id: 1,
+			description: "Concert",
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		};
+
     const testData = [
         {
 			id: 1,
@@ -52,10 +60,11 @@ describe('Events endpoint testing', () => {
 			created_at: "2019-08-14",
 			updated_at: "2019-08-15"
 		}
-    ]
+    ];
 
     beforeEach(async () => {
-      await db('Events').insert(testData)
+			await db('EventTypes').insert(typesData);
+			await db('Events').insert(testData);
     })
 
     it('should returns status code 200', async () => {
@@ -70,7 +79,14 @@ describe('Events endpoint testing', () => {
   })
 
   describe('GET /events/:id', () => {
-    // Seed with test data
+		// Seed with test data
+		const typesData = {
+			id: 1,
+			description: "Concert",
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		};
+
     const testData = [
         {
 			id: 1,
@@ -112,10 +128,11 @@ describe('Events endpoint testing', () => {
 			created_at: "2019-08-14",
 			updated_at: "2019-08-15"
 		}
-]
+];
 
     beforeEach(async () => {
-      await db('Events').insert(testData)
+			await db('EventTypes').insert(typesData);
+      await db('Events').insert(testData);
     })
 
     it('/events/:id return event by id', async () => {
@@ -159,7 +176,14 @@ describe('Events endpoint testing', () => {
   })
 
   describe('UPDATE /events/:id', () => {
-    // Seed with test data
+		// Seed with test data
+		const typesData = {
+			id: 1,
+			description: "Concert",
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		};
+
     const testData = [
         {
 			id: 1,
@@ -204,7 +228,8 @@ describe('Events endpoint testing', () => {
     ]
 
     beforeEach(async () => {
-      await db('Events').insert(testData)
+			await db('EventTypes').insert(typesData);
+      await db('Events').insert(testData);
     })
 
     it('update existing record', async () => {
@@ -224,7 +249,14 @@ describe('Events endpoint testing', () => {
   })
 
   describe('DELETE /events/:id', () => {
-    // Seed with test data
+		// Seed with test data
+		const typesData = {
+			id: 1,
+			description: "Concert",
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		};
+
     const testData = [
         {
 			id: 1,
@@ -269,7 +301,8 @@ describe('Events endpoint testing', () => {
     ]
 
     beforeEach(async () => {
-      await db('Events').insert(testData)
+			await db('EventTypes').insert(typesData);
+      await db('Events').insert(testData);
     })
     
     it('confirm successful deletion', async () => {
