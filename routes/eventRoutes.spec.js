@@ -6,7 +6,7 @@ const server = require('../api/server')
 describe('Events endpoint testing', () => {
   // Clean up database after each test
   afterEach(async () => {
-		await db('EventTypes')
+		await db('EventTypes').truncate();
     await db('Events').truncate()
   })
 
