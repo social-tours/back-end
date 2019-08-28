@@ -8,7 +8,7 @@ var jwtCheck = jwt({
 		jwksRequestsPerMinute: 5,
 		jwksUri: "https://dev-r8zrga7p.auth0.com/.well-known/jwks.json"
 	}),
-	audience: "http://localhost:8080",
+	audience: process.env.AUDIENCE || "http://localhost:8080",
 	issuer: "https://dev-r8zrga7p.auth0.com/",
 	algorithms: ["RS256"]
 });
