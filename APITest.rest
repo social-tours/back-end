@@ -1,0 +1,34 @@
+### GET (Basic)
+http://localhost:8000
+
+### GET Users (ALL)
+http://localhost:8000/api/users
+//https://staging-b-socialtours.herokuapp.com/api/users/
+
+### GET Users (by ID)
+http://localhost:8000/api/users/3
+https://staging-b-socialtours.herokuapp.com/api/users/1
+
+### POST (Register New User)
+//POST http://localhost:8000/api/register HTTP/1.1
+POST https://staging-b-socialtours.herokuapp.com/api/register HTTP/1.1
+content-type: application/json
+
+{
+  "first_name": "Test",
+  "last_name": "User",
+  "email": "testuser@mail.com",
+  "password": "pass1234"
+}
+
+### PUT (Events)
+PUT http://localhost:8000/api/events/1/ HTTP/1.1
+content-type: application/json
+//Enter parameters
+{
+ 
+}
+
+
+### DELETE (Events)
+DELETE http://localhost:8000/api/events/2
