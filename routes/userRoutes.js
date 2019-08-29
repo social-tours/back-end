@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
-const db = require("../data/models");
-//const { jwtCheck } = require("../auth/tokenService");
+const db = [];
+//const { jwtCheck } = require("../auth/tokenService"); temporarily disabled during FE dev phase
 
 module.exports = server => {
 	server.post("/api/register", register);
