@@ -156,4 +156,42 @@ describe("Schedules endpoint testing", () => {
 			expect(res.body.description).toBe("Blues band from Chicago");
 		});
 	});
+
+	describe("PUT /schedules/:scheduleId", () => {
+		const testData = [
+			{
+				id: 1,
+				event_id: 1, // FK ID in 'Events' table
+				sequence: 1,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				start_date_time: "2019-09-05 05:00 PM",
+				end_date_time: "2019-09-05 08:00 PM"
+			}
+		];
+
+		beforeEach(async () => {
+			await db("Schedules").insert(testData);
+		});
+
+		it("update existing record", async () => {
+			let scheduleId = 1;
+			const updateData = {
+				location: "The Phoenix",
+				city: "Kansas City",
+				postal_code: "64105"
+			};
+			const res = await request(server)
+				.put(`/api/schedules/${scheduleId}`)
+				.send(updateData);
+
+			expect(res.status).toBe(200);
+			expect(res.body.location).toEqual(updateData.location);
+			expect(res.body.postal_code).toBe(updateData.postal_code);
+		});
+	});
 });

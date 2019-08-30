@@ -40,7 +40,8 @@ router.get("/:scheduleId", async (req, res) => {
 
 /**
  * Method to add one schedule to the database
- * @returns sends a response indicating whether or not the record was created
+ * @param {object} req.body
+ * @returns newly created record
  */
 router.post("/", async (req, res) => {
 	try {
@@ -50,6 +51,24 @@ router.post("/", async (req, res) => {
 		} else {
 			res.status(400).json({ message: "Could not create record" });
 		}
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+});
+
+/**
+ * Method to edit a schedule
+ * @param {number} scheduleId
+ * @param {object} req.body
+ * @returns updated record
+ */
+router.put("/:scheduleId", async (req, res) => {
+	const { scheduleId } = req.params;
+	try {
+		const data = await db.updateRecord("Schedules", scheduleId, req.body);
+		if (data) {
+			res.send(data);
+		} else throw err;
 	} catch (err) {
 		res.status(500).send(err.message);
 	}
