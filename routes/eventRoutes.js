@@ -32,7 +32,7 @@ router.get('/:eventId', async (req,res,next) => {
         const event = await db.findById('Events', eventId);
 
         if (event){
-            res.status(200).json({event});
+            res.status(200).json(event);
 
         } else {
             res.status(404).json({"message" : "Event not found"});
