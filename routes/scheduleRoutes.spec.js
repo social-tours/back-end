@@ -13,6 +13,9 @@ describe("Schedules endpoint testing", () => {
 		}
 	});
 
+	// Remove all database connections
+	afterAll(() => db.destroy());
+
 	// Seed a test event before each test
 	beforeEach(async () => {
 		await db("EventTypes").insert([
