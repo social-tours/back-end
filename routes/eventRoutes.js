@@ -62,7 +62,7 @@ router.put('/:eventId', async (req,res, next) => {
             const newEvent = await db.updateRecord('Events', eventId, event);
 
             if (newEvent){
-                res.status(200).json({"message" : `successly updated event - ${eventId}`});
+                res.status(200).json(newEvent);
             } else {
                 res.status(400).json({"message" : "Could not update event"});
             }
@@ -83,10 +83,10 @@ router.post('/', async (req, res, next) => {
     const newEvent = req.body;
 
     try {
-        const eventId = await db.addRecord('Events', newEvent);
+        const event = await db.addRecord('Events', newEvent);
 
-        if (eventId){
-            res.status(201).json({"messsage" : `Created new event - ${eventId}`})
+        if (event){
+            res.status(201).json(event);
         } else {
             res.status(400).json({"message" : "Something went wrong. Could not create event."});
         }
