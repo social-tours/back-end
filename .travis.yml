@@ -15,4 +15,4 @@ deploy:
   on:
     repo: social-tours/back-end
     tags: true
-    all_branches: true
+    branch: master
