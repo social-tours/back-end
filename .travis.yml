@@ -1,12 +1,18 @@
-language: node_js 
+language: node_js
 node_js:
-  - "node"
+  - node
 services:
   - postgresql
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-
-  # https://docs.travis-ci.com/user/database-setup/#postgresql
-  # The default user for accessing the local PostgreSQL server is postgres with a blank password.
-script: 
+script:
   - npm run travis
+deploy:
+  provider: heroku
+  app: prod-socialtours
+  api_key:
+    secure: jHe9VpPbaF3DbGHNP8dhugtudebFT9fMZf2H9KEBfTPsYrdIjirzIBcJyYAaz9NiRpZJO9/ICN0knB3tkBuusf/nZNHfTgD/UOBBR2645+ZIPyJtmWEkLwtb/e/sPE+QJ4BDHNZ8ZNvBYoyyC/+/bjA1ZPN9a8DJoqPPh6WNRZOSh6RcA7nLhVfFQ0/mUbJi+PjBxN1bhzS8kzkUOvU28iEXLJSuRsUk4TDPi2Z3gUHAMoSKfV9JSURyuKSzJyQW3vv3/kT00XTXZdherCVwsRK3D0DqQyQSNdG2TeKYYzDF1nxdBvpOQXWFaFXxX9yz/LJ+aIY31O2F0uoJQ+EF+wAWoREv+/bQ7x9ijDW0ZC02oPbeJHsk10wj2ioEkJ9dYInkIP272xuHLIy353ksKmqaRD/nMw130DD8AL6/D7AQDgH1dG0Z6ZPgvJ9WLhqdqty5jBSix/ZRNj3kdxU+Kb/oBt8t1bdtZR2sUEC/eZAy5sGvvrDrMJb8yN3hss9j2RHyGdzv98xLVddrEnagYtVBQ3qbXDnOpAc2H+l+4hzbNCdVlJ7SIaI/bImfwy/DdHOTpawCPP8XduonKOh9riCNoR4e6LjS2kYymg6eRHbl0NHfbz9jCncKVY+Kgq1mWC1v3XFrbIAlYwqwaO7x8YZVLvYhgzldlfxtFZxhKgg=
+  on:
+    repo: social-tours/back-end
+    tags: true
+    all_branches: true
