@@ -252,7 +252,7 @@ describe('Events endpoint testing',  () => {
 
     it('update existing record', async () => {
       const id = 1
-      const updateData = { title: 6}
+      const updateData = { title : "See Bifunkal Orchestra 9" }
       const res = await request(server).put(`/api/events/${id}`).send(updateData)
       expect(res.status).toBe(200)
       expect(res.body.title).toBe(updateData.title)

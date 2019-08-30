@@ -53,7 +53,7 @@ router.get('/:eventId', async (req,res,next) => {
 router.put('/:eventId', async (req,res, next) => {
     const { eventId } = req.params;
     try {
-      const data = await db.update('Events', eventId, req.body);
+      const data = await db.updateRecord('Events', eventId, req.body);
       res.status(200).send(data);
     }
   
