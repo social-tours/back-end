@@ -7,8 +7,8 @@ describe('Events endpoint testing',  () => {
 	// Clean up database after each test
 
   afterEach(async () => {
+		await db('Events').truncate();
 		await db('EventTypes').truncate();
-    await db('Events').truncate();
   })
 
   describe('GET /events', () => {
