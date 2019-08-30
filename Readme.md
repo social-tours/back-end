@@ -2,6 +2,8 @@
 
 The Social Tours API is based on the [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) architecture. The API uses a predefined set of URLs to represent various resources, accepts form-endcoded responses, and uses standard HTTP response codes, authentication and verbs.
 
+---
+
 #### Endpoint
 
 https://prod-socialtours.herokuapp.com/api
@@ -9,6 +11,8 @@ https://prod-socialtours.herokuapp.com/api
 #### ER Diagram
 
 https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
+
+---
 
 ## Data Models
 
