@@ -3,13 +3,21 @@ const request = require('supertest')
 const db = require('../data/dbConfig')
 const server = require('../api/server')
 
+const databaseTables = [
+	"EventTypes",
+	"Events"
+];
+
 describe('Events endpoint testing',  () => {
 	// Clean up database after each test
 
   afterEach(async () => {
-		await db('Events').truncate();
-		await db('EventTypes').truncate();
-  })
+		for (let i = 0; i < databaseTables.length; i++) {
+			await db.raw(`TRUNCATE TABLE "${databaseTables[i]}" CASCADE`);
+		}
+	});
+
+	afterAll(() => db.destroy())
 
   describe('GET /events', () => {
 		// Seed with test data
