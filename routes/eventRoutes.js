@@ -51,37 +51,15 @@ router.get('/:eventId', async (req,res,next) => {
  * @returns message indicating edit was successful or not
  */
 router.put('/:eventId', async (req,res, next) => {
-    const {eventId} = req.params;
-
+    const { eventId } = req.params;
     try {
-        let event = await db.findById('Events', eventId);
-
-        if (event){
-            const payload = req.body;
-            const oldEvent = await db.findById('Events', eventId);
-
-            if (oldEvent){
-                for (let key in payload){
-                    if (oldEvent[key]){
-                        oldEvent[key] = payload[key];
-                    }
-                }
-            }
-       
-            const newEvent = await db.updateRecord('Events', eventId, oldEvent);
-
-            if (newEvent){
-                res.status(200).json(newEvent);
-            } else {
-                res.status(400).json({"message" : "Could not update event"});
-            }
-
-        }
+      const data = await db.update('Events', eventId, req.body);
+      res.status(200).send(data);
     }
-    catch (err){
-        console.log(err);
+  
+    catch (err) {
+      res.status(500).send(err.message);
     }
-
 })
 
 /**
