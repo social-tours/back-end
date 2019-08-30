@@ -1,12 +1,13 @@
 const bcrypt = require("bcryptjs");
-const db = [];
+const db = require("../data/models/index.js");
+const router = require("express").Router();
 const tokenService = require("../auth/tokenService");
 
 module.exports = server => {
-  server.post("/api/register", register);
-  server.post("/api/login", login);
-  server.get("/api/users/:id", users);
-  server.get("/api/users", users);
+	server.post("/api/register", register);
+	server.post("/api/login", login);
+	server.get("/api/users/:id", users);
+	server.get("/api/users", users);
 };
 
 /**
@@ -16,25 +17,25 @@ module.exports = server => {
  * @returns res - status code plus json
  */
 async function register(req, res) {
-  // implement user registration
-  let { password } = req.body;
-  let user;
+	// implement user registration
+	let { password } = req.body;
+	let user;
 
-  password = bcrypt.hashSync(password, 10);
-  user = { ...req.body, password };
-  maxid = db.length + 1;
-  user.id = maxid.toString();
-  if (!user.first_name || !user.last_name || !user.email || !user.password)
-    res.status(400).json({ message: "All fields are required" });
+	password = bcrypt.hashSync(password, 10);
+	user = { ...req.body, password };
+	maxid = db.length + 1;
+	user.id = maxid.toString();
+	if (!user.first_name || !user.last_name || !user.email || !user.password)
+		res.status(400).json({ message: "All fields are required" });
 
-  try {
-    const result = await db.push(user);
-    if (result) return res.status(201).json({ message: "User created" });
+	try {
+		const result = await db.push(user);
+		if (result) return res.status(201).json({ message: "User created" });
 
-    return res.status(400).json({ message: "Something went wrong." });
-  } catch (err) {
-    return res.status(500).json({ message: "Something went wrong." });
-  }
+		return res.status(400).json({ message: "Something went wrong." });
+	} catch (err) {
+		return res.status(500).json({ message: "Something went wrong." });
+	}
 }
 
 /**
@@ -44,48 +45,146 @@ async function register(req, res) {
  * @returns res - status code plus json
  */
 async function login(req, res) {
-  // implement user login
-  const { email, password } = req.body;
+	// implement user login
+	const { email, password } = req.body;
 
-  try {
-    const user = db.find(value => value.email = email);
-    if (user && bcrypt.compareSync(password, user.password)) {
-      const token = tokenService.generateToken(user);
-      res.status(200).json({
-        message: "Login successful",
-        user: {
-          id: user.id,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          email: user.email
-        },
-        token
-      });
-    } else {
-      res.status(401).json({ message: "Something went wrong." });
-    }
-  } catch (err) {
-    return res.status(500).json({ message: "Something went wrong." });
-  }
+	try {
+		const user = db.find(value => (value.email = email));
+		if (user && bcrypt.compareSync(password, user.password)) {
+			const token = tokenService.generateToken(user);
+			res.status(200).json({
+				message: "Login successful",
+				user: {
+					id: user.id,
+					first_name: user.first_name,
+					last_name: user.last_name,
+					email: user.email
+				},
+				token
+			});
+		} else {
+			res.status(401).json({ message: "Something went wrong." });
+		}
+	} catch (err) {
+		return res.status(500).json({ message: "Something went wrong." });
+	}
 }
 
 async function users(req, res) {
-  const { id } = req.params;
+	const { id } = req.params;
 
-  try {
-    if (id) {
-      const user = db.find(value => value.id === id);
+	try {
+		if (id) {
+			const user = db.find(value => value.id === id);
 
-      if (user) {
-        res.status(200).json(user);
-      } else {
-        res.status(404).json({ message: "user not found" });
-      }
-    } else {
-      const users = await db
-      res.status(200).json(users);
-    }
-  } catch (err) {
-    return res.status(500).json({ message: "Something went wrong." });
-  }
+			if (user) {
+				res.status(200).json(user);
+			} else {
+				res.status(404).json({ message: "user not found" });
+			}
+		} else {
+			const users = await db;
+			res.status(200).json(users);
+		}
+	} catch (err) {
+		return res.status(500).json({ message: "Something went wrong." });
+	}
 }
+
+/**
+ * Endpoint to get a list of users - This should be restricted to admins only
+ * @param req - request from client
+ * @param res - response to client
+ * @returns result - status code plus json
+ */
+router.get("/", async (req, res, next) => {
+	try {
+		const users = await db.findAll("Users");
+
+		if (users) {
+			res.status(200).json({ users });
+		} else {
+			res.status(404).json({ message: "No users found" });
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+/**
+ * Endpoint to get a user by ID
+ * @param req - request from client
+ * @param res - response to client
+ * @returns result - status code plus json
+ */
+router.get("/:id", async (req, res, next) => {
+	const { userId } = req.params;
+
+	try {
+		const user = await db.findById("Users", userId);
+		if (user) {
+			res.status(200).json({ user });
+		} else {
+			res.status(404).json({ message: "user not found" });
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+/**
+ * Endpoint to update a user by ID
+ * @param req - request from client
+ * @param res - response to client
+ * @returns result - status code plus json
+ */
+router.put("/:id", async (req, res) => {
+	// Filtering and then Deleting
+	const userId = req.params;
+
+	try {
+		// let user = await db.updateRecord("Users", userId, data);
+		let user = await db.findById(userId);
+
+		if (user) {
+			const payload = req.body;
+			data = { ...payload };
+			const newUser = await db.updateRecord("Users", userId, data);
+
+			if (newUser) {
+				res
+					.status(200)
+					.jason({ message: `successly updated event - ${userId}` });
+			} else {
+				res.status(400).json({ message: "Could not update event" });
+			}
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
+/**
+ * Endpoint to delete a user by ID
+ * @param req - request from client
+ * @param res - response to client
+ * @returns result - status code plus json
+ */
+router.delete("/id", async (req, res) => {
+	// Filtering and then Deleting
+	const userId = req.params;
+
+	try {
+		const user = db.removeRecord("Users", userId);
+
+		if (user) {
+			res
+				.status(200)
+				.message({ message: `successfully deleted user - ${userId}` });
+		} else {
+			res.status(400).message({ message: "not successfully deleted " });
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
