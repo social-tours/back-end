@@ -38,4 +38,21 @@ router.get("/:scheduleId", async (req, res) => {
 	}
 });
 
+/**
+ * Method to add one schedule to the database
+ * @returns sends a response indicating whether or not the record was created
+ */
+router.post("/", async (req, res) => {
+	try {
+		const data = await db.addRecord("Schedules", req.body);
+		if (data) {
+			res.status(201).send(data);
+		} else {
+			res.status(400).json({ message: "Could not create record" });
+		}
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+});
+
 module.exports = router;

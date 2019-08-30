@@ -122,4 +122,38 @@ describe("Schedules endpoint testing", () => {
 			expect(res.body).toEqual({ message: `Record ${scheduleId} not found` });
 		});
 	});
+
+	describe("POST /schedules", () => {
+		const testData = [
+			{
+				id: 1,
+				event_id: 1, // FK ID in 'Events' table
+				sequence: 1,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				start_date_time: "2019-09-05 05:00 PM",
+				end_date_time: "2019-09-05 08:00 PM"
+			}
+		];
+
+		it("receive status code that record was created", async () => {
+			const res = await request(server)
+				.post("/api/schedules")
+				.send(testData);
+			expect(res.status).toBe(201);
+		});
+
+		it("should receive the new schedule", async () => {
+			const res = await request(server)
+				.post("/api/schedules")
+				.send(testData);
+			expect(res.body.id).toBe(1);
+			expect(res.body.title).toEqual("Bifunkal Event Schedule");
+			expect(res.body.description).toBe("Blues band from Chicago");
+		});
+	});
 });
