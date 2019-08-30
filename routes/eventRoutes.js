@@ -58,8 +58,17 @@ router.put('/:eventId', async (req,res, next) => {
 
         if (event){
             const payload = req.body;
-            event = {...payload};
-            const newEvent = await db.updateRecord('Events', eventId, event);
+            const oldEvent = await db.findById('Events', eventId);
+
+            if (oldEvent){
+                for (let key in payload){
+                    if (oldEvent[key]){
+                        oldEvent[key] = payload[key];
+                    }
+                }
+            }
+       
+            const newEvent = await db.updateRecord('Events', eventId, oldEvent);
 
             if (newEvent){
                 res.status(200).json(newEvent);
