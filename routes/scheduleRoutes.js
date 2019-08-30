@@ -19,4 +19,23 @@ router.get("/", async (req, res) => {
 	}
 });
 
+/**
+ * Method to retrieve a specific schedule from the database
+ * @param {number} scheduleId
+ * @returns sends the specific schedule as a response
+ */
+router.get("/:scheduleId", async (req, res) => {
+	const { scheduleId } = req.params;
+	try {
+		const data = await db.findById("Schedules", scheduleId);
+		if (data) {
+			res.send(data);
+		} else {
+			res.status(404).json({ message: `Record ${scheduleId} not found` });
+		}
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+});
+
 module.exports = router;
