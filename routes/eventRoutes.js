@@ -10,7 +10,7 @@ router.get('/', async (req,res, next) => {
         const events = await db.findAll('Events');
 
         if (events){
-            res.status(200).json({events});
+            res.status(200).json(events);
         } else {
             res.status(404).json({"message" : "No events found"});
         }
