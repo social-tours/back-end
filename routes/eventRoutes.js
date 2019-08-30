@@ -10,7 +10,7 @@ router.get('/', async (req,res, next) => {
         const events = await db.findAll('Events');
 
         if (events){
-            res.status(200).json({events});
+            res.status(200).json(events);
         } else {
             res.status(404).json({"message" : "No events found"});
         }
@@ -32,7 +32,7 @@ router.get('/:eventId', async (req,res,next) => {
         const event = await db.findById('Events', eventId);
 
         if (event){
-            res.status(200).json({event});
+            res.status(200).json(event);
 
         } else {
             res.status(404).json({"message" : "Event not found"});
@@ -51,28 +51,15 @@ router.get('/:eventId', async (req,res,next) => {
  * @returns message indicating edit was successful or not
  */
 router.put('/:eventId', async (req,res, next) => {
-    const {eventId} = req.params;
-
+    const { eventId } = req.params;
     try {
-        let event = await db.findById('Events', eventId);
-
-        if (event){
-            const payload = req.body;
-            event = {...payload};
-            const newEvent = await db.updateRecord('Events', eventId, event);
-
-            if (newEvent){
-                res.status(200).json({"message" : `successly updated event - ${eventId}`});
-            } else {
-                res.status(400).json({"message" : "Could not update event"});
-            }
-
-        }
+      const data = await db.updateRecord('Events', eventId, req.body);
+      res.status(200).send(data);
     }
-    catch (err){
-        console.log(err);
+  
+    catch (err) {
+      res.status(500).send(err.message);
     }
-
 })
 
 /**
@@ -83,10 +70,10 @@ router.post('/', async (req, res, next) => {
     const newEvent = req.body;
 
     try {
-        const eventId = db.addRecord('Events', newEvent);
+        const event = await db.addRecord('Events', newEvent);
 
         if (event){
-            res.status(201).json({"messsage" : `Created new event - ${eventId}`})
+            res.status(201).json(event);
         } else {
             res.status(400).json({"message" : "Something went wrong. Could not create event."});
         }
@@ -104,12 +91,12 @@ router.delete('/:eventId', async (req, res, next) => {
     const {eventId} = req.params;
 
     try {
-        const event = db.removeRecord('Events', eventId);
+        const event = await db.removeRecord('Events', eventId);
 
         if (event){
-            res.status(200).message({"message" : `successfully deleted event - ${eventId}`});
+            res.status(200).json({"message" : `successfully deleted event - ${eventId}`});
         } else {
-            res.status(400).message({"message" : "not successful delete "});
+            res.status(400).json({"message" : "not successful delete "});
         }
     } catch (err) {
         console.log(err);
