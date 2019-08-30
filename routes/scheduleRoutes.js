@@ -74,4 +74,21 @@ router.put("/:scheduleId", async (req, res) => {
 	}
 });
 
+/**
+ * Method to remove a schedule record
+ * @param {number} scheduleId
+ * @returns sends a response to indicate whether or not deletion was successful
+ */
+router.delete("/:scheduleId", async (req, res) => {
+	const { scheduleId } = req.params;
+	try {
+		const data = await db.removeRecord("Schedules", scheduleId);
+		if (data) {
+			res.json(data);
+		}
+	} catch (err) {
+		res.status(500).send(err.message);
+	}
+});
+
 module.exports = router;

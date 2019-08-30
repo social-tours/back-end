@@ -194,4 +194,42 @@ describe("Schedules endpoint testing", () => {
 			expect(res.body.postal_code).toBe(updateData.postal_code);
 		});
 	});
+
+	describe("DELETE /schedules/:scheduleId", () => {
+		// Seed with test data
+		const testData = [
+			{
+				id: 1,
+				event_id: 1, // FK ID in 'Events' table
+				sequence: 1,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				start_date_time: "2019-09-05 05:00 PM",
+				end_date_time: "2019-09-05 08:00 PM"
+			}
+		];
+
+		beforeEach(async () => {
+			await db("Schedules").insert(testData);
+		});
+
+		it("confirm successful deletion", async () => {
+			const scheduleId = 1;
+			const res = await request(server).delete(`/api/schedules/${scheduleId}`);
+			expect(res.status).toBe(200);
+			expect(res.body).toEqual({ message: `1 record deleted` });
+		});
+
+		it("confirm record no longer exists", async () => {
+			const scheduleId = 1;
+			await request(server).delete(`/api/schedules/${scheduleId}`);
+			const res = await request(server).get(`/api/schedules/${scheduleId}`);
+			expect(res.status).toBe(404);
+			expect(res.body).toEqual({ message: `Record ${scheduleId} not found` });
+		});
+	});
 });
