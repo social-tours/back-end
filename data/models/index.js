@@ -115,6 +115,7 @@ async function removeRecord(table, id) {
 module.exports = {
 	db,
 	findAll,
+	findAllWhere,
 	findById,
 	addRecord,
 	updateRecord,
