@@ -6,17 +6,14 @@ const db = require('../data/models');
  * @returns sends all events in the database as a response
  */
 router.get('/', async (req,res, next) => {
-    async function asyncForEach(array, callback) {
-        for (let index = 0; index < array.length; index++) {
-          await callback(array[index], index, array);
-        }
-      }
+    
     try {
         let data = await db.findAll('Events');
         
-
-        asyncForEach( data, async event => event['schedule'] = await db.findAllbyId('Schedules', event.id));
-
+        for (let event of data){
+            event['schedule'] = await db.findAllbyId('Schedules', event.id);
+        }
+        
         res.status(200).send(data);
     }
     catch(err){
