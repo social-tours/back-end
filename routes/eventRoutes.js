@@ -2,30 +2,15 @@ const router = require('express').Router();
 const db = require('../data/models');
 
 /**
- * Method to retrieve schedules for a particular event
- * @param {number} eventId 
- */
-async function fetchSchedules(eventId){
-    try {
-        let schedules = await db.findAllbyId('Schedules', eventId);
-        return schedules.sort((a,b) => a.id - b.id);
-    }
-    catch (err){
-        console.log(err);
-        return [];
-    }
-}
-
-/**
  * Method to retrieve all events from the database
  * @returns sends all events in the database as a response
  */
 router.get('/', async (req,res, next) => {
     try {
         let data = await db.findAll('Events');
-        data.forEach( async (event) => {
-            const schedule = await fetchSchedules(event.id);
-            event['schedule'] = schedule;
+        data = data.map( async (event) => {
+            const schedules = await findAllbyId('Schedules', event.id);
+            return {...event, schedule : schedules };
         })
         res.status(200).send(data);
     }
