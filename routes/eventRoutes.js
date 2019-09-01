@@ -10,7 +10,7 @@ router.get('/', async (req,res, next) => {
         let data = await db.findAll('Events');
         data.forEach( async (event) => {
             const schedules = await findAllbyId('Schedules', event.id);
-            event['schedule'] = schedules;
+            event = {...event, schedule : schedules};
         })
         res.status(200).send(data);
     }
