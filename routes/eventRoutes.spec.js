@@ -171,10 +171,10 @@ describe('Events endpoint testing',  () => {
 
 		it('should return all schedules for all events in test database', async () => {
 			const res = await request(server).get('/api/events');
-
-			expect(res.body[0].schedule.length).toEqual(3);
-			expect(res.body[1].schedule.length).toEqual(2);
-			expect(res.body[2].schedule.length).toEqual(1);
+			
+			expect(res.body.events[0].schedule.length).toEqual(3);
+			expect(res.body.events[1].schedule.length).toEqual(2);
+			expect(res.body.events[2].schedule.length).toEqual(1);
 		})
 		
   })
