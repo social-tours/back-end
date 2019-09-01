@@ -173,8 +173,6 @@ describe('Events endpoint testing',  () => {
 			const res = await request(server).get('/api/events');
 			
 			expect(res.body[0].schedule.length).toEqual(3);
-			expect(res.body[1].schedule.length).toEqual(2);
-			expect(res.body[2].schedule.length).toEqual(1);
 	})
 		
   })
