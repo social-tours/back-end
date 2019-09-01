@@ -171,11 +171,10 @@ describe('Events endpoint testing',  () => {
 
 		it('should return all schedules for all events in test database', async () => {
 			const res = await request(server).get('/api/events');
-			let events = res.body['events'];
 
-			let first = events.find(event => event.id === 1); // should have three schedule records
-			let second = events.find(event => event.id === 1); // should have two schedule records
-			let third = events.find(event => event.id === 1); // should have one schedule record
+			let first = res.body.find(event => event.id === 1); // should have three schedule records
+			let second = res.body.find(event => event.id === 2); // should have two schedule records
+			let third = res.body.find(event => event.id === 3); // should have one schedule record
 
 			expect(first.schedule.length).toEqual(3);
 			expect(second.schedule.length).toEqual(2);
