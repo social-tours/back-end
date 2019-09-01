@@ -2,21 +2,36 @@ const router = require('express').Router();
 const db = require('../data/models');
 
 /**
+ * Method to retrieve schedules for a particular event
+ * @param {number} eventId 
+ */
+async function fetchSchedules(eventId){
+    try {
+        let schedules = await db.findAllbyId('Schedules', eventId);
+        return schedules.sort((a,b) => a.id - b.id);
+    }
+    catch (err){
+        console.log(err);
+        return [];
+    }
+}
+
+/**
  * Method to retrieve all events from the database
  * @returns sends all events in the database as a response
  */
 router.get('/', async (req,res, next) => {
     try {
-        const events = await db.findAll('Events');
-
-        if (events){
-            res.status(200).json(events);
-        } else {
-            res.status(404).json({"message" : "No events found"});
-        }
+        let data = await db.findAll('Events');
+        data = data.map(async (event) => {
+            let schedule = await fetchSchedules(event.id);
+            let modifiedEvent = {...event, schedule };
+            return modifiedEvent;
+        })
+        res.status(200).send(data);
     }
     catch(err){
-        console.log(err);
+        res.status(500).send(err);
     }
 })
 
@@ -30,16 +45,18 @@ router.get('/:eventId', async (req,res,next) => {
 
     try {
         const event = await db.findById('Events', eventId);
+        const schedules = await db.findAllbyId('Schedules', eventId);
+
 
         if (event){
-            res.status(200).json(event);
+            res.status(200).json({...event, schedule : schedules});
 
         } else {
             res.status(404).json({"message" : "Event not found"});
         }
     } 
     catch (err) {
-        console.log(err);
+        res.status(500).send(err);
     }
     
 
@@ -78,7 +95,7 @@ router.post('/', async (req, res, next) => {
             res.status(400).json({"message" : "Something went wrong. Could not create event."});
         }
     } catch  (err) {
-        console.log(err);
+        res,status(500).send(err);
     }
 
 })
@@ -99,7 +116,7 @@ router.delete('/:eventId', async (req, res, next) => {
             res.status(400).json({"message" : "not successful delete "});
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).send(err);
     }
 
 })

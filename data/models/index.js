@@ -21,6 +21,23 @@ async function findAll(table) {
 }
 
 /**
+ * Database model to get all records in a table given some search criteria
+ * @param {string} table
+ * @returns array of table records
+ */
+async function findAllbyId(table, id){
+	let records;
+	try {
+		records = await db(table).where('event_id', id);
+	}
+	catch(err){
+		console.log(err);
+		records = [];
+	}
+	return records;
+}
+
+/**
  * Database model to get a single record by id
  * @param {string} table
  * @param {integer} id
@@ -98,6 +115,7 @@ async function removeRecord(table, id) {
 module.exports = {
 	db,
 	findAll,
+	findAllbyId,
 	findById,
 	addRecord,
 	updateRecord,
