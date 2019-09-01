@@ -8,10 +8,10 @@ const db = require('../data/models');
 router.get('/', async (req,res, next) => {
     try {
         let data = await db.findAll('Events');
-        data.forEach( async (event) => {
-            const schedules = await findAllbyId('Schedules', event.id);
-            event = {...event, schedule : schedules};
-        })
+        
+
+        data.forEach(async event => event['schedule'] = await db.findAllbyId('Schedules', event.id));
+        
         res.status(200).send(data);
     }
     catch(err){
