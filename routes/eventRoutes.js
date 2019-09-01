@@ -28,12 +28,7 @@ router.get('/', async (req,res, next) => {
             let modifiedEvent = {...event, schedule };
             return modifiedEvent;
         })
-
-        if (data.length){
-            res.status(200).send(data);
-        } else {
-            res.status(404).json({"message" : "No events found"});
-        }
+        res.status(200).send(data);
     }
     catch(err){
         res.status(500).send(err);
