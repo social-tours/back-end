@@ -28,7 +28,7 @@ async function findAll(table) {
 async function findAllbyId(table, id){
 	let records;
 	try {
-		records = await db(table).where('event_id', id);
+		records = await db(table).where('event_id', id).orderBy("sequence");
 	}
 	catch(err){
 		console.log(err);
