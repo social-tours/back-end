@@ -5,7 +5,8 @@ const server = require('../api/server')
 
 const databaseTables = [
 	"EventTypes",
-	"Events"
+	"Events",
+	"Schedules"
 ];
 
 describe('Events endpoint testing',  () => {
@@ -28,6 +29,47 @@ describe('Events endpoint testing',  () => {
 			updated_at: "2019-08-15"
 		};
 		
+		const scheduleData = [
+			{
+				id: 1,
+				event_id: 1,
+				sequence: 1,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				start_date_time: "2019-09-05 05:00 PM",
+				end_date_time: "2019-09-05 06:00 PM"
+			},
+			{
+				id: 2,
+				event_id: 1,
+				sequence: 3,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				start_date_time: "2019-09-05 06:00 PM",
+				end_date_time: "2019-09-05 07:00 PM"
+			},{
+				id: 3,
+				event_id: 1,
+				sequence: 3,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				start_date_time: "2019-09-05 07:00 PM",
+				end_date_time: "2019-09-05 08:00 PM"
+			},
+		]
+
     const testData = [
         {
 			id: 1,
@@ -74,6 +116,7 @@ describe('Events endpoint testing',  () => {
     beforeEach(async () => {
 			await db('EventTypes').insert(typesData);
 			await db('Events').insert(testData);
+			await db('Schedules').insert(scheduleData);
     })
 
     it('should returns status code 200', async () => {
@@ -84,7 +127,12 @@ describe('Events endpoint testing',  () => {
     it('should return all events in test database', async () => {
       const res = await request(server).get('/api/events')
       expect(res.body.length).toEqual(testData.length)
-    })
+		})
+		
+		it('should return all schedules for an event', async () => {
+			const res = await request(server).get('/api/events/1')
+			expect(res.body.schedule.length).toEqual(scheduleData.length)
+		})
   })
 
   describe('GET /events/:id', () => {
