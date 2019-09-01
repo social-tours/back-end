@@ -25,10 +25,10 @@ async function findAll(table) {
  * @param {string} table
  * @returns array of table records
  */
-async function findAllWhere(table, criteria){
+async function findAllbyId(table, id){
 	let records;
 	try {
-		records = await db(table).where({criteria});
+		records = await db(table).where({id});
 	}
 	catch(err){
 		console.log(err);
@@ -115,7 +115,7 @@ async function removeRecord(table, id) {
 module.exports = {
 	db,
 	findAll,
-	findAllWhere,
+	findAllbyId,
 	findById,
 	addRecord,
 	updateRecord,
