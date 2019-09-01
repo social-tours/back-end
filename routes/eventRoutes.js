@@ -22,14 +22,14 @@ async function fetchSchedules(eventId){
  */
 router.get('/', async (req,res, next) => {
     try {
-        let events = await db.findAll('Events');
-        events = events.map(async (event) => {
+        let data = await db.findAll('Events');
+        data = data.map(async (event) => {
             let modifiedEvent = {...event, schedule : await fetchSchedules(event.id)};
             return modifiedEvent;
         })
 
-        if (events){
-            res.status(200).send(events);
+        if (data.length){
+            res.status(200).send(data);
         } else {
             res.status(404).json({"message" : "No events found"});
         }
