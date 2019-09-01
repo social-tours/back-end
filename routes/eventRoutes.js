@@ -35,7 +35,7 @@ router.get('/', async (req,res, next) => {
         }
     }
     catch(err){
-        console.log(err);
+        res.status(500).send(err);
     }
 })
 
@@ -60,7 +60,7 @@ router.get('/:eventId', async (req,res,next) => {
         }
     } 
     catch (err) {
-        console.log(err);
+        res.status(500).send(err);
     }
     
 
@@ -99,7 +99,7 @@ router.post('/', async (req, res, next) => {
             res.status(400).json({"message" : "Something went wrong. Could not create event."});
         }
     } catch  (err) {
-        console.log(err);
+        res,status(500).send(err);
     }
 
 })
@@ -120,7 +120,7 @@ router.delete('/:eventId', async (req, res, next) => {
             res.status(400).json({"message" : "not successful delete "});
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).send(err);
     }
 
 })
