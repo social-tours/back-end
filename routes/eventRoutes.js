@@ -29,7 +29,7 @@ router.get('/', async (req,res, next) => {
         })
 
         if (events){
-            res.status(200).json(events);
+            res.status(200).send(events);
         } else {
             res.status(404).json({"message" : "No events found"});
         }
