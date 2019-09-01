@@ -46,7 +46,7 @@ describe('Events endpoint testing',  () => {
 			{
 				id: 2,
 				event_id: 1,
-				sequence: 3,
+				sequence: 2,
 				title: "Bifunkal Event Schedule",
 				description: "Blues band from Chicago",
 				location: "House of Blues",
