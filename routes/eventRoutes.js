@@ -23,7 +23,7 @@ async function fetchSchedules(eventId){
 router.get('/', async (req,res, next) => {
     try {
         const events = await db.findAll('Events');
-        events = events.map(event => {
+        events = events.map(async (event) => {
             let modifiedEvent = {...event, schedule : await fetchSchedules(event.id)};
             return modifiedEvent;
         })
