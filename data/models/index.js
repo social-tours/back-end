@@ -21,6 +21,23 @@ async function findAll(table) {
 }
 
 /**
+ * Database model to get all records in a table given some search criteria
+ * @param {string} table
+ * @returns array of table records
+ */
+async function findAllWhere(table, criteria){
+	let records;
+	try {
+		records = await db(table).where({criteria});
+	}
+	catch(err){
+		console.log(err);
+		records = [];
+	}
+	return records;
+}
+
+/**
  * Database model to get a single record by id
  * @param {string} table
  * @param {integer} id
