@@ -23,6 +23,10 @@ async function fetchSchedules(eventId){
 router.get('/', async (req,res, next) => {
     try {
         const events = await db.findAll('Events');
+        events = events.map(event => {
+            let modifiedEvent = {...event, schedule : await fetchSchedules(event.id)};
+            return modifiedEvent;
+        })
 
         if (events){
             res.status(200).json(events);
@@ -45,9 +49,11 @@ router.get('/:eventId', async (req,res,next) => {
 
     try {
         const event = await db.findById('Events', eventId);
+        const schedules = await db.findAllbyId('Schedules', eventId);
+
 
         if (event){
-            res.status(200).json(event);
+            res.status(200).json({...event, schedule : schedules});
 
         } else {
             res.status(404).json({"message" : "Event not found"});
