@@ -8,9 +8,9 @@ const db = require('../data/models');
 router.get('/', async (req,res, next) => {
     try {
         let data = await db.findAll('Events');
-        data = data.map( async (event) => {
+        data.forEach( async (event) => {
             const schedules = await findAllbyId('Schedules', event.id);
-            return {...event, schedule : schedules };
+            event['schedule'] = schedules;
         })
         res.status(200).send(data);
     }
