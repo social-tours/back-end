@@ -24,7 +24,8 @@ router.get('/', async (req,res, next) => {
     try {
         let data = await db.findAll('Events');
         data.forEach( async (event) => {
-            event['schedule'] = await fetchSchedules(event.id);
+            const schedule = await fetchSchedules(event.id);
+            event['schedule'] = schedule;
         })
         res.status(200).send(data);
     }
