@@ -5,8 +5,10 @@ const db = require("../data/models");
 module.exports = server => {
 	server.post("/api/register", register);
 	server.post("/api/login", login);
-	server.get("/api/users/:id", users);
-	server.get("/api/users", users);
+	server.get("/api/users/:id", fetchUsers);
+	server.get("/api/users", fetchUsers);
+	server.put("/api/users/:id", profileUpdate);
+	server.delete("/api/users/:id", userDelete);
 };
 
 /**
@@ -68,7 +70,12 @@ async function login(req, res) {
 	}
 }
 
-async function users(req, res) {
+/** Endpoint to retrieve user information
+ * @param req - request from client
+ * @param res - response to client
+ * @returns res - status code plus json
+ */
+async function fetchUsers(req, res) {
 	const { id } = req.params;
 
 	try {
@@ -83,6 +90,42 @@ async function users(req, res) {
 		} else {
 			const users = await db.findAll("Users");
 			res.status(200).json(users);
+		}
+	} catch (err) {
+		return res.status(500).json({ message: "Something went wrong." });
+	}
+}
+
+/** Endpoint to retrieve user information
+ * @param req - request from client
+ * @param res - response to client
+ * @returns res - status code plus json
+ */
+async function profileUpdate(req, res) {
+	const { id } = req.params;
+
+	try {
+		const data = await db.updateRecord("Users", id, req.body);
+		if (data) {
+			res.send(data);
+		} else throw err;
+	} catch (err) {
+		return res.status(500).json({ message: "Something went wrong." });
+	}
+}
+
+/** Endpoint to retrieve user information
+ * @param req - request from client
+ * @param res - response to client
+ * @returns res - status code plus json
+ */
+async function userDelete(req, res) {
+	const { id } = req.params;
+
+	try {
+		const data = await db.removeRecord("Users", id);
+		if (data) {
+			res.json(data);
 		}
 	} catch (err) {
 		return res.status(500).json({ message: "Something went wrong." });
