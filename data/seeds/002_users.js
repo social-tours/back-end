@@ -46,4 +46,8 @@ exports.seed = async function(knex) {
 			type: 1
 		}
 	]);
+
+	await knex.raw(
+		`SELECT setval(('"Users_id_seq"'::regclass), (SELECT MAX(id) from "Users"))`
+	);
 };

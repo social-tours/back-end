@@ -9,6 +9,10 @@ exports.seed = async function(knex) {
 		}
 	]);
 
+	await knex.raw(
+		`SELECT setval(('"EventTypes_id_seq"'::regclass), (SELECT MAX(id) from "EventTypes"))`
+	);
+
 	await knex("Events").insert([
 		{
 			id: 1,
@@ -17,9 +21,11 @@ exports.seed = async function(knex) {
 			title: "See Bifunkal Orchestra",
 			description: "Orchestrated Blues and Funk",
 			event_image: "Bifunkal Image Here",
-			capacity: 5000,
-			created_at: "2019-08-14",
-			updated_at: "2019-08-15"
+			capacity: 5000
 		}
 	]);
+
+	await knex.raw(
+		`SELECT setval(('"Events_id_seq"'::regclass), (SELECT MAX(id) from "Events"))`
+	);
 };
