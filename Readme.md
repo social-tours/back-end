@@ -12,7 +12,7 @@ https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 
 ---
 
-### Data Models
+## Data Models
 
 <dl>
 <dt><a href="#findAll">findAll(table)</a> ⇒</dt>
@@ -23,6 +23,9 @@ https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 </dd>
 <dt><a href="#findById">findById(table, id)</a> ⇒</dt>
 <dd><p>Database model to get a single record by id</p>
+</dd>
+<dt><a href="#findByEmail">findByEmail(email)</a> ⇒</dt>
+<dd><p>Database model to get a user record by email</p>
 </dd>
 <dt><a href="#addRecord">addRecord(table, data)</a> ⇒</dt>
 <dd><p>Database model to add a record</p>
@@ -74,6 +77,19 @@ Database model to get a single record by id
 | ----- | -------------------- |
 | table | <code>string</code>  |
 | id    | <code>integer</code> |
+
+<a name="findByEmail"></a>
+
+### findByEmail(email) ⇒
+
+Database model to get a user record by email
+
+**Kind**: global function  
+**Returns**: database record
+
+| Param | Type                |
+| ----- | ------------------- |
+| email | <code>string</code> |
 
 <a name="addRecord"></a>
 
