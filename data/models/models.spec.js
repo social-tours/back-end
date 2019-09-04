@@ -25,7 +25,7 @@ describe("Models testing", () => {
 		}
 	});
 
-	afterAll(() => db.destroy())
+	afterAll(() => db.destroy());
 
 	describe("findAll", () => {
 		it("find all records in specified tables", async () => {
@@ -109,6 +109,71 @@ describe("Models testing", () => {
 
 			// Validate Model
 			expect(fetchRecord.description).toEqual("Follower");
+		});
+	});
+
+	describe("findByEmail", () => {
+		it("find record by email", async () => {
+			// Seed with test data
+			const userTypes = [
+				{ id: 1, description: "Influencer" },
+				{ id: 2, description: "Follower" }
+			];
+
+			await db("UserTypes").insert(userTypes);
+
+			const testUsers = [
+				{
+					id: 1,
+					first_name: "Yana",
+					last_name: "Blake",
+					user_name: "yblake",
+					gender: "Female",
+					birth_date: "1987-09-17",
+					city: "Dallas",
+					state_province: "TX",
+					country: "USA",
+					email: "yana@yogiyana.com",
+					password: bcrypt.hashSync("pass", 12),
+					type: 1
+				},
+				{
+					id: 2,
+					first_name: "George",
+					last_name: "Kaplam",
+					user_name: "gkaplan",
+					gender: "Male",
+					birth_date: "1955-11-05",
+					city: "Hill Valley",
+					state_province: "CA",
+					country: "USA",
+					email: "george@gmail.com",
+					password: bcrypt.hashSync("pass", 12),
+					type: 2
+				},
+				{
+					id: 3,
+					first_name: "Cindy",
+					last_name: "Brady",
+					user_name: "cbrady",
+					gender: "Female",
+					birth_date: "1995-10-05",
+					city: "Chicago",
+					state_province: "IL",
+					country: "USA",
+					email: "cindy@selfiequeen.com",
+					password: bcrypt.hashSync("pass", 12),
+					type: 1
+				}
+			];
+
+			await db("Users").insert(testUsers);
+
+			// Run model
+			const fetchRecord = await Models.findByEmail("george@gmail.com");
+
+			// Validate Model
+			expect(fetchRecord.first_name).toEqual("George");
 		});
 	});
 
