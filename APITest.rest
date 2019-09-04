@@ -1,0 +1,56 @@
+### GET (Basic)
+http://localhost:8000
+
+### GET Users (ALL)
+http://localhost:8000/api/users
+//https://staging-b-socialtours.herokuapp.com/api/users/
+
+### GET Events (ALL)
+http://localhost:8000/api/events
+//https://staging-b-socialtours.herokuapp.com/api/users/
+
+### GET Users (by ID)
+http://localhost:8000/api/users/4
+https://staging-b-socialtours.herokuapp.com/api/users/1
+
+### GET Events (by ID)
+http://localhost:8000/api/events/1
+https://staging-b-socialtours.herokuapp.com/api/users/1
+
+### POST (Register New User)
+POST http://localhost:8000/api/register HTTP/1.1
+//POST https://staging-b-socialtours.herokuapp.com/api/register HTTP/1.1
+content-type: application/json
+
+{
+  "first_name": "Test",
+  "last_name": "User",
+  "email": "testuser@mail.com",
+  "password": "pass1234"
+}
+
+### POST (Create Event)
+POST http://localhost:8000/api/events HTTP/1.1
+//POST https://staging-b-socialtours.herokuapp.com/api/register HTTP/1.1
+content-type: application/json
+
+		{
+			"type": 1, 
+			"host_id": 2,
+			"title": "Raffi in Concert",
+			"description": "Raffi Beluga Grads Concert Tour",
+			"event_image": "http://www.raffinews.com/images/raffi/concert_poster7.jpg",
+			"capacity": 10000
+		}
+
+### PUT (Events)
+PUT http://localhost:8000/api/users/4 HTTP/1.1
+content-type: application/json
+
+{
+ "country": "USA"
+}
+
+
+### DELETE (Events)
+DELETE http://localhost:8000/api/events/2
