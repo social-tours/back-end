@@ -7,8 +7,8 @@ module.exports = server => {
 	server.post("/api/login", login);
 	server.get("/api/users/:id", fetchUsers);
 	server.get("/api/users", fetchUsers);
-	server.put("/api/users/:id", profileUpdate);
-	server.delete("/api/users/:id", userDelete);
+	server.put("/api/users/:id", updateUser);
+	server.delete("/api/users/:id", removeUser);
 };
 
 /**
@@ -101,7 +101,7 @@ async function fetchUsers(req, res) {
  * @param res - response to client
  * @returns res - status code plus json
  */
-async function profileUpdate(req, res) {
+async function updateUser(req, res) {
 	const { id } = req.params;
 
 	try {
@@ -119,7 +119,7 @@ async function profileUpdate(req, res) {
  * @param res - response to client
  * @returns res - status code plus json
  */
-async function userDelete(req, res) {
+async function removeUser(req, res) {
 	const { id } = req.params;
 
 	try {
