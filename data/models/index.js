@@ -11,12 +11,11 @@ async function findAll(table) {
 	let records;
 	try {
 		records = await db(table).orderBy("id");
-	}
-	catch(err){
+	} catch (err) {
 		console.log(err);
 		records = [];
 	}
-	
+
 	return records;
 }
 
@@ -25,12 +24,13 @@ async function findAll(table) {
  * @param {string} table
  * @returns array of table records
  */
-async function findAllbyId(table, id){
+async function findAllbyId(table, id) {
 	let records;
 	try {
-		records = await db(table).where('event_id', id).orderBy("sequence");
-	}
-	catch(err){
+		records = await db(table)
+			.where("event_id", id)
+			.orderBy("sequence");
+	} catch (err) {
 		console.log(err);
 		records = [];
 	}
@@ -44,11 +44,32 @@ async function findAllbyId(table, id){
  * @returns database record
  */
 async function findById(table, id) {
-	let result = await db(table)
-		.where({ id })
-		.first();
+	try {
+		let record = await db(table)
+			.where({ id })
+			.first();
 
-	return result;
+		return record;
+	} catch (err) {
+		return err;
+	}
+}
+
+/**
+ * Database model to get a user record by email
+ * @param {string} email
+ * @returns database record
+ */
+async function findByEmail(email) {
+	try {
+		let record = await db("Users")
+			.where({ email })
+			.first();
+
+		return record;
+	} catch (err) {
+		return err;
+	}
 }
 
 /**
@@ -59,11 +80,11 @@ async function findById(table, id) {
  */
 async function addRecord(table, data) {
 	try {
-		const [results] = await db(table)
+		const [records] = await db(table)
 			.insert(data)
 			.returning("*");
 
-		return results;
+		return records;
 	} catch (err) {
 		return err;
 	}
@@ -117,6 +138,7 @@ module.exports = {
 	findAll,
 	findAllbyId,
 	findById,
+	findByEmail,
 	addRecord,
 	updateRecord,
 	removeRecord
