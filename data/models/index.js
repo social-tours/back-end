@@ -7,8 +7,34 @@ const db = require("../dbConfig");
  * @param {string} table
  * @returns array of table records
  */
-function findAll(table) {
-	return db(table).orderBy("id");
+async function findAll(table) {
+	let records;
+	try {
+		records = await db(table).orderBy("id");
+	}
+	catch(err){
+		console.log(err);
+		records = [];
+	}
+	
+	return records;
+}
+
+/**
+ * Database model to get all records in a table given some search criteria
+ * @param {string} table
+ * @returns array of table records
+ */
+async function findAllbyId(table, id){
+	let records;
+	try {
+		records = await db(table).where('event_id', id).orderBy("sequence");
+	}
+	catch(err){
+		console.log(err);
+		records = [];
+	}
+	return records;
 }
 
 /**
@@ -89,6 +115,7 @@ async function removeRecord(table, id) {
 module.exports = {
 	db,
 	findAll,
+	findAllbyId,
 	findById,
 	addRecord,
 	updateRecord,

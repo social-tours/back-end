@@ -1,25 +1,18 @@
-const jwt = require("jsonwebtoken"); // installed this library
+var jwt = require("express-jwt");
+var jwks = require("jwks-rsa");
 
-const secret = process.env.JWT_SECRET || 'test';
+var jwtCheck = jwt({
+	secret: jwks.expressJwtSecret({
+		cache: true,
+		rateLimit: true,
+		jwksRequestsPerMinute: 5,
+		jwksUri: "https://dev-r8zrga7p.auth0.com/.well-known/jwks.json"
+	}),
+	audience: process.env.AUDIENCE || "http://localhost:8080",
+	issuer: "https://dev-r8zrga7p.auth0.com/",
+	algorithms: ["RS256"]
+});
 
 module.exports = {
-  generateToken
+	jwtCheck
 };
-
-/**
- * Creates a new jwt for the specific user
- * @param user
- * @returns {*} signed jwt
- */
-function generateToken(user) {
-  const payload = {
-    subject: user.id,
-    email: user.email
-  };
-
-  const options = {
-    expiresIn: "1d"
-  };
-
-  return jwt.sign(payload, secret, options);
-}

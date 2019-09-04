@@ -10,11 +10,16 @@ https://prod-socialtours.herokuapp.com/api
 
 https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 
-## Data Models
+---
+
+### Data Models
 
 <dl>
 <dt><a href="#findAll">findAll(table)</a> ⇒</dt>
 <dd><p>Database model to get all records in a table</p>
+</dd>
+<dt><a href="#findAllbyId">findAllbyId(table)</a> ⇒</dt>
+<dd><p>Database model to get all records in a table given some search criteria</p>
 </dd>
 <dt><a href="#findById">findById(table, id)</a> ⇒</dt>
 <dd><p>Database model to get a single record by id</p>
@@ -35,6 +40,19 @@ https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 ### findAll(table) ⇒
 
 Database model to get all records in a table
+
+**Kind**: global function  
+**Returns**: array of table records
+
+| Param | Type                |
+| ----- | ------------------- |
+| table | <code>string</code> |
+
+<a name="findAllbyId"></a>
+
+### findAllbyId(table) ⇒
+
+Database model to get all records in a table given some search criteria
 
 **Kind**: global function  
 **Returns**: array of table records
