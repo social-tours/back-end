@@ -22,14 +22,13 @@ async function register(req, res) {
 
 	password = bcrypt.hashSync(password, 10);
 	user = { ...req.body, password };
-	maxid = db.length + 1;
-	user.id = maxid.toString();
 	if (!user.first_name || !user.last_name || !user.email || !user.password)
 		res.status(400).json({ message: "All fields are required" });
 
 	try {
-		const result = await db.push(user);
-		if (result) return res.status(201).json({ message: "User created" });
+		const result = await db.addRecord("Users", user);
+
+		if (result) return res.status(201).json(result);
 
 		return res.status(400).json({ message: "Something went wrong." });
 	} catch (err) {
@@ -48,7 +47,7 @@ async function login(req, res) {
 	const { email, password } = req.body;
 
 	try {
-		const user = db.find(value => (value.email = email));
+		const user = await db.findByEmail(email);
 		if (user && bcrypt.compareSync(password, user.password)) {
 			const token = tokenService.generateToken(user);
 			res.status(200).json({
@@ -74,7 +73,7 @@ async function users(req, res) {
 
 	try {
 		if (id) {
-			const user = db.find(value => value.id === id);
+			const user = await db.findById("Users", id);
 
 			if (user) {
 				res.status(200).json(user);
@@ -82,7 +81,7 @@ async function users(req, res) {
 				res.status(404).json({ message: "user not found" });
 			}
 		} else {
-			const users = await db;
+			const users = await db.findAll("Users");
 			res.status(200).json(users);
 		}
 	} catch (err) {
