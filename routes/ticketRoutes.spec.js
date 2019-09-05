@@ -2,8 +2,9 @@ const request = require("supertest");
 
 const db = require("../data/dbConfig");
 const server = require("../api/server");
+const bcrypt = require('bcryptjs');
 
-const databaseTables = ["TicketTypes", "Tickets", "Events", "EventTypes"];
+const databaseTables = ["TicketTypes", "Tickets", "Events", "EventTypes", "UserTypes", "Users"];
 
 describe("Tickets endpoint testing", () => {
 	// Clean up database after each test
@@ -40,14 +41,38 @@ describe("Tickets endpoint testing", () => {
 			}
         ]);
         
-        await db("TicketTypes").insert([{
-			id: 1,
-			title: "Test Ticket",
-			price: 49.99,
-			created_at: "2019-08-14",
-			updated_at: "2019-08-15"
-		}])
-	});
+        await db("TicketTypes").insert([
+            {
+                id: 1,
+                title: "1", // FK ID in 'Tickets' table
+                price: 49.99,
+                created_at: "2019-08-14",
+                updated_at: "2019-08-15"
+            }
+        ]);
+
+        await db("UserTypes").insert([
+            { id: 1, description: "Influencer" },
+            { id: 2, description: "Follower" }
+        ]);
+
+        await db("Users").insert([
+            {
+                id: 1,
+                first_name: "Yana",
+                last_name: "Blake",
+                user_name: "yblake",
+                gender: "Female",
+                birth_date: "1987-09-17",
+                city: "Dallas",
+                state_province: "TX",
+                country: "USA",
+                email: "yana@yogiyana.com",
+                password: bcrypt.hashSync("pass", 12),
+                type: 1
+            }
+        ]);
+    
 
 	describe("GET /tickets", () => {
 		// Seed with test data
