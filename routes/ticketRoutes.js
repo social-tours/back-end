@@ -110,7 +110,7 @@ router.post('/', async (req, res, next) => {
         const ticket = await db.addRecord('Tickets', {type, user_id, event_id});
 
         if (ticket){
-            res.status(201).send(event);
+            res.status(201).send(ticket);
         } else {
             res.status(400).json({"message" : "Something went wrong. Could not create ticket."});
         }
@@ -130,7 +130,7 @@ router.delete('/:ticketId', async (req, res, next) => {
         const ticket = await db.removeRecord('Tickets', ticketId);
 
         if (ticket){
-            res.status(200).send({"message" : `successfully deleted event - ${ticketId}`});
+            res.status(200).send({"message" : `successfully deleted ticket - ${ticketId}`});
         } else {
             res.status(400).json({"message" : "not successful delete "});
         }
