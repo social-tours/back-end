@@ -2,7 +2,6 @@ const request = require("supertest");
 
 const db = require("../data/dbConfig");
 const server = require("../api/server");
-const bcrypt = require('bcryptjs');
 
 const databaseTables = ["TicketTypes", "Tickets", "Events", "EventTypes", "UserTypes", "Users"];
 
@@ -68,11 +67,11 @@ describe("Tickets endpoint testing", () => {
                 state_province: "TX",
                 country: "USA",
                 email: "yana@yogiyana.com",
-                password: bcrypt.hashSync("pass", 12),
+                password: "pass",
                 type: 1
             }
         ]);
-    
+    });
 
 	describe("GET /tickets", () => {
 		// Seed with test data
