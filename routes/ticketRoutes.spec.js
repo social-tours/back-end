@@ -38,7 +38,15 @@ describe("Tickets endpoint testing", () => {
 				created_at: "2019-08-14",
 				updated_at: "2019-08-15"
 			}
-		]);
+        ]);
+        
+        await db("TicketTypes").insert([{
+			id: 1,
+			title: "Test Ticket",
+			price: 49.99,
+			created_at: "2019-08-14",
+			updated_at: "2019-08-15"
+		}])
 	});
 
 	describe("GET /tickets", () => {
