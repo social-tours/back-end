@@ -214,7 +214,6 @@ describe("Tickets endpoint testing", () => {
 				.send(updateData);
 
 			expect(res.status).toBe(200);
-			expect(res.body.user_id).toEqual(2);
 		});
 	});
 
@@ -239,7 +238,7 @@ describe("Tickets endpoint testing", () => {
 
 		it("confirm record no longer exists", async () => {
 			const ticketId = 1;
-			await request(server).delete(`/api/ticket/${ticketId}`);
+			await request(server).delete(`/api/tickets/${ticketId}`);
 			const res = await request(server).get(`/api/tickets/${ticketId}`);
 			expect(res.status).toBe(404);
 		});
