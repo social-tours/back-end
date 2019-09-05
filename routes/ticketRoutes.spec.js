@@ -69,6 +69,34 @@ describe("Tickets endpoint testing", () => {
                 email: "yana@yogiyana.com",
                 password: "pass",
                 type: 1
+            },
+            {
+                id: 2,
+                first_name: "Yana",
+                last_name: "Blake",
+                user_name: "yblake",
+                gender: "Female",
+                birth_date: "1987-09-17",
+                city: "Dallas",
+                state_province: "TX",
+                country: "USA",
+                email: "yana2@yogiyana.com",
+                password: "pass",
+                type: 1
+            },
+            {
+                id: 3,
+                first_name: "Yana",
+                last_name: "Blake",
+                user_name: "yblake",
+                gender: "Female",
+                birth_date: "1987-09-17",
+                city: "Dallas",
+                state_province: "TX",
+                country: "USA",
+                email: "yana3@yogiyana.com",
+                password: "pass",
+                type: 1
             }
         ]);
     });
