@@ -80,8 +80,8 @@ router.post('/', async (req, res, next) => {
         } else {
             res.status(400).json({"message" : "Something went wrong. Could not create event."});
         }
-    } catch  (err) {
-        res,status(500).send(err);
+    } catch(err) {
+        res.status(500).send(err);
     }
 
 })
