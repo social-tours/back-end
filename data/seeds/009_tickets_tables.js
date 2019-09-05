@@ -10,6 +10,10 @@ exports.seed = async function(knex) {
 		}
 	]);
 
+	await knex.raw(
+		`SELECT setval(('"TicketTypes_id_seq"'::regclass), (SELECT MAX(id) from "TicketTypes"))`
+	);
+
 	await knex("Tickets").insert([
 		{
 			id: 1,
@@ -18,4 +22,8 @@ exports.seed = async function(knex) {
 			event_id: 1
 		}
 	]);
+
+	await knex.raw(
+		`SELECT setval(('"Tickets_id_seq"'::regclass), (SELECT MAX(id) from "Tickets"))`
+	);
 };

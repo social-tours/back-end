@@ -3,9 +3,11 @@ exports.seed = async function(knex) {
 		{
 			id: 1,
 			user_id: 1, // FK ID in 'Users' table
-			influencer_id: 1, // FK ID in 'Users' table
-			created_at: "2019-08-14",
-			updated_at: "2019-08-15"
+			influencer_id: 1 // FK ID in 'Users' table
 		}
 	]);
+
+	await knex.raw(
+		`SELECT setval(('"Subscriptions_id_seq"'::regclass), (SELECT MAX(id) from "Subscriptions"))`
+	);
 };

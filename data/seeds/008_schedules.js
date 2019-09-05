@@ -10,8 +10,12 @@ exports.seed = async function(knex) {
 			city: "Chicago",
 			postal_code: "60654",
 			country: "USA",
-			start_date_time: "2019-09-05 05:00 PM",
-			end_date_time: "2019-09-05 08:00 PM"
+			start_date_time: "2019-09-25 05:00 PM",
+			end_date_time: "2019-09-25 08:00 PM"
 		}
 	]);
+
+	await knex.raw(
+		`SELECT setval(('"Schedules_id_seq"'::regclass), (SELECT MAX(id) from "Schedules"))`
+	);
 };
