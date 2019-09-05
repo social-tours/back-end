@@ -1,25 +1,26 @@
 ### GET (Basic)
 http://localhost:8000
+//https://staging-a-socialtours.herokuapp.com
 
 ### GET Users (ALL)
 http://localhost:8000/api/users
-//https://staging-b-socialtours.herokuapp.com/api/users/
+//https://staging-a-socialtours.herokuapp.com/api/users/
 
 ### GET Events (ALL)
 http://localhost:8000/api/events
-//https://staging-b-socialtours.herokuapp.com/api/users/
+//https://staging-a-socialtours.herokuapp.com/api/events/
 
 ### GET Users (by ID)
 http://localhost:8000/api/users/4
-https://staging-b-socialtours.herokuapp.com/api/users/1
+https://staging-a-socialtours.herokuapp.com/api/users/1
 
 ### GET Events (by ID)
 http://localhost:8000/api/events/1
-https://staging-b-socialtours.herokuapp.com/api/users/1
+https://staging-a-socialtours.herokuapp.com/api/events/1
 
 ### POST (Register New User)
 POST http://localhost:8000/api/register HTTP/1.1
-//POST https://staging-b-socialtours.herokuapp.com/api/register HTTP/1.1
+//POST https://staging-a-socialtours.herokuapp.com/api/register HTTP/1.1
 content-type: application/json
 
 {
@@ -31,7 +32,7 @@ content-type: application/json
 
 ### POST (Create Event)
 POST http://localhost:8000/api/events HTTP/1.1
-//POST https://staging-b-socialtours.herokuapp.com/api/register HTTP/1.1
+//POST https://staging-a-socialtours.herokuapp.com/api/events HTTP/1.1
 content-type: application/json
 
 		{
@@ -43,14 +44,27 @@ content-type: application/json
 			"capacity": 10000
 		}
 
-### PUT (Events)
-PUT http://localhost:8000/api/users/4 HTTP/1.1
+### PUT (Users)
+PUT http://localhost:8000/api/users/3 HTTP/1.1
+//PUT https://staging-a-socialtours.herokuapp.com/api/users/3 HTTP/1.1
 content-type: application/json
 
 {
  "country": "USA"
 }
 
+### PUT (Events)
+PUT http://localhost:8000/api/events/12 HTTP/1.1
+//PUT https://staging-a-socialtours.herokuapp.com/api/events/12 HTTP/1.1
+content-type: application/json
+
+{
+ "title": "Wilfred's Awesome Event",
+ "description": "Update Event Testing",
+ "capacity": 377
+}
+
 
 ### DELETE (Events)
-DELETE http://localhost:8000/api/events/2
+DELETE http://localhost:8000/api/events/12
+// DELETE https://staging-a-socialtours.herokuapp.com/api/events/12
