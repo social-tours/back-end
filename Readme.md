@@ -133,3 +133,15 @@ Database method to remove record from the database
 | ----- | -------------------- |
 | table | <code>string</code>  |
 | id    | <code>integer</code> |
+
+---
+
+## Post-User-Registration Hook
+
+To access the code:
+
+- Login to [Auth0 dashboard](https://auth0.com/auth/login)
+- Select **Hooks** in the left side navigation menu
+- Go to **post-user-registration-hook** and select **edit**
+
+For more information about auth0 hooks read [here](https://auth0.com/docs/hooks).
