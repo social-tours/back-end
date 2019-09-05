@@ -32,7 +32,7 @@ router.get('/:ticketId', async (req,res,next) => {
             res.status(200).send(ticket);
 
         } else {
-            res.status(404).json({"message" : "Ticket not found"});
+            res.status(404).json({"message" : `Record ${ticketId} not found`});
         }
     } 
     catch (err) {
