@@ -111,13 +111,13 @@ describe("sales endpoint testing", () => {
 			{
 				id: 2,
 				type: 1, // FK ID in 'TicketTypes' table
-				user_id: 2, // FK ID in 'Users' table
+				user_id: 1, // FK ID in 'Users' table
 				event_id: 1
 			},
 			{
 				id: 3,
 				type: 1, // FK ID in 'TicketTypes' table
-				user_id: 3, // FK ID in 'Users' table
+				user_id: 1, // FK ID in 'Users' table
 				event_id: 1
 			}
 		]);
