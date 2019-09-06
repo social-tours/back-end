@@ -3,9 +3,7 @@ exports.seed = async function(knex) {
 	await knex("EventTypes").insert([
 		{
 			id: 1,
-			description: "Concert",
-			created_at: "2019-08-14",
-			updated_at: "2019-08-15"
+			description: "Concert"
 		}
 	]);
 
