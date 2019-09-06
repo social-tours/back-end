@@ -153,3 +153,12 @@ Database method to remove record from the database
 | POST  | <code>/api/tickets</code>      |
 | PUT   | <code>/api/tickets/:id</code>  |
 | DEL   | <code>/api/tickets/:id</code>  |
+
+### Sales
+| HTTP  | Path                           |
+| ----- | -------------------------------|
+| GET   | <code>/api/sales</code>      |
+| GET   | <code>/api/sales/:id</code>  |
+| POST  | <code>/api/sales</code>      |
+| PUT   | <code>/api/sales/:id</code>  |
+| DEL   | <code>/api/sales/:id</code>  |
