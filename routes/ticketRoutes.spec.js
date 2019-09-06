@@ -3,7 +3,14 @@ const request = require("supertest");
 const db = require("../data/dbConfig");
 const server = require("../api/server");
 
-const databaseTables = ["TicketTypes", "Tickets", "Events", "EventTypes", "UserTypes", "Users"];
+const databaseTables = [
+	"TicketTypes",
+	"Tickets",
+	"Events",
+	"EventTypes",
+	"UserTypes",
+	"Users"
+];
 
 describe("Tickets endpoint testing", () => {
 	// Clean up database after each test
@@ -21,9 +28,7 @@ describe("Tickets endpoint testing", () => {
 		await db("EventTypes").insert([
 			{
 				id: 1,
-				description: "Concert",
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				description: "Concert"
 			}
 		]);
 
@@ -34,94 +39,90 @@ describe("Tickets endpoint testing", () => {
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				capacity: 5000
 			}
-        ]);
-        
-        await db("TicketTypes").insert([
-            {
-                id: 1,
-                title: "1", // FK ID in 'Tickets' table
-                price: 49.99,
-                created_at: "2019-08-14",
-                updated_at: "2019-08-15"
-            }
-        ]);
+		]);
 
-        await db("UserTypes").insert([
-            { id: 1, description: "Influencer" },
-            { id: 2, description: "Follower" }
-        ]);
+		await db("TicketTypes").insert([
+			{
+				id: 1,
+				title: "1", // FK ID in 'Tickets' table
+				price: 49.99
+			}
+		]);
 
-        await db("Users").insert([
-            {
-                id: 1,
-                first_name: "Yana",
-                last_name: "Blake",
-                user_name: "yblake",
-                gender: "Female",
-                birth_date: "1987-09-17",
-                city: "Dallas",
-                state_province: "TX",
-                country: "USA",
-                email: "yana@yogiyana.com",
-                password: "pass",
-                type: 1
-            },
-            {
-                id: 2,
-                first_name: "Yana",
-                last_name: "Blake",
-                user_name: "yblake",
-                gender: "Female",
-                birth_date: "1987-09-17",
-                city: "Dallas",
-                state_province: "TX",
-                country: "USA",
-                email: "yana2@yogiyana.com",
-                password: "pass",
-                type: 1
-            },
-            {
-                id: 3,
-                first_name: "Yana",
-                last_name: "Blake",
-                user_name: "yblake",
-                gender: "Female",
-                birth_date: "1987-09-17",
-                city: "Dallas",
-                state_province: "TX",
-                country: "USA",
-                email: "yana3@yogiyana.com",
-                password: "pass",
-                type: 1
-            }
-        ]);
-    });
+		await db("UserTypes").insert([
+			{ id: 1, description: "Influencer" },
+			{ id: 2, description: "Follower" }
+		]);
+
+		await db("Users").insert([
+			{
+				id: 1,
+				first_name: "Yana",
+				last_name: "Blake",
+				user_name: "yblake",
+				gender: "Female",
+				birth_date: "1987-09-17",
+				city: "Dallas",
+				state_province: "TX",
+				country: "USA",
+				email: "yana@yogiyana.com",
+				password: "pass",
+				type: 1
+			},
+			{
+				id: 2,
+				first_name: "Yana",
+				last_name: "Blake",
+				user_name: "yblake",
+				gender: "Female",
+				birth_date: "1987-09-17",
+				city: "Dallas",
+				state_province: "TX",
+				country: "USA",
+				email: "yana2@yogiyana.com",
+				password: "pass",
+				type: 1
+			},
+			{
+				id: 3,
+				first_name: "Yana",
+				last_name: "Blake",
+				user_name: "yblake",
+				gender: "Female",
+				birth_date: "1987-09-17",
+				city: "Dallas",
+				state_province: "TX",
+				country: "USA",
+				email: "yana3@yogiyana.com",
+				password: "pass",
+				type: 1
+			}
+		]);
+	});
 
 	describe("GET /tickets", () => {
 		// Seed with test data
 		const testData = [
 			{
-                id: 1,
-                type: 1, // FK ID in 'TicketTypes' table
-                user_id: 1, // FK ID in 'Users' table
-                event_id: 1
-            },
-            {
-                id: 2,
-                type: 1, // FK ID in 'TicketTypes' table
-                user_id: 2, // FK ID in 'Users' table
-                event_id: 1
-            },
-            {
-                id: 3,
-                type: 1, // FK ID in 'TicketTypes' table
-                user_id: 3, // FK ID in 'Users' table
-                event_id: 1
-            }
+				id: 1,
+				type: 1, // FK ID in 'TicketTypes' table
+				user_id: 1, // FK ID in 'Users' table
+				event_id: 1
+			},
+			{
+				id: 2,
+				type: 1, // FK ID in 'TicketTypes' table
+				user_id: 2, // FK ID in 'Users' table
+				event_id: 1
+			},
+			{
+				id: 3,
+				type: 1, // FK ID in 'TicketTypes' table
+				user_id: 3, // FK ID in 'Users' table
+				event_id: 1
+			}
 		];
 
 		beforeEach(async () => {
@@ -148,7 +149,7 @@ describe("Tickets endpoint testing", () => {
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
 			event_id: 1
-		}
+		};
 
 		beforeEach(async () => {
 			await db("Tickets").insert(testData);
@@ -175,7 +176,7 @@ describe("Tickets endpoint testing", () => {
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
 			event_id: 1
-		}
+		};
 
 		it("receive status code that record was created", async () => {
 			const res = await request(server)
@@ -198,7 +199,7 @@ describe("Tickets endpoint testing", () => {
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
 			event_id: 1
-		}
+		};
 
 		beforeEach(async () => {
 			await db("Tickets").insert(testData);
@@ -207,7 +208,7 @@ describe("Tickets endpoint testing", () => {
 		it("update existing record", async () => {
 			let ticketId = 1;
 			const updateData = {
-				user_id : 2
+				user_id: 2
 			};
 			const res = await request(server)
 				.put(`/api/tickets/${ticketId}`)
@@ -224,7 +225,7 @@ describe("Tickets endpoint testing", () => {
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
 			event_id: 1
-		}
+		};
 
 		beforeEach(async () => {
 			await db("Tickets").insert(testData);
