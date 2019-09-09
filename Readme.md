@@ -134,14 +134,24 @@ Database method to remove record from the database
 | table | <code>string</code>  |
 | id    | <code>integer</code> |
 
----
+## Endpoints
 
-## Post-User-Registration Hook
+### Events
 
-To access the code:
+| HTTP | Path                         |
+| ---- | ---------------------------- |
+| GET  | <code>/api/events</code>     |
+| GET  | <code>/api/events/:id</code> |
+| POST | <code>/api/events</code>     |
+| PUT  | <code>/api/events/:id</code> |
+| DEL  | <code>/api/events/:id</code> |
 
-- Login to [Auth0 dashboard](https://auth0.com/auth/login)
-- Select **Hooks** in the left side navigation menu
-- Go to **post-user-registration-hook** and select **edit**
+### Tickets
 
-For more information about auth0 hooks read [here](https://auth0.com/docs/hooks).
+| HTTP | Path                          |
+| ---- | ----------------------------- |
+| GET  | <code>/api/tickets</code>     |
+| GET  | <code>/api/tickets/:id</code> |
+| POST | <code>/api/tickets</code>     |
+| PUT  | <code>/api/tickets/:id</code> |
+| DEL  | <code>/api/tickets/:id</code> |
