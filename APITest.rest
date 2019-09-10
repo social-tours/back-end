@@ -30,6 +30,25 @@ content-type: application/json
   "password": "pass1234"
 }
 
+### POST (Sign up user on Auth0)
+POST https://dev-r8zrga7p.auth0.com/dbconnections/signup HTTP/1.1
+content-type: application/json
+
+{
+  "connection": "Username-Password-Authentication",
+  "email": "betty@mail.com",
+  "username": "bdraper",
+	"given_name": "Betty",
+	"family_name": "Draper",
+	"name": "Betty Draper",
+	"nickname": "Betty",
+  "password": "Password!",
+  "phone_number": "(212) 555-1234",
+  "user_metadata": {},
+  "email_verified": false,
+  "app_metadata": {}
+}
+
 ### POST (Create Event)
 POST http://localhost:8000/api/events HTTP/1.1
 //POST https://staging-a-socialtours.herokuapp.com/api/events HTTP/1.1
