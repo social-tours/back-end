@@ -18,6 +18,7 @@ module.exports = server => {
  * @returns res - status code plus json
  */
 async function register(req, res) {
+	console.log(`received user data: `, req.body);
 	// implement user registration
 	let { password } = req.body;
 	let user;

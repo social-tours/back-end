@@ -137,13 +137,14 @@ Database method to remove record from the database
 ## Endpoints
 
 ### Events
-| HTTP  | Path                           |
-| ----- | -------------------------------|
-| GET   | <code>/api/events</code>       |
-| GET   | <code>/api/events/:id</code>   |
-| POST  | <code>/api/events</code>       |
-| PUT   | <code>/api/events/:id</code>   |
-| DEL   | <code>/api/events/:id</code>   |
+
+| HTTP | Path                         |
+| ---- | ---------------------------- |
+| GET  | <code>/api/events</code>     |
+| GET  | <code>/api/events/:id</code> |
+| POST | <code>/api/events</code>     |
+| PUT  | <code>/api/events/:id</code> |
+| DEL  | <code>/api/events/:id</code> |
 
 ### Tickets
 | HTTP  | Path                           |
@@ -162,3 +163,4 @@ Database method to remove record from the database
 | POST  | <code>/api/sales</code>      |
 | PUT   | <code>/api/sales/:id</code>  |
 | DEL   | <code>/api/sales/:id</code>  |
+
