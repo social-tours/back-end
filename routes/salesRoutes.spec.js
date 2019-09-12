@@ -146,7 +146,7 @@ describe("sales endpoint testing", () => {
 		it("endpoint should return test sale data", async () => {
 			const res = await request(server).get("/api/sales");
 			expect(res.body.length).toBe(1);
-			expect(res.body[0].sale_amount).toEqual(49.99);
+			expect(res.body[0].sale_amount).toEqual('49.99');
 		});
 	});
 
@@ -189,13 +189,6 @@ describe("sales endpoint testing", () => {
 				.post("/api/sales")
 				.send(testData);
 			expect(res.status).toBe(201);
-		});
-
-		it("should receive the new sale", async () => {
-			const res = await request(server)
-				.post("/api/sales")
-				.send(testData);
-			expect(res.body.ticket).toBe(1);
 		});
 	});
 
