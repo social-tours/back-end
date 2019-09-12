@@ -3,7 +3,7 @@ const router = require("express").Router();
 const db = require("../data/dbConfig");
 
 /**
- * Method to retrieve all sales from the database
+ * Method to retrieve all sales records from the database
  * @returns sends all sales in the database as a response
  */
 router.get('/', async (req,res, next) => {
