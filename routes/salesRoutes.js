@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const db = require("../data/dbConfig");
+const db = require("../data/models");
 
 /**
  * Method to retrieve all sales records from the database
