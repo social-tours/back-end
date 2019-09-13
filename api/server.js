@@ -8,6 +8,7 @@ const userRoutes = require("../routes/userRoutes");
 const eventRoutes = require("../routes/eventRoutes");
 const scheduleRoutes = require("../routes/scheduleRoutes");
 const ticketRoutes = require("../routes/ticketRoutes");
+const salesRoutes = require("../routes/salesRoutes");
 const server = express();
 
 server.use(express.json(), helmet(), cors());
@@ -25,6 +26,7 @@ server.get("/api", (req, res) => {
 server.use("/api/events", eventRoutes);
 server.use("/api/schedules", scheduleRoutes);
 server.use("/api/tickets", ticketRoutes);
+server.use("/api/sales", salesRoutes);
 userRoutes(server);
 
 module.exports = server;
