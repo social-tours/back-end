@@ -1,9 +1,9 @@
 ### GET (Basic)
-http://localhost:8000
+http://localhost:8080
 //https://staging-a-socialtours.herokuapp.com
 
 ### GET Users (ALL)
-http://localhost:8000/api/users
+http://localhost:8080/api/users
 //https://staging-a-socialtours.herokuapp.com/api/users/
 
 ### GET Events (ALL)
@@ -11,7 +11,7 @@ http://localhost:8000/api/events
 //https://staging-a-socialtours.herokuapp.com/api/events/
 
 ### GET Users (by ID)
-http://localhost:8000/api/users/4
+http://localhost:8080/api/users/4
 https://staging-a-socialtours.herokuapp.com/api/users/1
 
 ### GET Events (by ID)
@@ -63,6 +63,38 @@ content-type: application/json
 			"capacity": 10000
 		}
 
+
+### POST (Create New Schedule)
+POST https://staging-a-socialtours.herokuapp.com/api/schedules HTTP/1.1
+content-type: application/json
+
+  # {
+  #   "event_id": 1,
+  #   "sequence": 2,
+  #   "title": "Bifunkal Event Schedule",
+  #   "description": "Blues band from Chicago",
+  #   "location": "The Phoenix",
+  #   "city": "Kansas City",
+  #   "postal_code": "64105",
+  #   "country": "USA",
+  #   "start_date_time": "2019-9-21 08:00 PM",
+  #   "end_date_time": "2019-9-21 10:00 PM"
+  # }
+
+  {
+    "event_id": 1,
+    "sequence": 3,
+    "title": "Bifunkal Event Schedule",
+    "description": "Blues band from Chicago",
+    "location": "Madison Square Garden",
+    "city": "New York City",
+    "postal_code": "10001",
+    "country": "USA",
+    "start_date_time": "2019-10-17 08:00 PM",
+    "end_date_time": "2019-10-17 10:00 PM"
+  }
+
+
 ### PUT (Users)
 PUT http://localhost:8000/api/users/3 HTTP/1.1
 //PUT https://staging-a-socialtours.herokuapp.com/api/users/3 HTTP/1.1
@@ -83,7 +115,20 @@ content-type: application/json
  "capacity": 377
 }
 
+### PUT (Schedules)
+PUT https://staging-a-socialtours.herokuapp.com/api/schedules/2 HTTP/1.1
+content-type: application/json
+
+{
+  "start_date_time": "2019-09-08 08:00 PM",
+  "end_date_time": "2019-09-08 10:00 PM"
+}
+
 
 ### DELETE (Events)
-DELETE http://localhost:8000/api/events/12
+DELETE http://localhost:8080/api/events/12
 // DELETE https://staging-a-socialtours.herokuapp.com/api/events/12
+
+### DELETE (Users)
+//DELETE http://localhost:8080/api/users/12
+DELETE https://staging-a-socialtours.herokuapp.com/api/users/11
