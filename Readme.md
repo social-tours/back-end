@@ -185,10 +185,10 @@ Database method to remove record from the database
 
 ### Sales
 
-| HTTP | Path                        |
-| ---- | --------------------------- |
-| GET  | <code>/api/sales</code>     |
-| GET  | <code>/api/sales/:id</code> |
-| POST | <code>/api/sales</code>     |
-| PUT  | <code>/api/sales/:id</code> |
-| DEL  | <code>/api/sales/:id</code> |
+| HTTP | Path                        | Description                                                             |
+| ---- | --------------------------- | ----------------------------------------------------------------------- |
+| GET  | <code>/api/sales</code>     | Retrieves an array of objects listing all ticket sales in the database. |
+| GET  | <code>/api/sales/:id</code> | Retrieves a specific ticket sale based on the id.                       |
+| POST | <code>/api/sales</code>     | Create a new ticket sale.                                               |
+| PUT  | <code>/api/sales/:id</code> | Modifies an existing sales transaction.                                 |
+| DEL  | <code>/api/sales/:id</code> | Delete a sales transaction.                                             |
