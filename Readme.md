@@ -134,22 +134,24 @@ Database method to remove record from the database
 | table | <code>string</code>  |
 | id    | <code>integer</code> |
 
+---
+
 ## Endpoints
 
 #### Register
 
-| Method | Endpoint    | Description                                                             |
-| ------ | ----------- | ----------------------------------------------------------------------- |
-| POST   | `/register` | Registers a new user with the system. Requires 'email', and 'password'. |
+| Method | Endpoint               | Description                                                             |
+| ------ | ---------------------- | ----------------------------------------------------------------------- |
+| POST   | <code>/register</code> | Registers a new user with the system. Requires 'email', and 'password'. |
 
 #### Users
 
-| Method | Endpoint     | Description                                                           |
-| ------ | ------------ | --------------------------------------------------------------------- |
-| GET    | `/users`     | Retrieves an array of objects representing all users in the database. |
-| GET    | `/users/:id` | Retrieves a specific user based on the id.                            |
-| PUT    | `/users/:id` | Modifies an existing user.                                            |
-| DELETE | `/users/:id` | Delete a user.                                                        |
+| Method | Endpoint                | Description                                                           |
+| ------ | ----------------------- | --------------------------------------------------------------------- |
+| GET    | <code>/users</code>     | Retrieves an array of objects representing all users in the database. |
+| GET    | <code>/users/:id</code> | Retrieves a specific user based on the id.                            |
+| PUT    | <code>/users/:id</code> | Modifies an existing user.                                            |
+| DELETE | <code>/users/:id</code> | Delete a user.                                                        |
 
 ### Events
 
@@ -160,6 +162,16 @@ Database method to remove record from the database
 | POST | <code>/api/events</code>     | Create a new event.                                                    |
 | PUT  | <code>/api/events/:id</code> | Modifies an existing event.                                            |
 | DEL  | <code>/api/events/:id</code> | Delete an event.                                                       |
+
+### Schedules
+
+| HTTP | Path                            | Description                                                                      |
+| ---- | ------------------------------- | -------------------------------------------------------------------------------- |
+| GET  | <code>/api/schedules</code>     | Retrieves an array of objects representing all scheduled events in the database. |
+| GET  | <code>/api/schedules/:id</code> | Retrieves a specific scheduled event based on the id.                            |
+| POST | <code>/api/schedules</code>     | Schedule an event.                                                               |
+| PUT  | <code>/api/schedules/:id</code> | Modifies an existing scheduled event.                                            |
+| DEL  | <code>/api/schedules/:id</code> | Delete a scheduled event.                                                        |
 
 ### Tickets
 
