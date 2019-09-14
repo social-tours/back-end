@@ -192,3 +192,5 @@ Database method to remove record from the database
 | POST | <code>/api/sales</code>     | Create a new ticket sale.                                               |
 | PUT  | <code>/api/sales/:id</code> | Modifies an existing sales transaction.                                 |
 | DEL  | <code>/api/sales/:id</code> | Delete a sales transaction.                                             |
+
+_Updated September 14, 2019_
