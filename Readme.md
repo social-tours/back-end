@@ -146,42 +146,42 @@ Database method to remove record from the database
 
 #### Users
 
-| Method | Endpoint                | Description                                                           |
-| ------ | ----------------------- | --------------------------------------------------------------------- |
-| GET    | <code>/users</code>     | Retrieves an array of objects representing all users in the database. |
-| GET    | <code>/users/:id</code> | Retrieves a specific user based on the id.                            |
-| PUT    | <code>/users/:id</code> | Modifies an existing user.                                            |
-| DELETE | <code>/users/:id</code> | Delete a user.                                                        |
+| Method | Endpoint                | Description                                                      |
+| ------ | ----------------------- | ---------------------------------------------------------------- |
+| GET    | <code>/users</code>     | Retrieves an array of objects listing all users in the database. |
+| GET    | <code>/users/:id</code> | Retrieves a specific user based on the id.                       |
+| PUT    | <code>/users/:id</code> | Modifies an existing user.                                       |
+| DELETE | <code>/users/:id</code> | Delete a user.                                                   |
 
 ### Events
 
-| HTTP | Path                         | Description                                                            |
-| ---- | ---------------------------- | ---------------------------------------------------------------------- |
-| GET  | <code>/api/events</code>     | Retrieves an array of objects representing all events in the database. |
-| GET  | <code>/api/events/:id</code> | Retrieves a specific event based on the id.                            |
-| POST | <code>/api/events</code>     | Create a new event.                                                    |
-| PUT  | <code>/api/events/:id</code> | Modifies an existing event.                                            |
-| DEL  | <code>/api/events/:id</code> | Delete an event.                                                       |
+| HTTP | Path                         | Description                                                       |
+| ---- | ---------------------------- | ----------------------------------------------------------------- |
+| GET  | <code>/api/events</code>     | Retrieves an array of objects listing all events in the database. |
+| GET  | <code>/api/events/:id</code> | Retrieves a specific event based on the id.                       |
+| POST | <code>/api/events</code>     | Create a new event.                                               |
+| PUT  | <code>/api/events/:id</code> | Modifies an existing event.                                       |
+| DEL  | <code>/api/events/:id</code> | Delete an event.                                                  |
 
 ### Schedules
 
-| HTTP | Path                            | Description                                                                      |
-| ---- | ------------------------------- | -------------------------------------------------------------------------------- |
-| GET  | <code>/api/schedules</code>     | Retrieves an array of objects representing all scheduled events in the database. |
-| GET  | <code>/api/schedules/:id</code> | Retrieves a specific scheduled event based on the id.                            |
-| POST | <code>/api/schedules</code>     | Schedule an event.                                                               |
-| PUT  | <code>/api/schedules/:id</code> | Modifies an existing scheduled event.                                            |
-| DEL  | <code>/api/schedules/:id</code> | Delete a scheduled event.                                                        |
+| HTTP | Path                            | Description                                                                 |
+| ---- | ------------------------------- | --------------------------------------------------------------------------- |
+| GET  | <code>/api/schedules</code>     | Retrieves an array of objects listing all scheduled events in the database. |
+| GET  | <code>/api/schedules/:id</code> | Retrieves a specific scheduled event based on the id.                       |
+| POST | <code>/api/schedules</code>     | Schedule an event.                                                          |
+| PUT  | <code>/api/schedules/:id</code> | Modifies an existing scheduled event.                                       |
+| DEL  | <code>/api/schedules/:id</code> | Delete a scheduled event.                                                   |
 
 ### Tickets
 
-| HTTP | Path                          |
-| ---- | ----------------------------- |
-| GET  | <code>/api/tickets</code>     |
-| GET  | <code>/api/tickets/:id</code> |
-| POST | <code>/api/tickets</code>     |
-| PUT  | <code>/api/tickets/:id</code> |
-| DEL  | <code>/api/tickets/:id</code> |
+| HTTP | Path                          | Description                                                        |
+| ---- | ----------------------------- | ------------------------------------------------------------------ |
+| GET  | <code>/api/tickets</code>     | Retrieves an array of objects listing all tickets in the database. |
+| GET  | <code>/api/tickets/:id</code> | Retrieves a specific ticket based on the id.                       |
+| POST | <code>/api/tickets</code>     | Create a new ticket.                                               |
+| PUT  | <code>/api/tickets/:id</code> | Modifies an existing ticket.                                       |
+| DEL  | <code>/api/tickets/:id</code> | Delete a ticket.                                                   |
 
 ### Sales
 
