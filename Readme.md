@@ -136,6 +136,21 @@ Database method to remove record from the database
 
 ## Endpoints
 
+#### Register
+
+| Method | Endpoint    | Description                                                             |
+| ------ | ----------- | ----------------------------------------------------------------------- |
+| POST   | `/register` | Registers a new user with the system. Requires 'email', and 'password'. |
+
+#### Users
+
+| Method | Endpoint     | Description                                                           |
+| ------ | ------------ | --------------------------------------------------------------------- |
+| GET    | `/users`     | Retrieves an array of objects representing all users in the database. |
+| GET    | `/users/:id` | Retrieves a specific user based on the id.                            |
+| PUT    | `/users/:id` | Modifies an existing user.                                            |
+| DELETE | `/users/:id` | Delete a user.                                                        |
+
 ### Events
 
 | HTTP | Path                         |
@@ -147,20 +162,21 @@ Database method to remove record from the database
 | DEL  | <code>/api/events/:id</code> |
 
 ### Tickets
-| HTTP  | Path                           |
-| ----- | -------------------------------|
-| GET   | <code>/api/tickets</code>      |
-| GET   | <code>/api/tickets/:id</code>  |
-| POST  | <code>/api/tickets</code>      |
-| PUT   | <code>/api/tickets/:id</code>  |
-| DEL   | <code>/api/tickets/:id</code>  |
+
+| HTTP | Path                          |
+| ---- | ----------------------------- |
+| GET  | <code>/api/tickets</code>     |
+| GET  | <code>/api/tickets/:id</code> |
+| POST | <code>/api/tickets</code>     |
+| PUT  | <code>/api/tickets/:id</code> |
+| DEL  | <code>/api/tickets/:id</code> |
 
 ### Sales
-| HTTP  | Path                           |
-| ----- | -------------------------------|
-| GET   | <code>/api/sales</code>      |
-| GET   | <code>/api/sales/:id</code>  |
-| POST  | <code>/api/sales</code>      |
-| PUT   | <code>/api/sales/:id</code>  |
-| DEL   | <code>/api/sales/:id</code>  |
 
+| HTTP | Path                        |
+| ---- | --------------------------- |
+| GET  | <code>/api/sales</code>     |
+| GET  | <code>/api/sales/:id</code> |
+| POST | <code>/api/sales</code>     |
+| PUT  | <code>/api/sales/:id</code> |
+| DEL  | <code>/api/sales/:id</code> |
