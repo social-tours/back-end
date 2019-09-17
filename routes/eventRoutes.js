@@ -54,10 +54,9 @@ router.get('/:eventId', async (req,res,next) => {
  * @returns message indicating edit was successful or not
  */
 router.put('/:eventId', async (req,res, next) => {
-    let { eventId } = req.params;
-
+    const { eventId } = req.params;
+    
     try {
-      eventId = parseInt(eventId, 10);
       const data = await db.updateRecord("Events", eventId, req.body);
       if (data){
         res.status(200).send(data);
