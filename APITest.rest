@@ -18,6 +18,16 @@ https://staging-a-socialtours.herokuapp.com/api/users/1
 http://localhost:8000/api/events/1
 https://staging-a-socialtours.herokuapp.com/api/events/1
 
+### POST (Login)
+POST http://localhost:8080/api/login HTTP/1.1
+//POST https://staging-a-socialtours.herokuapp.com/api/register HTTP/1.1
+content-type: application/json
+
+{
+  "email": "peter@example.com",
+  "password": "Password!"
+}
+
 ### POST (Register New User)
 POST http://localhost:8000/api/register HTTP/1.1
 //POST https://staging-a-socialtours.herokuapp.com/api/register HTTP/1.1
