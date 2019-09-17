@@ -54,7 +54,7 @@ router.get('/:eventId', async (req,res,next) => {
  * @returns message indicating edit was successful or not
  */
 router.put('/:eventId', async (req,res, next) => {
-    const { eventId } = req.params;
+    let { eventId } = req.params;
 
     try {
       eventId = parseInt(eventId, 10);
