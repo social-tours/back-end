@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const db = require("../data/models");
+
+const tokenService = require("../auth/tokenService");
 //const { jwtCheck } = require("../auth/tokenService"); temporarily disabled during FE dev phase
 
 module.exports = server => {
@@ -46,12 +48,18 @@ async function register(req, res) {
  * @returns res - status code plus json
  */
 async function login(req, res) {
+	console.log("INCOMING: ", req.body);
 	// implement user login
 	const { email, password } = req.body;
 
 	try {
 		const user = await db.findByEmail(email);
-		if (user && bcrypt.compareSync(password, user.password)) {
+		console.log("LOGIN USER: ", user);
+		console.log(
+			"COMPARE PASSWORDS: ",
+			bcrypt.compareSync(password, user.password)
+		);
+		if (user && (await bcrypt.compareSync(password, user.password))) {
 			const token = tokenService.generateToken(user);
 			res.status(200).json({
 				message: "Login successful",
@@ -67,7 +75,9 @@ async function login(req, res) {
 			res.status(401).json({ message: "Something went wrong." });
 		}
 	} catch (err) {
-		return res.status(500).json({ message: "Something went wrong." });
+		return res
+			.status(500)
+			.json({ message: "Something went wrong.", error: err });
 	}
 }
 

@@ -1,5 +1,6 @@
 var jwt = require("express-jwt");
 var jwks = require("jwks-rsa");
+const jwtoken = require("jsonwebtoken");
 
 var jwtCheck = jwt({
 	secret: jwks.expressJwtSecret({
@@ -13,6 +14,22 @@ var jwtCheck = jwt({
 	algorithms: ["RS256"]
 });
 
+const secret = process.env.JWT_SECRET;
+
+function generateToken(user) {
+	const payload = {
+		...jwtCheck,
+		id: user.id
+	};
+
+	const options = {
+		expiresIn: "1d"
+	};
+
+	return jwtoken.sign(payload, secret, options);
+}
+
 module.exports = {
-	jwtCheck
+	jwtCheck,
+	generateToken
 };
