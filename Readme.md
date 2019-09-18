@@ -1,5 +1,7 @@
 # Social Tours API Reference
 
+[![Build Status](https://travis-ci.com/social-tours/back-end.svg?branch=master)](https://travis-ci.com/social-tours/back-end)
+
 The Social Tours API is based on the [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) architecture. The API uses a predefined set of URLs to represent various resources, accepts form-endcoded responses, and uses standard HTTP response codes, authentication and verbs.
 
 #### Endpoint
@@ -134,33 +136,63 @@ Database method to remove record from the database
 | table | <code>string</code>  |
 | id    | <code>integer</code> |
 
+---
+
 ## Endpoints
+
+#### Register
+
+| Method | Endpoint               | Description                                                             |
+| ------ | ---------------------- | ----------------------------------------------------------------------- |
+| POST   | <code>/register</code> | Registers a new user with the system. Requires 'email', and 'password'. |
+
+#### Users
+
+| Method | Endpoint                | Description                                                      |
+| ------ | ----------------------- | ---------------------------------------------------------------- |
+| GET    | <code>/users</code>     | Retrieves an array of objects listing all users in the database. |
+| GET    | <code>/users/:id</code> | Retrieves a specific user based on the id.                       |
+| PUT    | <code>/users/:id</code> | Modifies an existing user.                                       |
+| DELETE | <code>/users/:id</code> | Delete a user.                                                   |
 
 ### Events
 
-| HTTP | Path                         |
-| ---- | ---------------------------- |
-| GET  | <code>/api/events</code>     |
-| GET  | <code>/api/events/:id</code> |
-| POST | <code>/api/events</code>     |
-| PUT  | <code>/api/events/:id</code> |
-| DEL  | <code>/api/events/:id</code> |
+| HTTP | Path                         | Description                                                       |
+| ---- | ---------------------------- | ----------------------------------------------------------------- |
+| GET  | <code>/api/events</code>     | Retrieves an array of objects listing all events in the database. |
+| GET  | <code>/api/events/:id</code> | Retrieves a specific event based on the id.                       |
+| POST | <code>/api/events</code>     | Create a new event.                                               |
+| PUT  | <code>/api/events/:id</code> | Modifies an existing event.                                       |
+| DEL  | <code>/api/events/:id</code> | Delete an event.                                                  |
+
+### Schedules
+
+| HTTP | Path                            | Description                                                                 |
+| ---- | ------------------------------- | --------------------------------------------------------------------------- |
+| GET  | <code>/api/schedules</code>     | Retrieves an array of objects listing all scheduled events in the database. |
+| GET  | <code>/api/schedules/:id</code> | Retrieves a specific scheduled event based on the id.                       |
+| POST | <code>/api/schedules</code>     | Schedule an event.                                                          |
+| PUT  | <code>/api/schedules/:id</code> | Modifies an existing scheduled event.                                       |
+| DEL  | <code>/api/schedules/:id</code> | Delete a scheduled event.                                                   |
 
 ### Tickets
-| HTTP  | Path                           |
-| ----- | -------------------------------|
-| GET   | <code>/api/tickets</code>      |
-| GET   | <code>/api/tickets/:id</code>  |
-| POST  | <code>/api/tickets</code>      |
-| PUT   | <code>/api/tickets/:id</code>  |
-| DEL   | <code>/api/tickets/:id</code>  |
+
+| HTTP | Path                          | Description                                                        |
+| ---- | ----------------------------- | ------------------------------------------------------------------ |
+| GET  | <code>/api/tickets</code>     | Retrieves an array of objects listing all tickets in the database. |
+| GET  | <code>/api/tickets/:id</code> | Retrieves a specific ticket based on the id.                       |
+| POST | <code>/api/tickets</code>     | Create a new ticket.                                               |
+| PUT  | <code>/api/tickets/:id</code> | Modifies an existing ticket.                                       |
+| DEL  | <code>/api/tickets/:id</code> | Delete a ticket.                                                   |
 
 ### Sales
-| HTTP  | Path                           |
-| ----- | -------------------------------|
-| GET   | <code>/api/sales</code>      |
-| GET   | <code>/api/sales/:id</code>  |
-| POST  | <code>/api/sales</code>      |
-| PUT   | <code>/api/sales/:id</code>  |
-| DEL   | <code>/api/sales/:id</code>  |
 
+| HTTP | Path                        | Description                                                             |
+| ---- | --------------------------- | ----------------------------------------------------------------------- |
+| GET  | <code>/api/sales</code>     | Retrieves an array of objects listing all ticket sales in the database. |
+| GET  | <code>/api/sales/:id</code> | Retrieves a specific ticket sale based on the id.                       |
+| POST | <code>/api/sales</code>     | Create a new ticket sale.                                               |
+| PUT  | <code>/api/sales/:id</code> | Modifies an existing sales transaction.                                 |
+| DEL  | <code>/api/sales/:id</code> | Delete a sales transaction.                                             |
+
+_Updated September 14, 2019_
