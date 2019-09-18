@@ -55,9 +55,12 @@ router.get('/:eventId', async (req,res,next) => {
  */
 router.put('/:eventId', async (req,res, next) => {
     const { eventId } = req.params;
+    
     try {
-      const data = await db.updateRecord('Events', eventId, req.body);
-      res.status(200).send(data);
+      const data = await db.updateRecord("Events", eventId, req.body);
+      if (data){
+        res.status(200).send(data);
+      } else throw err;
     }
   
     catch (err) {

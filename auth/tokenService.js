@@ -18,7 +18,6 @@ const secret = process.env.JWT_SECRET;
 
 function generateToken(user) {
 	const payload = {
-		...jwtCheck,
 		id: user.id
 	};
 

@@ -48,7 +48,7 @@ router.get('/:ticketId', async (req,res,next) => {
 router.put('/:ticketId', async (req,res, next) => {
     const { ticketId } = req.params;
 
-    const validFields = ['type', 'user_id', 'event_id'];
+    /*const validFields = ['type', 'user_id', 'event_id'];
 
     for (let key in req.body){
         if (!validFields.includes(key)){
@@ -70,11 +70,13 @@ router.put('/:ticketId', async (req,res, next) => {
 
     if (typeof event_id === 'string'){
         event_id = parseInt(event_id, 10);
-    }
-
+    }*/
+   
     try {
-      const data = await db.updateRecord('Tickets', ticketId, req.body);
-      res.status(200).send(data);
+      const data = await db.updateRecord("Tickets", ticketId, req.body);
+      if(data){
+        res.status(200).send(data);
+      } else throw err;
     }
     catch (err) {
       res.status(500).send(err.message);
