@@ -2,7 +2,7 @@ const keys = require("../config/keys");
 const nodemailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid-transport");
 
-const sendMail = (recipients, message) => {
+const sendMail = (recipients, message, subject) => {
 	const transporter = nodemailer.createTransport(
 		sgTransport({
 			auth: {
@@ -15,8 +15,8 @@ const sendMail = (recipients, message) => {
 	const options = {
 		to: recipients,
 		from: keys.gmailName,
-		subject: "An influencer you follow has a new event!",
-		html: message // TODO: Create email template
+		subject: subject || "An influencer you follow has a new event!",
+		html: message || "Log in to your dashboard for more details!" // TODO: Create email template
 	};
 
 	try {
