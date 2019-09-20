@@ -9,6 +9,7 @@ const eventRoutes = require("../routes/eventRoutes");
 const scheduleRoutes = require("../routes/scheduleRoutes");
 const ticketRoutes = require("../routes/ticketRoutes");
 const salesRoutes = require("../routes/salesRoutes");
+const subscriptionRoutes = require('../routes/subscriptionRoutes');
 const server = express();
 
 server.use(express.json(), helmet(), cors());
@@ -27,6 +28,7 @@ server.use("/api/events", eventRoutes);
 server.use("/api/schedules", scheduleRoutes);
 server.use("/api/tickets", ticketRoutes);
 server.use("/api/sales", salesRoutes);
+server.use("/api/subscriptions", subscriptionRoutes);
 userRoutes(server);
 
 module.exports = server;
