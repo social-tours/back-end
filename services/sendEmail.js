@@ -22,14 +22,14 @@ const sendMail = (recipients, message, subject) => {
 	try {
 		transporter.sendMail(options, (err, resp) => {
 			if (err) {
-				console.log("Something went wrong: ", err);
+				console.log("Error received from server: ", err);
 				return false;
 			} else {
 				console.log("Email sent!", resp);
 			}
 		});
 	} catch (err) {
-		console.log("Something went wrong: ", err);
+		console.log("Could not send email: ", err);
 		return false;
 	}
 
