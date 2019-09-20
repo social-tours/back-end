@@ -11,7 +11,7 @@ const jwtCheck = require('../auth/tokenService');
  * @returns sends all subscriptions in the database as a response
  */
 
-router.get("/", jwtCheck, async (req, res) => {
+router.get("/", async (req, res) => {
 	try {
 		const data = await db.findAll("Subscriptions");
 		res.send(data);
@@ -25,7 +25,7 @@ router.get("/", jwtCheck, async (req, res) => {
  * @param {number} userId
  * @returns sends the specific schedule as a response
  */
-router.get("/:userId", jwtCheck, async (req, res) => {
+router.get("/:userId", async (req, res) => {
 	const { userId } = req.params;
 	try {
 		const data = await db.findAllbyId("Subscriptions", userId);
