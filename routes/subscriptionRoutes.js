@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 // Import data models
 const db = require("../data/models");
+const jwtCheck = require('../auth/tokenService');
 
 // Load middleware
 
@@ -10,7 +11,7 @@ const db = require("../data/models");
  * @returns sends all subscriptions in the database as a response
  */
 
-router.get("/", async (req, res) => {
+router.get("/", jwtCheck, async (req, res) => {
 	try {
 		const data = await db.findAll("Subscriptions");
 		res.send(data);
@@ -24,7 +25,7 @@ router.get("/", async (req, res) => {
  * @param {number} userId
  * @returns sends the specific schedule as a response
  */
-router.get("/:userId", async (req, res) => {
+router.get("/:userId", jwtCheck, async (req, res) => {
 	const { userId } = req.params;
 	try {
 		const data = await db.findAllbyId("Subscriptions", userId);
