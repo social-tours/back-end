@@ -16,7 +16,7 @@ const sendMail = (recipients, message) => {
 		to: recipients,
 		from: keys.gmailName,
 		subject: "An influencer you follow has a new event!",
-		html: "Log in to view the event" // TODO: Create email template
+		html: message // TODO: Create email template
 	};
 
 	try {
