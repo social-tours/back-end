@@ -5,8 +5,10 @@ const sgTransport = require("nodemailer-sendgrid-transport");
 const sendMail = (recipients, message) => {
 	const transporter = nodemailer.createTransport(
 		sgTransport({
-			api_user: keys.sgUser,
-			api_key: keys.sgPW
+			auth: {
+				api_user: keys.sgUser,
+				api_key: keys.sgPW
+			}
 		})
 	);
 
@@ -33,3 +35,5 @@ const sendMail = (recipients, message) => {
 
 	return true;
 };
+
+module.exports = sendMail;
