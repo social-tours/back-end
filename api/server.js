@@ -12,7 +12,12 @@ const salesRoutes = require("../routes/salesRoutes");
 const smsRoutes = require("../routes/smsRoutes");
 const server = express();
 
-server.use(express.json(), express.urlencoded(), helmet(), cors());
+server.use(
+	express.json(),
+	express.urlencoded({ extended: false }),
+	helmet(),
+	cors()
+);
 
 // Sanity Check
 server.get("/", (req, res) => {
