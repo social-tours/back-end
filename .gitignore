@@ -76,6 +76,7 @@ typings/
 *.sqlite3
 
 .idea
+.editorconfig
 
 # api keys and sensitive info
 dev.js
