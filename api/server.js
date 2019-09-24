@@ -9,9 +9,15 @@ const eventRoutes = require("../routes/eventRoutes");
 const scheduleRoutes = require("../routes/scheduleRoutes");
 const ticketRoutes = require("../routes/ticketRoutes");
 const salesRoutes = require("../routes/salesRoutes");
+const smsRoutes = require("../routes/smsRoutes");
 const server = express();
 
-server.use(express.json(), helmet(), cors());
+server.use(
+	express.json(),
+	express.urlencoded({ extended: false }),
+	helmet(),
+	cors()
+);
 
 // Sanity Check
 server.get("/", (req, res) => {
@@ -27,6 +33,7 @@ server.use("/api/events", eventRoutes);
 server.use("/api/schedules", scheduleRoutes);
 server.use("/api/tickets", ticketRoutes);
 server.use("/api/sales", salesRoutes);
+server.use("/api/sms", smsRoutes);
 userRoutes(server);
 
 module.exports = server;
