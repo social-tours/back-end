@@ -15,6 +15,9 @@ async function sendText(message, userPhone) {
 			from: process.env.TWILIO_PHONE_NBR,
 			to: userPhone
 		});
+		console.log("sendMessage.sid: ", sendMessage.sid);
+		if (sendMessage.sid) return sendMessage.sid;
+		else throw err;
 	} catch (err) {
 		console.error(err);
 	}
