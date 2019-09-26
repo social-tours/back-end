@@ -10,6 +10,7 @@ const scheduleRoutes = require("../routes/scheduleRoutes");
 const ticketRoutes = require("../routes/ticketRoutes");
 const salesRoutes = require("../routes/salesRoutes");
 const smsRoutes = require("../routes/smsRoutes");
+const verifyPhoneRoutes = require("../routes/verifyPhoneRoutes");
 const server = express();
 
 server.use(
@@ -34,6 +35,7 @@ server.use("/api/schedules", scheduleRoutes);
 server.use("/api/tickets", ticketRoutes);
 server.use("/api/sales", salesRoutes);
 server.use("/api/sms", smsRoutes);
+server.use("/api/phone-check", verifyPhoneRoutes);
 userRoutes(server);
 
 module.exports = server;
