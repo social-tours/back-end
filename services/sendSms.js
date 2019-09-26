@@ -5,10 +5,10 @@ const client = require("twilio")(accountSid, authToken);
 const verifyPhone = require("./verifyPhone");
 
 /**
- * Function which takes a message and
- * sends it via SMS to specified phone number
+ * Function which sends SMS via Twilio API
  * @param {string} message
- * @param {e.164 phone number format} userPhone
+ * @param {string} userPhone
+ * @returns SMS message
  */
 async function sendText(message, userPhone) {
 	try {
