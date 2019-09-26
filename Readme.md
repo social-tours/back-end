@@ -8,10 +8,13 @@ The Social Tours API is based on the [REST](https://en.wikipedia.org/wiki/Repres
 
 ## Table of Contents
 
-[ER Diagram](#erd)
-[Data Models](#models)
-[Endpoints](#endpoints)
-[Services](#services)
+- [ER Diagram](#erd)
+
+- [Data Models](#models)
+
+- [Endpoints](#endpoints)
+
+- [Services](#services)
 
 #### API
 
