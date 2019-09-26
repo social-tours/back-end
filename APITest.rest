@@ -3,7 +3,7 @@ http://localhost:8080
 //https://staging-a-socialtours.herokuapp.com
 
 ### GET Users (ALL)
-http://localhost:8080/api/phone-check/
+http://localhost:8080/api/users
 //https://staging-a-socialtours.herokuapp.com/api/users/
 
 ### GET Events (ALL)

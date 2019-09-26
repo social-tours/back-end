@@ -9,11 +9,8 @@ The Social Tours API is based on the [REST](https://en.wikipedia.org/wiki/Repres
 ## Table of Contents
 
 - [ER Diagram](#erd)
-
 - [Data Models](#models)
-
 - [Endpoints](#endpoints)
-
 - [Services](#services)
 
 #### API
@@ -218,6 +215,22 @@ Database method to remove record from the database
 <a name="services"></a>
 
 ## Services
+
+<a name="sendMail"></a>
+
+### sendMail(recipients, message, subject) ⇒
+
+Function which emails event notifications
+to Followers
+
+**Kind**: global function  
+**Returns**: email message to Followers
+
+| Param      | Type                |
+| ---------- | ------------------- |
+| recipients | <code>string</code> |
+| message    | <code>string</code> |
+| subject    | <code>string</code> |
 
 <a name="sendText"></a>
 

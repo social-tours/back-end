@@ -2,6 +2,14 @@ const keys = require("../config/keys");
 const nodemailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid-transport");
 
+/**
+ * Function which emails event notifications
+ * to Followers
+ * @param {string} recipients
+ * @param {string} message
+ * @param {string} subject
+ * @returns email message to Followers
+ */
 const sendMail = (recipients, message, subject) => {
 	const transporter = nodemailer.createTransport(
 		sgTransport({
