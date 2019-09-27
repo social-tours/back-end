@@ -37,7 +37,7 @@ async function register(req, res) {
 
 		if (result)
 			return res.status(201).json({
-				result,
+				...result,
 				token
 			});
 
