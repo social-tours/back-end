@@ -99,9 +99,9 @@ describe("sales endpoint testing", () => {
 				password: "pass",
 				type: 1
 			}
-        ]);
-        
-        await db("Tickets").insert([
+		]);
+
+		await db("Tickets").insert([
 			{
 				id: 1,
 				type: 1, // FK ID in 'TicketTypes' table
@@ -127,10 +127,10 @@ describe("sales endpoint testing", () => {
 		// Seed with test data
 		const testData = [
 			{
-                id: 1,
-                ticket_id: "1", // FK ID in 'Tickets' table
-                sale_amount: 49.99
-            }
+				id: 1,
+				ticket_id: "1", // FK ID in 'Tickets' table
+				sale_amount: 49.99
+			}
 		];
 
 		beforeEach(async () => {
@@ -146,7 +146,7 @@ describe("sales endpoint testing", () => {
 		it("endpoint should return test sale data", async () => {
 			const res = await request(server).get("/api/sales");
 			expect(res.body.length).toBe(1);
-			expect(res.body[0].sale_amount).toEqual('49.99');
+			expect(res.body[0].sale_amount).toEqual("49.99");
 		});
 	});
 
@@ -156,7 +156,7 @@ describe("sales endpoint testing", () => {
 			id: 1,
 			ticket_id: "1", // FK ID in 'Tickets' table
 			sale_amount: 49.99
-		}
+		};
 
 		beforeEach(async () => {
 			await db("Sales").insert(testData);
@@ -182,7 +182,7 @@ describe("sales endpoint testing", () => {
 			id: 1,
 			ticket_id: "1", // FK ID in 'Tickets' table
 			sale_amount: 49.99
-		}
+		};
 
 		it("receive status code that record was created", async () => {
 			const res = await request(server)
@@ -193,11 +193,11 @@ describe("sales endpoint testing", () => {
 	});
 
 	describe("PUT /sales/:ticketId", () => {
-		const testData ={
+		const testData = {
 			id: 1,
 			ticket_id: "1", // FK ID in 'Tickets' table
 			sale_amount: 49.99
-		}
+		};
 
 		beforeEach(async () => {
 			await db("Sales").insert(testData);
@@ -222,7 +222,7 @@ describe("sales endpoint testing", () => {
 			id: 1,
 			ticket_id: "1", // FK ID in 'Tickets' table
 			sale_amount: 49.99
-		}
+		};
 
 		beforeEach(async () => {
 			await db("Sales").insert(testData);
