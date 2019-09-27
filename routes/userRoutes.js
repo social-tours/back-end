@@ -33,7 +33,13 @@ async function register(req, res) {
 	try {
 		const result = await db.addRecord("Users", user);
 
-		if (result) return res.status(201).json(result);
+		const token = tokenService.generateToken(result);
+
+		if (result)
+			return res.status(201).json({
+				result,
+				token
+			});
 
 		return res.status(400).json({ message: "Something went wrong." });
 	} catch (err) {
