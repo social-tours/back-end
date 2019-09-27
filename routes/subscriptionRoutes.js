@@ -39,4 +39,31 @@ router.get("/:userId", async (req, res) => {
 	}
 });
 
+router.post('/', async (req,res) => {
+	const { influencer_id, user_id } = req.body;
+
+	try {
+		const data = await db.addRecord("Subscriptions", {influencer_id : influencer_id, user_id : user_id});
+
+		if (data){
+			res.send(data);
+		} else throw err;
+	} catch (err) {
+		res.status(500).send(err);
+	}	
+});
+
+router.delete('/:id', async (req,res) => {
+	const { id } = req.params;
+
+	try {
+		const data = await db.removeRecord("Subscriptions", id);
+
+		if (data){
+			res.send(data);
+		} else throw err;
+	} catch (err) {
+		res.status(500).send(err);
+	}
+})
 module.exports = router;
