@@ -53,7 +53,8 @@ describe("Tickets endpoint testing", () => {
 
 		await db("UserTypes").insert([
 			{ id: 1, description: "Influencer" },
-			{ id: 2, description: "Follower" }
+			{ id: 2, description: "Follower" },
+			{ id: 3, description: "Both" }
 		]);
 
 		await db("Users").insert([
@@ -73,29 +74,29 @@ describe("Tickets endpoint testing", () => {
 			},
 			{
 				id: 2,
-				first_name: "Yana",
-				last_name: "Blake",
-				user_name: "yblake",
-				gender: "Female",
-				birth_date: "1987-09-17",
-				city: "Dallas",
-				state_province: "TX",
+				first_name: "George",
+				last_name: "Kaplam",
+				user_name: "gkaplan",
+				gender: "Male",
+				birth_date: "1955-11-05",
+				city: "Hill Valley",
+				state_province: "CA",
 				country: "USA",
-				email: "yana2@yogiyana.com",
+				email: "george@gmail.com",
 				password: "pass",
-				type: 1
+				type: 2
 			},
 			{
 				id: 3,
-				first_name: "Yana",
-				last_name: "Blake",
-				user_name: "yblake",
+				first_name: "Cindy",
+				last_name: "Brady",
+				user_name: "cbrady",
 				gender: "Female",
-				birth_date: "1987-09-17",
-				city: "Dallas",
-				state_province: "TX",
+				birth_date: "1995-10-05",
+				city: "Chicago",
+				state_province: "IL",
 				country: "USA",
-				email: "yana3@yogiyana.com",
+				email: "cindy@selfiequeen.com",
 				password: "pass",
 				type: 1
 			}
