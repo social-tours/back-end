@@ -21,7 +21,8 @@ describe("Users endpoint testing", () => {
 	beforeEach(async () => {
 		await db("UserTypes").insert([
 			{ id: 1, description: "Influencer" },
-			{ id: 2, description: "Follower" }
+			{ id: 2, description: "Follower" },
+			{ id: 3, description: "Both" }
 		]);
 	});
 
@@ -68,7 +69,7 @@ describe("Users endpoint testing", () => {
 				country: "USA",
 				email: "cindy@selfiequeen.com",
 				password: bcrypt.hashSync("pass", 12),
-				type: 1
+				type: 3
 			}
 		];
 
@@ -132,7 +133,7 @@ describe("Users endpoint testing", () => {
 				country: "USA",
 				email: "cindy@selfiequeen.com",
 				password: bcrypt.hashSync("pass", 12),
-				type: 1
+				type: 3
 			}
 		];
 
@@ -168,7 +169,7 @@ describe("Users endpoint testing", () => {
 			country: "USA",
 			email: "yana@yogiyana.com",
 			password: bcrypt.hashSync("pass", 12),
-			type: 1
+			type: 3
 		};
 
 		it("receive status code that record was created", async () => {
