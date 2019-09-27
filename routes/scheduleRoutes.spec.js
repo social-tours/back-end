@@ -1,4 +1,5 @@
 const request = require("supertest");
+const moment = require("moment");
 
 const db = require("../data/dbConfig");
 const server = require("../api/server");
@@ -21,9 +22,7 @@ describe("Schedules endpoint testing", () => {
 		await db("EventTypes").insert([
 			{
 				id: 1,
-				description: "Concert",
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				description: "Concert"
 			}
 		]);
 
@@ -34,15 +33,21 @@ describe("Schedules endpoint testing", () => {
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				capacity: 5000
 			}
 		]);
 	});
 
 	describe("GET /schedules", () => {
 		// Seed with test data
+		const startDateTime = moment()
+			.add(15, "days")
+			.calendar();
+		const endDateTime = moment()
+			.add(15, "days")
+			.add(2, "hours")
+			.calendar();
+
 		const testData = [
 			{
 				id: 1,
@@ -54,8 +59,8 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
-				start_date_time: "2019-09-05 05:00 PM",
-				end_date_time: "2019-09-05 08:00 PM"
+				start_date_time: startDateTime,
+				end_date_time: endDateTime
 			}
 		];
 
@@ -89,8 +94,13 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
-				start_date_time: "2019-09-05 05:00 PM",
-				end_date_time: "2019-09-05 08:00 PM"
+				start_date_time: moment()
+					.add(10, "days")
+					.calendar(),
+				end_date_time: moment()
+					.add(10, "days")
+					.add(2, "hours")
+					.calendar()
 			},
 			{
 				id: 2,
@@ -102,8 +112,13 @@ describe("Schedules endpoint testing", () => {
 				city: "New York City",
 				postal_code: "10001",
 				country: "USA",
-				start_date_time: "2019-10-17 08:00 PM",
-				end_date_time: "2019-10-17 10:00 PM"
+				start_date_time: moment()
+					.add(17, "days")
+					.calendar(),
+				end_date_time: moment()
+					.add(17, "days")
+					.add(2, "hours")
+					.calendar()
 			}
 		];
 
@@ -138,8 +153,13 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
-				start_date_time: "2019-09-05 05:00 PM",
-				end_date_time: "2019-09-05 08:00 PM"
+				start_date_time: moment()
+					.add(10, "days")
+					.calendar(),
+				end_date_time: moment()
+					.add(10, "days")
+					.add(3, "hours")
+					.calendar()
 			}
 		];
 
@@ -172,8 +192,13 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
-				start_date_time: "2019-09-05 05:00 PM",
-				end_date_time: "2019-09-05 08:00 PM"
+				start_date_time: moment()
+					.add(10, "days")
+					.calendar(),
+				end_date_time: moment()
+					.add(10, "days")
+					.add(3, "hours")
+					.calendar()
 			}
 		];
 
@@ -211,8 +236,13 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
-				start_date_time: "2019-09-05 05:00 PM",
-				end_date_time: "2019-09-05 08:00 PM"
+				start_date_time: moment()
+					.add(10, "days")
+					.calendar(),
+				end_date_time: moment()
+					.add(10, "days")
+					.add(3, "hours")
+					.calendar()
 			}
 		];
 
