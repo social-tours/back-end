@@ -34,16 +34,17 @@ async function register(req, res) {
 		const result = await db.addRecord("Users", user);
 
 		const token = tokenService.generateToken(result);
-
-		if (result)
-			return res.status(201).json({
+		console.log("REGISTER result: ", result);
+		if (result) {
+			res.status(201).json({
 				...result,
 				token
 			});
-
-		return res.status(400).json({ message: "Something went wrong." });
+		} else {
+			res.status(400).json({ message: "Something went wrong." });
+		}
 	} catch (err) {
-		return res.status(500).json({ message: "Something went wrong." });
+		res.status(500).json({ message: "Something went wrong." });
 	}
 }
 
