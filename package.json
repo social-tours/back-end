@@ -15,23 +15,26 @@
 		"bcryptjs": "^2.4.3",
 		"connect-session-knex": "^1.4.0",
 		"cors": "^2.8.5",
-		"dotenv": "^8.0.0",
+		"dotenv": "^8.1.0",
 		"express": "^4.17.1",
 		"express-jwt": "^5.3.1",
 		"express-session": "^1.16.2",
-		"helmet": "^3.20.0",
+		"helmet": "^3.21.1",
 		"jsonwebtoken": "^8.5.1",
 		"jwks-rsa": "^1.6.0",
-		"knex": "^0.19.1",
+		"knex": "^0.19.4",
 		"morgan": "^1.9.1",
-		"pg": "^7.12.0"
+		"nodemailer": "^6.3.0",
+		"nodemailer-sendgrid-transport": "^0.2.0",
+		"pg": "^7.12.1",
+		"twilio": "^3.35.0"
 	},
 	"devDependencies": {
-		"jest": "^24.8.0",
+		"jest": "^24.9.0",
 		"jsdoc": "^3.6.3",
-		"jsdoc-to-markdown": "^5.0.0",
+		"jsdoc-to-markdown": "^5.0.1",
 		"knex-cleaner": "^1.3.0",
-		"nodemon": "^1.19.1",
+		"nodemon": "^1.19.2",
 		"prettier": "^1.18.2",
 		"supertest": "^4.0.2"
 	}

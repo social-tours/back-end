@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const db = require("../data/models");
 
+const sendEmail = require("../services/sendEmail");
+
 /**
  * Method to retrieve all events from the database
  * @returns sends all events in the database as a response

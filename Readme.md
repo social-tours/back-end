@@ -4,15 +4,28 @@
 
 The Social Tours API is based on the [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) architecture. The API uses a predefined set of URLs to represent various resources, accepts form-endcoded responses, and uses standard HTTP response codes, authentication and verbs.
 
-#### Endpoint
+<a name="toc"></a>
+
+## Table of Contents
+
+- [ER Diagram](#erd)
+- [Data Models](#models)
+- [Endpoints](#endpoints)
+- [Services](#services)
+
+#### API
 
 https://prod-socialtours.herokuapp.com/api
+
+<a name="erd"></a>
 
 #### ER Diagram
 
 https://dbdiagram.io/d/5d4b8094ced98361d6dd6837
 
 ---
+
+<a name="models"></a>
 
 ## Data Models
 
@@ -138,6 +151,8 @@ Database method to remove record from the database
 
 ---
 
+<a name="endpoints"></a>
+
 ## Endpoints
 
 #### Register
@@ -195,4 +210,62 @@ Database method to remove record from the database
 | PUT  | <code>/api/sales/:id</code> | Modifies an existing sales transaction.                                 |
 | DEL  | <code>/api/sales/:id</code> | Delete a sales transaction.                                             |
 
-_Updated September 14, 2019_
+### Subscriptions
+
+| HTTP | Path                                | Description                                      |
+| ---- | ----------------------------------- | ------------------------------------------------ |
+| GET  | <code>/api/subscritions</code>      | Retrieves all subscriptions in the database.     |
+| GET  | <code>/api/subscriptions/:id</code> | Retrieves all subscriptions for a specific user. |
+| POST | <code>/api/subscriptions</code>     | Create a new subscription.                       |
+| DEL  | <code>/api/subscriptions/:id</code> | Delete a subscription.                           |
+
+---
+
+<a name="services"></a>
+
+## Services
+
+<a name="sendMail"></a>
+
+### sendMail(recipients, message, subject) ⇒
+
+Function which emails event notifications
+to Followers
+
+**Kind**: global function  
+**Returns**: email message to Followers
+
+| Param      | Type                |
+| ---------- | ------------------- |
+| recipients | <code>string</code> |
+| message    | <code>string</code> |
+| subject    | <code>string</code> |
+
+<a name="sendText"></a>
+
+### sendText(message, userPhone) ⇒
+
+Function which sends SMS via Twilio API
+
+**Kind**: global function  
+**Returns**: SMS message
+
+| Param     | Type                |
+| --------- | ------------------- |
+| message   | <code>string</code> |
+| userPhone | <code>string</code> |
+
+<a name="verifyPhone"></a>
+
+### verifyPhone(phoneNumber) ⇒ <code>boolean</code>
+
+Function which verifies phone numbers via
+Twilio API
+
+**Kind**: global function
+
+| Param       | Type                |
+| ----------- | ------------------- |
+| phoneNumber | <code>string</code> |
+
+_Updated September 26, 2019_
