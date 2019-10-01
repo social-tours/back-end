@@ -44,7 +44,8 @@ async function register(req, res) {
 			res.status(400).json({ message: "Something went wrong." });
 		}
 	} catch (err) {
-		res.status(500).json({ message: "Something went wrong." });
+		console.log("REGISTER error: ", err);
+		res.status(500).json(err);
 	}
 }
 
