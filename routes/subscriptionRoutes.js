@@ -10,13 +10,13 @@ const jwtCheck = require('../auth/tokenService');
  * Method to retrieve all subscriptions from the database
  * @returns sends all subscriptions in the database as a response
  */
-
 router.get("/", async (req, res) => {
 	try {
 		const data = await db.findAll("Subscriptions");
 		res.send(data);
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -35,7 +35,8 @@ router.get("/:userId", async (req, res) => {
 			res.status(404).json({ message: `Record ${userId} not found` });
 		}
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -49,8 +50,9 @@ router.post('/', async (req,res) => {
 			res.send(data);
 		} else throw err;
 	} catch (err) {
-		res.status(500).send(err);
-	}	
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
+	}
 });
 
 router.delete('/:id', async (req,res) => {
@@ -63,7 +65,8 @@ router.delete('/:id', async (req,res) => {
 			res.send(data);
 		} else throw err;
 	} catch (err) {
-		res.status(500).send(err);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 })
 module.exports = router;
