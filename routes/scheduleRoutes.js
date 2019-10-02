@@ -15,7 +15,8 @@ router.get("/", async (req, res) => {
 		const data = await db.findAll("Schedules");
 		res.send(data);
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -34,7 +35,8 @@ router.get("/:scheduleId", async (req, res) => {
 			res.status(404).json({ message: `Record ${scheduleId} not found` });
 		}
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -52,7 +54,8 @@ router.post("/", async (req, res) => {
 			res.status(400).json({ message: "Could not create record" });
 		}
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -70,7 +73,8 @@ router.put("/:scheduleId", async (req, res) => {
 			res.send(data);
 		} else throw err;
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -87,7 +91,8 @@ router.delete("/:scheduleId", async (req, res) => {
 			res.json(data);
 		}
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
