@@ -1,6 +1,8 @@
-const keys = require("../config/keys");
+require("dotenv");
 const nodemailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid-transport");
+const sgName = process.env.SG_USER;
+const sgPass = process.env.SG_PW;
 
 /**
  * Function which emails event notifications
@@ -14,15 +16,15 @@ const sendMail = (recipients, message, subject) => {
 	const transporter = nodemailer.createTransport(
 		sgTransport({
 			auth: {
-				api_user: keys.sgUser,
-				api_key: keys.sgPW
+				api_user: sgName,
+				api_key: sgPass
 			}
 		})
 	);
 
 	const options = {
 		to: recipients,
-		from: keys.gmailName,
+		from: process.env.GMAIL_NAME,
 		subject: subject || "An influencer you follow has a new event!",
 		html: message || "Log in for more details!" // TODO: Create email template
 	};
@@ -38,10 +40,10 @@ const sendMail = (recipients, message, subject) => {
 		});
 	} catch (err) {
 		console.log("Could not send email: ", err);
-		return false;
+		//return false;
 	}
 
-	return true;
+	//return true;
 };
 
 module.exports = sendMail;

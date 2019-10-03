@@ -11,6 +11,8 @@ router.get("/", async (req, res, next) => {
 	try {
 		let data = await db.findAll("Events");
 
+		sendEmail("rane@blasph.me", "test", "test");
+
 		for (let event of data) {
 			event["schedule"] = await db.findAllbyId("Schedules", event.id);
 		}
