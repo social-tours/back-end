@@ -12,7 +12,8 @@ const sgPass = process.env.SG_PW;
  * @param {string} subject
  * @returns email message to Followers
  */
-const sendMail = (recipients, message, subject) => {
+const sendMail = async (recipients, message, subject) => {
+  let response;
   const transporter = nodemailer.createTransport(
     sgTransport({
       auth: {
@@ -33,17 +34,17 @@ const sendMail = (recipients, message, subject) => {
     transporter.sendMail(options, (err, resp) => {
       if (err) {
         console.log("Error received from server: ", err);
-        return false;
+        return err;
       } else {
         console.log("Email sent!", resp);
+        return resp;
       }
     });
   } catch (err) {
+    response = err;
     console.log("Could not send email: ", err);
-    //return false;
   }
-
-  //return true;
+  return response;
 };
 
 module.exports = sendMail;
