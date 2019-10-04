@@ -39,7 +39,7 @@ describe("Users endpoint testing", () => {
 				state_province: "TX",
 				country: "USA",
 				email: "yana@yogiyana.com",
-				password: bcrypt.hashSync("pass", 12),
+				password: bcrypt.hashSync("pass", 10),
 				type: 1
 			},
 			{
@@ -53,7 +53,7 @@ describe("Users endpoint testing", () => {
 				state_province: "CA",
 				country: "USA",
 				email: "george@gmail.com",
-				password: bcrypt.hashSync("pass", 12),
+				password: bcrypt.hashSync("pass", 10),
 				type: 2
 			},
 			{
@@ -67,7 +67,7 @@ describe("Users endpoint testing", () => {
 				state_province: "IL",
 				country: "USA",
 				email: "cindy@selfiequeen.com",
-				password: bcrypt.hashSync("pass", 12),
+				password: bcrypt.hashSync("pass", 10),
 				type: 1
 			}
 		];
@@ -103,7 +103,7 @@ describe("Users endpoint testing", () => {
 				state_province: "TX",
 				country: "USA",
 				email: "yana@yogiyana.com",
-				password: bcrypt.hashSync("pass", 12),
+				password: bcrypt.hashSync("pass", 10),
 				type: 1
 			},
 			{
@@ -117,7 +117,7 @@ describe("Users endpoint testing", () => {
 				state_province: "CA",
 				country: "USA",
 				email: "george@gmail.com",
-				password: bcrypt.hashSync("pass", 12),
+				password: bcrypt.hashSync("pass", 10),
 				type: 2
 			},
 			{
@@ -131,7 +131,7 @@ describe("Users endpoint testing", () => {
 				state_province: "IL",
 				country: "USA",
 				email: "cindy@selfiequeen.com",
-				password: bcrypt.hashSync("pass", 12),
+				password: bcrypt.hashSync("pass", 10),
 				type: 1
 			}
 		];
@@ -167,7 +167,7 @@ describe("Users endpoint testing", () => {
 			state_province: "TX",
 			country: "USA",
 			email: "yana@yogiyana.com",
-			password: bcrypt.hashSync("pass", 12),
+			password: bcrypt.hashSync("pass", 10),
 			type: 1
 		};
 
@@ -175,6 +175,8 @@ describe("Users endpoint testing", () => {
 			const res = await request(server)
 				.post("/api/register")
 				.send(testData);
+			
+			console.log("REGISTER res: ", res)
 
 			expect(res.status).toBe(201);
 		});
@@ -203,7 +205,7 @@ describe("Users endpoint testing", () => {
 			state_province: "TX",
 			country: "USA",
 			email: "yana@yogiyana.com",
-			password: bcrypt.hashSync("pass", 12),
+			password: bcrypt.hashSync("pass", 10),
 			type: 1
 		};
 
@@ -239,7 +241,7 @@ describe("Users endpoint testing", () => {
 			state_province: "TX",
 			country: "USA",
 			email: "yana@yogiyana.com",
-			password: bcrypt.hashSync("pass", 12),
+			password: bcrypt.hashSync("pass", 10),
 			type: 1
 		};
 
