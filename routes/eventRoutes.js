@@ -19,7 +19,8 @@ router.get("/", async (req, res, next) => {
 
 		res.status(200).send(data);
 	} catch (err) {
-		res.status(500).send(err);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -41,7 +42,8 @@ router.get("/:eventId", async (req, res, next) => {
 			res.status(404).json({ message: "Event not found" });
 		}
 	} catch (err) {
-		res.status(500).send(err);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err })
 	}
 });
 
@@ -59,7 +61,8 @@ router.put("/:eventId", async (req, res, next) => {
 			res.status(200).send(data);
 		} else throw err;
 	} catch (err) {
-		res.status(500).send(err.message);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 
@@ -81,8 +84,8 @@ router.post("/", async (req, res, next) => {
 				.json({ message: "Something went wrong. Could not create event." });
 		}
 	} catch (err) {
-		res.status(500).send(err);
-	}
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 });
 
 /**
@@ -103,7 +106,8 @@ router.delete("/:eventId", async (req, res, next) => {
 			res.status(400).json({ message: "not successful delete " });
 		}
 	} catch (err) {
-		res.status(500).send(err);
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 });
 

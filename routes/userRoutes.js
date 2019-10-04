@@ -33,11 +33,19 @@ async function register(req, res) {
 	try {
 		const result = await db.addRecord("Users", user);
 
-		if (result) return res.status(201).json(result);
-
-		return res.status(400).json({ message: "Something went wrong." });
+		const token = tokenService.generateToken(result);
+		console.log("REGISTER result: ", result);
+		if (result) {
+			res.status(201).json({
+				...result,
+				token
+			});
+		} else {
+			res.status(400).json({ message: "Something went wrong." });
+		}
 	} catch (err) {
-		return res.status(500).json({ message: "Something went wrong." });
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
 	}
 }
 
@@ -75,9 +83,10 @@ async function login(req, res) {
 			res.status(401).json({ message: "Something went wrong." });
 		}
 	} catch (err) {
+		console.log("Internal server error: ", err);
 		return res
 			.status(500)
-			.json({ message: "Something went wrong.", error: err });
+			.json({ message: "Internal server error.", error: err });
 	}
 }
 
@@ -103,7 +112,10 @@ async function fetchUsers(req, res) {
 			res.status(200).json(users);
 		}
 	} catch (err) {
-		return res.status(500).json({ message: "Something went wrong." });
+		console.log("Internal server error: ", err);
+		return res
+			.status(500)
+			.json({ message: "Internal server error.", error: err });
 	}
 }
 
@@ -121,7 +133,10 @@ async function updateUser(req, res) {
 			res.send(data);
 		} else throw err;
 	} catch (err) {
-		return res.status(500).json({ message: "Something went wrong." });
+		console.log("Internal server error: ", err);
+		return res
+			.status(500)
+			.json({ message: "Internal server error.", error: err });
 	}
 }
 
@@ -139,6 +154,9 @@ async function removeUser(req, res) {
 			res.json(data);
 		}
 	} catch (err) {
-		return res.status(500).json({ message: "Something went wrong." });
+		console.log("Internal server error: ", err);
+		return res
+			.status(500)
+			.json({ message: "Internal server error.", error: err });
 	}
 }
