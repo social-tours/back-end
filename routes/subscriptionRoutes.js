@@ -55,6 +55,7 @@ router.post("/", async (req, res) => {
 	} catch (err) {
 		console.log("Internal server error: ", err);
 		res.status(500).json({ message: "Internal server error.", error: err });
+	}
 });
 
 router.delete("/:id", async (req, res) => {
