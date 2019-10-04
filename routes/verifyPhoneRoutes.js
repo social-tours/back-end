@@ -8,8 +8,10 @@ router.get("/:number", async (req, res) => {
 		console.log("VALIDATE PHONE NUMBER: ", valid);
 		res.send({ valid });
 	} catch (err) {
-		console.error(err.message);
-		res.status(500).send("An unexpected error occurred");
+		console.log("Internal server error: ", err);
+		return res
+			.status(500)
+			.json({ message: "Internal server error.", error: err });
 	}
 });
 
