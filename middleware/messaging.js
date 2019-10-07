@@ -64,6 +64,5 @@ function selectMessagingService(users, content) {
 		}
 	}
 }
-// Test command
-messagingHandler(process.argv[2], process.argv[3]);
+
 module.exports = messagingHandler;
