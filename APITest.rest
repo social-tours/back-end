@@ -121,8 +121,7 @@ PUT http://localhost:8080/api/users/1 HTTP/1.1
 content-type: application/json
 
 {
- "email": "yana@example.com",
- "comm_preference": 0
+  "email": "yana@example.com"
 }
 
 ### PUT (Events)
