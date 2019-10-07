@@ -1,5 +1,5 @@
 const router = require('express').Router();
-import db from '../data/models'
+const db = require('../data/models');
 
 router.get('/search/:name', async (req, res) => {
     let { name } = req.params;
