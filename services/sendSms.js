@@ -20,7 +20,7 @@ async function sendText(userPhone, message) {
 				from: process.env.TWILIO_PHONE_NBR,
 				body: message
 			});
-			console.log("sendMessage.sid: ", sendMessage.sid);
+			console.log("SMS sent!: ", sendMessage.sid);
 			if (sendMessage.sid) return sendMessage.sid;
 			else throw err;
 		} else {
@@ -33,5 +33,3 @@ async function sendText(userPhone, message) {
 }
 
 module.exports = sendText;
-
-sendText(process.argv[2], process.argv[3]);
