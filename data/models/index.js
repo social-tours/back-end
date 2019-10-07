@@ -161,5 +161,6 @@ module.exports = {
 	findByEmail,
 	addRecord,
 	updateRecord,
-	removeRecord
+	removeRecord,
+	search
 };
