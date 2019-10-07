@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 // Import data models
 const db = require("../data/models");
-const jwtCheck = require('../auth/tokenService');
+const jwtCheck = require("../auth/tokenService");
 
 // Load middleware
 
@@ -40,13 +40,16 @@ router.get("/:userId", async (req, res) => {
 	}
 });
 
-router.post('/', async (req,res) => {
+router.post("/", async (req, res) => {
 	const { influencer_id, user_id } = req.body;
 
 	try {
-		const data = await db.addRecord("Subscriptions", {influencer_id : influencer_id, user_id : user_id});
+		const data = await db.addRecord("Subscriptions", {
+			influencer_id: influencer_id,
+			user_id: user_id
+		});
 
-		if (data){
+		if (data) {
 			res.send(data);
 		} else throw err;
 	} catch (err) {
@@ -55,18 +58,18 @@ router.post('/', async (req,res) => {
 	}
 });
 
-router.delete('/:id', async (req,res) => {
+router.delete("/:id", async (req, res) => {
 	const { id } = req.params;
 
 	try {
 		const data = await db.removeRecord("Subscriptions", id);
 
-		if (data){
+		if (data) {
 			res.send(data);
 		} else throw err;
 	} catch (err) {
 		console.log("Internal server error: ", err);
 		res.status(500).json({ message: "Internal server error.", error: err });
 	}
-})
+});
 module.exports = router;

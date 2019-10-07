@@ -212,13 +212,13 @@ Database method to remove record from the database
 
 ### Subscriptions
 
-| HTTP | Path                                | Description                                                     |
-| ---- | ------------------------------------|---------------------------------------------------------------- |
-| GET  | <code>/api/subscritions</code>      | Retrieves  all subscriptions in the database.                   |
-| GET  | <code>/api/subscriptions/:id</code> | Retrieves all subscriptions for a specific user.                |
-| POST | <code>/api/subscriptions</code>     | Create a new subscription.                                      |
-| DEL  | <code>/api/subscriptions/:id</code> | Delete a subscription.                                          |
- 
+| HTTP | Path                                | Description                                      |
+| ---- | ----------------------------------- | ------------------------------------------------ |
+| GET  | <code>/api/subscritions</code>      | Retrieves all subscriptions in the database.     |
+| GET  | <code>/api/subscriptions/:id</code> | Retrieves all subscriptions for a specific user. |
+| POST | <code>/api/subscriptions</code>     | Create a new subscription.                       |
+| DEL  | <code>/api/subscriptions/:id</code> | Delete a subscription.                           |
+
 ---
 
 <a name="services"></a>
@@ -269,4 +269,3 @@ Twilio API
 | phoneNumber | <code>string</code> |
 
 _Updated September 26, 2019_
-
