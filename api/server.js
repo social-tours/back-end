@@ -9,7 +9,7 @@ const eventRoutes = require("../routes/eventRoutes");
 const scheduleRoutes = require("../routes/scheduleRoutes");
 const ticketRoutes = require("../routes/ticketRoutes");
 const salesRoutes = require("../routes/salesRoutes");
-const subscriptionRoutes = require('../routes/subscriptionRoutes');
+const subscriptionRoutes = require("../routes/subscriptionRoutes");
 const smsRoutes = require("../routes/smsRoutes");
 const verifyPhoneRoutes = require("../routes/verifyPhoneRoutes");
 
