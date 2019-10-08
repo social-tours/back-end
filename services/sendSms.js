@@ -10,17 +10,17 @@ const verifyPhone = require("./verifyPhone");
  * @param {string} userPhone
  * @returns SMS message
  */
-async function sendText(message, userPhone) {
+async function sendText(userPhone, message) {
 	try {
 		const isValid = await verifyPhone(userPhone);
 
 		if (isValid) {
 			sendMessage = await client.messages.create({
-				body: message,
+				to: userPhone,
 				from: process.env.TWILIO_PHONE_NBR,
-				to: userPhone
+				body: message
 			});
-			console.log("sendMessage.sid: ", sendMessage.sid);
+			console.log("SMS sent!: ", sendMessage.sid);
 			if (sendMessage.sid) return sendMessage.sid;
 			else throw err;
 		} else {
@@ -33,5 +33,3 @@ async function sendText(message, userPhone) {
 }
 
 module.exports = sendText;
-
-sendText(process.argv[2], process.argv[3]);

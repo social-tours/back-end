@@ -7,11 +7,11 @@ http://localhost:8080/api/users
 //https://staging-a-socialtours.herokuapp.com/api/users/
 
 ### GET Events (ALL)
-http://localhost:8000/api/events
+http://localhost:8080/api/events
 //https://staging-a-socialtours.herokuapp.com/api/events/
 
 ### GET Users (by ID)
-http://localhost:8080/api/users/4
+http://localhost:8080/api/users/5
 https://staging-a-socialtours.herokuapp.com/api/users/1
 
 ### GET Events (by ID)
@@ -105,13 +105,23 @@ content-type: application/json
   }
 
 
+### POST (Subscribe to Influencer)
+POST http://localhost:8080/api/subscriptions HTTP/1.1
+//POST https://staging-a-socialtours.herokuapp.com/api/events HTTP/1.1
+content-type: application/json
+
+		{
+      "user_id": 5,
+      "influencer_id": 1
+		}
+
 ### PUT (Users)
-PUT http://localhost:8000/api/users/3 HTTP/1.1
+PUT http://localhost:8080/api/users/1 HTTP/1.1
 //PUT https://staging-a-socialtours.herokuapp.com/api/users/3 HTTP/1.1
 content-type: application/json
 
 {
- "country": "USA"
+  "email": "yana@example.com"
 }
 
 ### PUT (Events)
