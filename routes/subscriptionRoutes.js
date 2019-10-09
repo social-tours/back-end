@@ -13,6 +13,15 @@ const jwtCheck = require("../auth/tokenService");
 router.get("/", async (req, res) => {
 	try {
 		const data = await db.findAll("Subscriptions");
+
+		for (let sub of data) {
+			let follower = await db.findById("Users", sub.user_id);
+			let influencer = await db.findById("Users", sub.influencer_id);
+			sub["follower_name"] = `${follower.first_name} ${follower.last_name}`;
+			sub[
+				"influencer_name"
+			] = `${influencer.first_name} ${influencer.last_name}`;
+		}
 		res.send(data);
 	} catch (err) {
 		console.log("Internal server error: ", err);
