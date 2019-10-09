@@ -13,6 +13,7 @@ const subscriptionRoutes = require("../routes/subscriptionRoutes");
 const smsRoutes = require("../routes/smsRoutes");
 const emailRoutes = require("../routes/emailRoutes");
 const verifyPhoneRoutes = require("../routes/verifyPhoneRoutes");
+const searchRoutes = require("../routes/searchRoutes");
 
 const server = express();
 
@@ -41,6 +42,7 @@ server.use("/api/subscriptions", subscriptionRoutes);
 server.use("/api/sms", smsRoutes);
 server.use("/api/email", emailRoutes);
 server.use("/api/phone-check", verifyPhoneRoutes);
+server.use("/api/search", searchRoutes);
 userRoutes(server);
 
 module.exports = server;

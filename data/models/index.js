@@ -2,6 +2,26 @@
 const db = require("../dbConfig");
 
 // ==== Global Database Methods ==== //
+
+/**
+ * Database model to retrieve a list of influencers given a search string
+ * @param {string} search_string 
+ */
+async function search (search_string)  {
+	let records;
+
+	try {
+		if (search_string === null){
+			records = await db('Users').where({type: 1}).select('*').orderBy('first_name', 'asc');
+		} else {
+			records = await db('Users').where('first_name', 'like', `${search_string}`).andWhere({type: 2}).select('*').orderBy('first_name', 'asc');
+		}
+	} catch (e){
+		records = [];
+	}
+	return records;
+};
+
 /**
  * Database model to get all records in a table
  * @param {string} table
@@ -141,5 +161,6 @@ module.exports = {
 	findByEmail,
 	addRecord,
 	updateRecord,
-	removeRecord
+	removeRecord,
+	search
 };
