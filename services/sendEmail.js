@@ -42,8 +42,6 @@ const sendMail = (recipients, message, subject) => {
 		console.log("Could not send email: ", err);
 		//return false;
 	}
-
-	//return true;
 };
 
 module.exports = sendMail;
