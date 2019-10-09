@@ -40,6 +40,20 @@ router.get("/:userId", async (req, res) => {
 	}
 });
 
+router.put("/:id", async (req, res, next) => {
+	const { id } = req.params;
+
+	try {
+		const data = await db.updateRecord("Subscriptions", id, req.body);
+		if (data) {
+			res.status(200).send(data);
+		} else throw err;
+	} catch (err) {
+		console.log("Internal server error: ", err);
+		res.status(500).json({ message: "Internal server error.", error: err });
+	}
+});
+
 router.post("/", async (req, res) => {
 	const { influencer_id, user_id } = req.body;
 

@@ -217,6 +217,7 @@ Database method to remove record from the database
 | GET  | <code>/api/subscritions</code>      | Retrieves all subscriptions in the database.     |
 | GET  | <code>/api/subscriptions/:id</code> | Retrieves all subscriptions for a specific user. |
 | POST | <code>/api/subscriptions</code>     | Create a new subscription.                       |
+| PUT  | <code>/api/subscriptions/:id</code> | Modifies an existing subscription.               |
 | DEL  | <code>/api/subscriptions/:id</code> | Delete a subscription.                           |
 
 ---
