@@ -78,7 +78,7 @@ Database model to get all records in a table given some search criteria
 | Param     | Type                |
 | --------- | ------------------- |
 | table     | <code>string</code> |
-| fieldName | <code>string</code> |
+| columnName | <code>string</code> |
 | id        | <code>string</code> |
 
 <a name="findById"></a>

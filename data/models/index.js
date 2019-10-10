@@ -53,11 +53,11 @@ async function findAll(table) {
  * @param {string} id
  * @returns array of table records
  */
-async function findAllbyId(table, fieldName, id) {
+async function findAllbyId(table, columnName, id) {
 	let records;
 	try {
 		records = await db(table)
-			.where("event_id", id)
+			.where(columnName, id)
 			.orderBy("sequence");
 	} catch (err) {
 		console.log(err);
