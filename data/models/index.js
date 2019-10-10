@@ -5,22 +5,29 @@ const db = require("../dbConfig");
 
 /**
  * Database model to retrieve a list of influencers given a search string
- * @param {string} search_string 
+ * @param {string} search_string
  */
-async function search (search_string)  {
+async function search(search_string) {
 	let records;
 
 	try {
-		if (search_string === null){
-			records = await db('Users').where({type: 1}).select('*').orderBy('first_name', 'asc');
+		if (search_string === null) {
+			records = await db("Users")
+				.where({ type: 1 })
+				.select("*")
+				.orderBy("first_name", "asc");
 		} else {
-			records = await db('Users').where('first_name', 'like', `${search_string}`).andWhere({type: 2}).select('*').orderBy('first_name', 'asc');
+			records = await db("Users")
+				.where("first_name", "like", `${search_string}`)
+				.andWhere({ type: 2 })
+				.select("*")
+				.orderBy("first_name", "asc");
 		}
-	} catch (e){
+	} catch (e) {
 		records = [];
 	}
 	return records;
-};
+}
 
 /**
  * Database model to get all records in a table
@@ -42,14 +49,14 @@ async function findAll(table) {
 /**
  * Database model to get all records in a table given some search criteria
  * @param {string} table
+ * @param {string} fieldName
+ * @param {string} id
  * @returns array of table records
  */
-async function findAllbyId(table, id) {
+async function findAllbyId(table, columnName, id) {
 	let records;
 	try {
-		records = await db(table)
-			.where("event_id", id)
-			.orderBy("sequence");
+		records = await db(table).where(columnName, id);
 	} catch (err) {
 		console.log(err);
 		records = [];
