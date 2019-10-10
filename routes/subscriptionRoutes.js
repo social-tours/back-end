@@ -38,6 +38,12 @@ router.get("/:userId", async (req, res) => {
 	const { userId } = req.params;
 	try {
 		const data = await db.findAllbyId("Subscriptions", "user_id", userId);
+		for (let sub of data) {
+			let influencer = await db.findById("Users", sub.influencer_id);
+			sub[
+				"influencer_name"
+			] = `${influencer.first_name} ${influencer.last_name}`;
+		}
 		if (data) {
 			res.send(data);
 		} else {
