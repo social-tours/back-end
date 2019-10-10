@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
 router.get("/:userId", async (req, res) => {
 	const { userId } = req.params;
 	try {
-		const data = await db.findAllbyId("Subscriptions", "event_id", userId);
+		const data = await db.findAllbyId("Subscriptions", "user_id", userId);
 		if (data) {
 			res.send(data);
 		} else {
