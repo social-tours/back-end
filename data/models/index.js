@@ -56,9 +56,7 @@ async function findAll(table) {
 async function findAllbyId(table, columnName, id) {
 	let records;
 	try {
-		records = await db(table)
-			.where(columnName, id)
-			.orderBy("sequence");
+		records = await db(table).where(columnName, id);
 	} catch (err) {
 		console.log(err);
 		records = [];
