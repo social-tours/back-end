@@ -75,9 +75,11 @@ Database model to get all records in a table given some search criteria
 **Kind**: global function  
 **Returns**: array of table records
 
-| Param | Type                |
-| ----- | ------------------- |
-| table | <code>string</code> |
+| Param     | Type                |
+| --------- | ------------------- |
+| table     | <code>string</code> |
+| fieldName | <code>string</code> |
+| id        | <code>string</code> |
 
 <a name="findById"></a>
 
