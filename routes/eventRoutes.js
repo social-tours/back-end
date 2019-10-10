@@ -10,7 +10,11 @@ router.get("/", async (req, res, next) => {
 		let data = await db.findAll("Events");
 
 		for (let event of data) {
-			event["schedule"] = await db.findAllbyId("Schedules", event.id);
+			event["schedule"] = await db.findAllbyId(
+				"Schedules",
+				"event_id",
+				event.id
+			);
 		}
 
 		res.status(200).send(data);
