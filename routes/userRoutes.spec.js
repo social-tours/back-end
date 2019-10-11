@@ -175,8 +175,9 @@ describe("Users endpoint testing", () => {
 			const res = await request(server)
 				.post("/api/register")
 				.send(testData);
-			
-			console.log("REGISTER res: ", res)
+
+			console.log("REGISTER res.status: ", res.status);
+			console.log("REGISTER res.body: ", res.body);
 
 			expect(res.status).toBe(201);
 		});
