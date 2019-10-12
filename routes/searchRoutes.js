@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../data/models");
 
-router.get("/search/:name", async (req, res) => {
+router.get("/:name", async (req, res) => {
 	let { name } = req.params;
 	try {
 		if (name !== "undefined") {
