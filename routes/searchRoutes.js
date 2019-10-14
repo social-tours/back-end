@@ -1,19 +1,19 @@
-const router = require('express').Router();
-const db = require('../data/models');
+const router = require("express").Router();
+const db = require("../data/models");
 
-router.get('/search/:name', async (req, res) => {
-    let { name } = req.params;
-    try {
-        if (name !== 'undefined') {
-            let records = await db.search(name);
+router.get("/:name", async (req, res) => {
+	let { name } = req.params;
+	try {
+		if (name !== "undefined") {
+			let records = await db.search(name);
 
-            res.status(200).send(records);
-        } else {
-            res.send([]);
-        }
-    } catch (e) {
-        res.send(e);
-    }
-})
+			res.status(200).send(records);
+		} else {
+			res.send([]);
+		}
+	} catch (e) {
+		res.send(e);
+	}
+});
 
 module.exports = router;
