@@ -18,7 +18,7 @@ async function search(search_string) {
 				.orderBy("first_name", "asc");
 		} else {
 			records = await db("Users")
-				.where("first_name", "like", `${search_string}`)
+				.where("first_name", "like", `%${search_string}%`)
 				.andWhere({ type: 2 })
 				.select("*")
 				.orderBy("first_name", "asc");
