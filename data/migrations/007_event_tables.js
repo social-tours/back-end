@@ -16,7 +16,6 @@ exports.up = async function(knex) {
 		tbl.string("title", 128).notNullable();
 		tbl.string("description", 1000);
 		tbl.string("event_image");
-		tbl.integer("capacity");
 		tbl.timestamp("created_at").defaultTo(knex.fn.now());
 		tbl.timestamp("updated_at");
 	});
