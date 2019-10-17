@@ -10,6 +10,7 @@ exports.seed = async function(knex) {
 			city: "Chicago",
 			postal_code: "60654",
 			country: "USA",
+			capacity: 5000,
 			start_date_time: "2019-09-25 05:00 PM",
 			end_date_time: "2019-09-25 08:00 PM"
 		}
