@@ -36,6 +36,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 06:00 PM"
 			},
@@ -49,6 +50,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 06:00 PM",
 				end_date_time: "2019-09-05 07:00 PM"
 			},
@@ -62,6 +64,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 07:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			},
@@ -76,6 +79,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 06:00 PM",
 				end_date_time: "2019-09-05 07:00 PM"
 			},
@@ -89,6 +93,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 07:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			},
@@ -103,6 +108,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 06:00 PM",
 				end_date_time: "2019-09-05 07:00 PM"
 			}
@@ -115,9 +121,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 2,
@@ -125,9 +129,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 2",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 3,
@@ -135,9 +137,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 3",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 4,
@@ -145,9 +145,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 4",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			}
 		];
 
@@ -194,6 +192,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 06:00 PM"
 			},
@@ -207,6 +206,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 06:00 PM",
 				end_date_time: "2019-09-05 07:00 PM"
 			},
@@ -220,6 +220,7 @@ describe("Events endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 500,
 				start_date_time: "2019-09-05 07:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			}
@@ -232,9 +233,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 2,
@@ -242,9 +241,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 2",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 3,
@@ -252,9 +249,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 3",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 4,
@@ -262,9 +257,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 4",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			}
 		];
 
@@ -349,9 +342,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 1",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 2,
@@ -359,9 +350,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 2",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 3,
@@ -369,9 +358,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 3",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 4,
@@ -379,9 +366,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 4",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			}
 		];
 
@@ -426,9 +411,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 1",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 2,
@@ -436,9 +419,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 2",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 3,
@@ -446,9 +427,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 3",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			},
 			{
 				id: 4,
@@ -456,9 +435,7 @@ describe("Events endpoint testing", () => {
 				title: "See Bifunkal Orchestra 4",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			}
 		];
 
