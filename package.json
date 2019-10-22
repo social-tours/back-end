@@ -27,6 +27,7 @@
 		"nodemailer": "^6.3.0",
 		"nodemailer-sendgrid-transport": "^0.2.0",
 		"pg": "^7.12.1",
+		"stripe": "^7.10.0",
 		"twilio": "^3.35.0"
 	},
 	"devDependencies": {
