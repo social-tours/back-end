@@ -1,6 +1,16 @@
 const router = require("express").Router();
-
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const db = require("../data/models");
+
+const stripeChargeCallback = res => async (stripeErr, stripeRes) => {
+	if (stripeErr) {
+		console.error(stripeErr);
+		res.status(500).send({ error: stripeErr });
+	} else {
+		console.log("Success", stripeRes);
+		res.status(200).send({ success: stripeRes });
+	}
+};
 
 /**
  * Method to retrieve all sales records from the database
@@ -76,31 +86,59 @@ router.put("/:saleId", async (req, res, next) => {
  * Method to add sales to the database
  * @returns sends a response to the requester indicating whether or not record creation was successful
  */
-router.post("/", async (req, res, next) => {
-	const { ticket_id, sale_amount } = req.body;
-
-	if (!ticket_id || !sale_amount) {
-		res.status(400).json({ message: "All fields are required." });
-	}
-
-	if (typeof sale_amount === "string") {
-		user_id = parseFloat(user_id, 10);
-	}
-
+router.post("/", async (req, res) => {
+	console.log("Received payment request: ", req.body);
+	const { amount, description, token } = req.body;
 	try {
-		const sale = await db.addRecord("Sales", { ticket_id, sale_amount });
+		const charge = await stripe.charges.create({
+			amount,
+			currency: "usd",
+			description,
+			source: token.id
+		});
 
-		if (sale) {
-			res.status(201).send(sale);
-		} else {
-			res
-				.status(400)
-				.json({ message: "Something went wrong. Could not create sale." });
-		}
-	} catch (err) {
-		console.log("Internal server error: ", err);
-		res.status(500).json({ message: "Internal server error.", error: err });
+		//
+		if (charge) {
+			console.log("Success", charge);
+			res.send({ success: charge });
+		} else throw error;
+	} catch (error) {
+		console.log("ERR MSG: ", error);
+		res.status(500).send({ message: "Internal server error.", error: error });
 	}
+
+	// const body = {
+	// 	source: req.body.token.id,
+	// 	description: req.body.description,
+	// 	amount: req.body.amount,
+	// 	currency: "usd"
+	// };
+
+	//await stripe.charges.create(body, stripeChargeCallback(res));
+	// const { ticket_id, sale_amount } = req.body;
+
+	// if (!ticket_id || !sale_amount) {
+	// 	res.status(400).json({ message: "All fields are required." });
+	// }
+
+	// if (typeof sale_amount === "string") {
+	// 	user_id = parseFloat(user_id, 10);
+	// }
+
+	// try {
+	// 	const sale = await db.addRecord("Sales", { ticket_id, sale_amount });
+
+	// 	if (sale) {
+	// 		res.status(201).send(sale);
+	// 	} else {
+	// 		res
+	// 			.status(400)
+	// 			.json({ message: "Something went wrong. Could not create sale." });
+	// 	}
+	// } catch (err) {
+	// 	console.log("Internal server error: ", err);
+	// 	res.status(500).json({ message: "Internal server error.", error: err });
+	// }
 });
 
 /**
