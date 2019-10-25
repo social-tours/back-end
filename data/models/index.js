@@ -49,7 +49,7 @@ async function findAll(table) {
 /**
  * Database model to get all records in a table given some search criteria
  * @param {string} table
- * @param {string} fieldName
+ * @param {string} columnName
  * @param {string} id
  * @returns array of table records
  */

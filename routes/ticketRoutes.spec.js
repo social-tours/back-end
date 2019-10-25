@@ -38,8 +38,7 @@ describe("Tickets endpoint testing", () => {
 				type: 1, // FK ID in 'EventTypes' table
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
-				event_image: "Bifunkal Image Here",
-				capacity: 5000
+				event_image: "Bifunkal Image Here"
 			}
 		]);
 

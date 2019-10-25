@@ -22,8 +22,7 @@ describe("Schedules endpoint testing", () => {
 			{
 				id: 1,
 				description: "Concert",
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			}
 		]);
 
@@ -34,9 +33,7 @@ describe("Schedules endpoint testing", () => {
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here",
-				capacity: 5000,
-				created_at: "2019-08-14",
-				updated_at: "2019-08-15"
+				created_at: "2019-08-14"
 			}
 		]);
 	});
@@ -54,6 +51,7 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 5000,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			}
@@ -89,6 +87,7 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 5000,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			},
@@ -102,6 +101,7 @@ describe("Schedules endpoint testing", () => {
 				city: "New York City",
 				postal_code: "10001",
 				country: "USA",
+				capacity: 5000,
 				start_date_time: "2019-10-17 08:00 PM",
 				end_date_time: "2019-10-17 10:00 PM"
 			}
@@ -138,6 +138,7 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 5000,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			}
@@ -172,6 +173,7 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 5000,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			}
@@ -211,6 +213,7 @@ describe("Schedules endpoint testing", () => {
 				city: "Chicago",
 				postal_code: "60654",
 				country: "USA",
+				capacity: 5000,
 				start_date_time: "2019-09-05 05:00 PM",
 				end_date_time: "2019-09-05 08:00 PM"
 			}

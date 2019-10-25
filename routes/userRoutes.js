@@ -119,7 +119,7 @@ async function fetchUsers(req, res) {
 	}
 }
 
-/** Endpoint to retrieve user information
+/** Endpoint to update user information
  * @param req - request from client
  * @param res - response to client
  * @returns res - status code plus json
@@ -140,7 +140,7 @@ async function updateUser(req, res) {
 	}
 }
 
-/** Endpoint to retrieve user information
+/** Endpoint to delete user account
  * @param req - request from client
  * @param res - response to client
  * @returns res - status code plus json

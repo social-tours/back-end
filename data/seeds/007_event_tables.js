@@ -18,8 +18,7 @@ exports.seed = async function(knex) {
 			host_id: 2,
 			title: "See Bifunkal Orchestra",
 			description: "Orchestrated Blues and Funk",
-			event_image: "Bifunkal Image Here",
-			capacity: 5000
+			event_image: "Bifunkal Image Here"
 		}
 	]);
 
