@@ -8,6 +8,7 @@ const databaseTables = [
 	"Tickets",
 	"Events",
 	"EventTypes",
+	"Schedules",
 	"UserTypes",
 	"Users"
 ];
@@ -39,6 +40,22 @@ describe("Tickets endpoint testing", () => {
 				title: "See Bifunkal Orchestra",
 				description: "Orchestrated Blues and Funk",
 				event_image: "Bifunkal Image Here"
+			}
+		]);
+
+		await db("Schedules").insert([
+			{
+				id: 1,
+				event_id: 1,
+				title: "Bifunkal Event Schedule",
+				description: "Blues band from Chicago",
+				location: "House of Blues",
+				city: "Chicago",
+				postal_code: "60654",
+				country: "USA",
+				capacity: 5000,
+				start_date_time: "2019-12-05 05:00 PM",
+				end_date_time: "2019-12-05 08:00 PM"
 			}
 		]);
 
@@ -108,19 +125,19 @@ describe("Tickets endpoint testing", () => {
 				id: 1,
 				type: 1, // FK ID in 'TicketTypes' table
 				user_id: 1, // FK ID in 'Users' table
-				event_id: 1
+				event_schedule_id: 1
 			},
 			{
 				id: 2,
 				type: 1, // FK ID in 'TicketTypes' table
 				user_id: 2, // FK ID in 'Users' table
-				event_id: 1
+				event_schedule_id: 1
 			},
 			{
 				id: 3,
 				type: 1, // FK ID in 'TicketTypes' table
 				user_id: 3, // FK ID in 'Users' table
-				event_id: 1
+				event_schedule_id: 1
 			}
 		];
 
@@ -145,9 +162,9 @@ describe("Tickets endpoint testing", () => {
 		// Seed with test data
 		const testData = {
 			id: 1,
-			type: 1, // FK ID in 'TicketTypes' table
-			user_id: 1, // FK ID in 'Users' table
-			event_id: 1
+			type: 1,
+			user_id: 1,
+			event_schedule_id: 1
 		};
 
 		beforeEach(async () => {
@@ -158,7 +175,7 @@ describe("Tickets endpoint testing", () => {
 			let ticketId = 1;
 			const res = await request(server).get(`/api/tickets/${ticketId}`);
 			expect(res.status).toBe(200);
-			expect(res.body.event_id).toEqual(1);
+			expect(res.body.event_schedule_id).toEqual(1);
 		});
 
 		it("return 404 status for missing record", async () => {
@@ -174,7 +191,7 @@ describe("Tickets endpoint testing", () => {
 			id: 1,
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
-			event_id: 1
+			event_schedule_id: 1
 		};
 
 		it("receive status code that record was created", async () => {
@@ -188,7 +205,7 @@ describe("Tickets endpoint testing", () => {
 			const res = await request(server)
 				.post("/api/tickets")
 				.send(testData);
-			expect(res.body.event_id).toBe(1);
+			expect(res.body.event_schedule_id).toBe(1);
 		});
 	});
 
@@ -197,7 +214,7 @@ describe("Tickets endpoint testing", () => {
 			id: 1,
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
-			event_id: 1
+			event_schedule_id: 1
 		};
 
 		beforeEach(async () => {
@@ -223,7 +240,7 @@ describe("Tickets endpoint testing", () => {
 			id: 1,
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
-			event_id: 1
+			event_schedule_id: 1
 		};
 
 		beforeEach(async () => {
