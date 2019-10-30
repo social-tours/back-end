@@ -19,7 +19,7 @@ async function search(search_string) {
 		} else {
 			records = await db("Users")
 				.where("first_name", "like", `%${search_string}%`)
-				.andWhere({ type: 2 })
+				// .andWhere({ type: 2 })
 				.select("*")
 				.orderBy("first_name", "asc");
 		}
