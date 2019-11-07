@@ -2,16 +2,6 @@ const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const db = require("../data/models");
 
-const stripeChargeCallback = res => async (stripeErr, stripeRes) => {
-	if (stripeErr) {
-		console.error(stripeErr);
-		res.status(500).send({ error: stripeErr });
-	} else {
-		console.log("Success", stripeRes);
-		res.status(200).send({ success: stripeRes });
-	}
-};
-
 /**
  * Method to retrieve all sales records from the database
  * @returns sends all sales in the database as a response
@@ -89,6 +79,7 @@ router.put("/:saleId", async (req, res, next) => {
 router.post("/", async (req, res) => {
 	console.log("Received payment request: ", req.body);
 	const { amount, description, token } = req.body;
+	// Payment processing flow
 	try {
 		const charge = await stripe.charges.create({
 			amount,
@@ -96,49 +87,28 @@ router.post("/", async (req, res) => {
 			description,
 			source: token.id
 		});
-
-		//
 		if (charge) {
 			console.log("Success", charge);
-			res.send({ success: charge });
+			const ticket = await db.addRecord("Tickets", {
+				type,
+				user_id,
+				event_schedule_id
+			});
+			console.log("TICKET INFO: ", ticket);
+
+			if (ticket) {
+				const sale = await db.addRecord("Sales", {
+					ticket_id: ticket.id,
+					sale_amount: amount
+				});
+				console.log("SALE INFO: ", sale);
+				res.send({ success: charge, ticket, sale });
+			}
 		} else throw error;
 	} catch (error) {
-		console.log("ERR MSG: ", error);
+		console.log("Internal server error: ", err);
 		res.status(500).send({ message: "Internal server error.", error: error });
 	}
-
-	// const body = {
-	// 	source: req.body.token.id,
-	// 	description: req.body.description,
-	// 	amount: req.body.amount,
-	// 	currency: "usd"
-	// };
-
-	//await stripe.charges.create(body, stripeChargeCallback(res));
-	// const { ticket_id, sale_amount } = req.body;
-
-	// if (!ticket_id || !sale_amount) {
-	// 	res.status(400).json({ message: "All fields are required." });
-	// }
-
-	// if (typeof sale_amount === "string") {
-	// 	user_id = parseFloat(user_id, 10);
-	// }
-
-	// try {
-	// 	const sale = await db.addRecord("Sales", { ticket_id, sale_amount });
-
-	// 	if (sale) {
-	// 		res.status(201).send(sale);
-	// 	} else {
-	// 		res
-	// 			.status(400)
-	// 			.json({ message: "Something went wrong. Could not create sale." });
-	// 	}
-	// } catch (err) {
-	// 	console.log("Internal server error: ", err);
-	// 	res.status(500).json({ message: "Internal server error.", error: err });
-	// }
 });
 
 /**
