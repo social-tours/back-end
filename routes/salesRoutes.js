@@ -78,7 +78,14 @@ router.put("/:saleId", async (req, res, next) => {
  */
 router.post("/", async (req, res) => {
 	console.log("Received payment request: ", req.body);
-	const { amount, description, token } = req.body;
+	const {
+		amount,
+		description,
+		token,
+		type,
+		user_id,
+		event_schedule_id
+	} = req.body;
 	// Payment processing flow
 	try {
 		const charge = await stripe.charges.create({
@@ -87,6 +94,8 @@ router.post("/", async (req, res) => {
 			description,
 			source: token.id
 		});
+
+		console.log(`CHARGE STATUS for user ${user_id}: `, charge);
 		if (charge) {
 			console.log("Success", charge);
 			const ticket = await db.addRecord("Tickets", {
@@ -106,7 +115,7 @@ router.post("/", async (req, res) => {
 			}
 		} else throw error;
 	} catch (error) {
-		console.log("Internal server error: ", err);
+		console.log("Internal server error: ", error);
 		res.status(500).send({ message: "Internal server error.", error: error });
 	}
 });
