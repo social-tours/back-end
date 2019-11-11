@@ -13,7 +13,7 @@ const databaseTables = [
 	"Users"
 ];
 
-describe("Tickets endpoint testing", () => {
+xdescribe("Tickets endpoint testing", () => {
 	// Clean up database after each test
 	afterEach(async () => {
 		for (let i = 0; i < databaseTables.length; i++) {
