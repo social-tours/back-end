@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const db = require("../data/models");
+const sendMail = require("../services/sendEmail");
 
 /**
  * Method to retrieve all sales records from the database
@@ -84,7 +85,9 @@ router.post("/", async (req, res) => {
 		token,
 		type,
 		user_id,
-		event_schedule_id
+		event_schedule_id,
+		email,
+		quantity
 	} = req.body;
 	// Payment processing flow
 	try {
@@ -111,6 +114,21 @@ router.post("/", async (req, res) => {
 					sale_amount: amount
 				});
 				console.log("SALE INFO: ", sale);
+				const subject = `${description} "Event Confirmation"`;
+				const msg = {
+					text: `Your reservation for ${quantity} ${
+						quantity > 1 ? "tickets" : "ticket"
+					} to ${description} has been confirmed. You reference number is ${
+						ticket.id
+					}.`,
+					html: `Your reservation for <strong>${quantity}</strong> ${
+						quantity > 1 ? "tickets" : "ticket"
+					} to <strong>${description}</strong> has been confirmed. You reference number is <stron>${
+						ticket.id
+					}.</strong>`
+				};
+				sendMail(email, msg, subject);
+
 				res.send({ success: charge, ticket, sale });
 			}
 		} else throw error;
