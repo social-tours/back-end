@@ -18,7 +18,9 @@ exports.seed = async function(knex) {
 			host_id: 2,
 			title: "See Bifunkal Orchestra",
 			description: "Orchestrated Blues and Funk",
-			event_image: "Bifunkal Image Here"
+			event_image:
+				"https://image-ticketfly.imgix.net/00/01/52/52/37-og.jpg?w=2048&h=2048",
+			paid_event: true
 		}
 	]);
 

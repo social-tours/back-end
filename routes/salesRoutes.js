@@ -1,6 +1,7 @@
 const router = require("express").Router();
-
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const db = require("../data/models");
+const sendMail = require("../services/sendEmail");
 
 /**
  * Method to retrieve all sales records from the database
@@ -76,30 +77,64 @@ router.put("/:saleId", async (req, res, next) => {
  * Method to add sales to the database
  * @returns sends a response to the requester indicating whether or not record creation was successful
  */
-router.post("/", async (req, res, next) => {
-	const { ticket_id, sale_amount } = req.body;
-
-	if (!ticket_id || !sale_amount) {
-		res.status(400).json({ message: "All fields are required." });
-	}
-
-	if (typeof sale_amount === "string") {
-		user_id = parseFloat(user_id, 10);
-	}
-
+router.post("/", async (req, res) => {
+	console.log("Received payment request: ", req.body);
+	const {
+		amount,
+		description,
+		token,
+		type,
+		user_id,
+		event_schedule_id,
+		email,
+		quantity
+	} = req.body;
+	// Payment processing flow
 	try {
-		const sale = await db.addRecord("Sales", { ticket_id, sale_amount });
+		const charge = await stripe.charges.create({
+			amount,
+			currency: "usd",
+			description,
+			source: token.id
+		});
 
-		if (sale) {
-			res.status(201).send(sale);
-		} else {
-			res
-				.status(400)
-				.json({ message: "Something went wrong. Could not create sale." });
-		}
-	} catch (err) {
-		console.log("Internal server error: ", err);
-		res.status(500).json({ message: "Internal server error.", error: err });
+		console.log(`CHARGE STATUS for user ${user_id}: `, charge);
+		if (charge) {
+			console.log("Success", charge);
+			const ticket = await db.addRecord("Tickets", {
+				type,
+				user_id,
+				event_schedule_id
+			});
+			console.log("TICKET INFO: ", ticket);
+
+			if (ticket) {
+				const sale = await db.addRecord("Sales", {
+					ticket_id: ticket.id,
+					sale_amount: amount
+				});
+				console.log("SALE INFO: ", sale);
+				const subject = `${description} "Event Confirmation"`;
+				const msg = {
+					text: `Your reservation for ${quantity} ${
+						quantity > 1 ? "tickets" : "ticket"
+					} to ${description} has been confirmed. You reference number is ${
+						ticket.id
+					}.`,
+					html: `Your reservation for <strong>${quantity}</strong> ${
+						quantity > 1 ? "tickets" : "ticket"
+					} to <strong>${description}</strong> has been confirmed. You reference number is <stron>${
+						ticket.id
+					}.</strong>`
+				};
+				sendMail(email, msg, subject);
+
+				res.send({ success: charge, ticket, sale });
+			}
+		} else throw error;
+	} catch (error) {
+		console.log("Internal server error: ", error);
+		res.status(500).send({ message: "Internal server error.", error: error });
 	}
 });
 

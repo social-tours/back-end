@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const db = require("../data/models");
+const sendMail = require("../services/sendEmail");
 
 /**
  * Method to retrieve all tickets from the database
@@ -46,7 +47,7 @@ router.get("/:ticketId", async (req, res, next) => {
 router.put("/:ticketId", async (req, res, next) => {
 	const { ticketId } = req.params;
 
-	/*const validFields = ['type', 'user_id', 'event_id'];
+	/*const validFields = ['type', 'user_id', 'event_schedule_id'];
 
     for (let key in req.body){
         if (!validFields.includes(key)){
@@ -66,8 +67,8 @@ router.put("/:ticketId", async (req, res, next) => {
         user_id = parseInt(user_id, 10);
     }
 
-    if (typeof event_id === 'string'){
-        event_id = parseInt(event_id, 10);
+    if (typeof event_schedule_id === 'string'){
+        event_schedule_id = parseInt(event_schedule_id, 10);
     }*/
 
 	try {
@@ -86,9 +87,16 @@ router.put("/:ticketId", async (req, res, next) => {
  * @returns sends a response to the requester indicating whether or not record creation was successful
  */
 router.post("/", async (req, res, next) => {
-	const { type, user_id, event_id } = req.body;
+	const {
+		type,
+		user_id,
+		event_schedule_id,
+		email,
+		description,
+		quantity
+	} = req.body;
 
-	if (!type || !user_id || !event_id) {
+	if (!type || !user_id || !event_schedule_id) {
 		res.status(400).json({ message: "All fields are required." });
 	}
 
@@ -100,14 +108,33 @@ router.post("/", async (req, res, next) => {
 		user_id = parseInt(user_id, 10);
 	}
 
-	if (typeof event_id === "string") {
-		event_id = parseInt(event_id, 10);
+	if (typeof event_schedule_id === "string") {
+		event_schedule_id = parseInt(event_schedule_id, 10);
 	}
 
 	try {
-		const ticket = await db.addRecord("Tickets", { type, user_id, event_id });
+		const ticket = await db.addRecord("Tickets", {
+			type,
+			user_id,
+			event_schedule_id
+		});
 
 		if (ticket) {
+			const subject = `${description} "Event Confirmation"`;
+			const msg = {
+				text: `Your reservation for ${quantity} ${
+					quantity > 1 ? "tickets" : "ticket"
+				} to ${description} has been confirmed. You reference number is ${
+					ticket.id
+				}.`,
+				html: `Your reservation for <strong>${quantity}</strong> ${
+					quantity > 1 ? "tickets" : "ticket"
+				} to <strong>${description}</strong> has been confirmed. You reference number is <stron>${
+					ticket.id
+				}.</strong>`
+			};
+			sendMail(email, msg, subject);
+
 			res.status(201).send(ticket);
 		} else {
 			res

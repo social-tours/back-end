@@ -17,7 +17,7 @@ exports.seed = async function(knex) {
 			id: 1,
 			type: 1, // FK ID in 'TicketTypes' table
 			user_id: 1, // FK ID in 'Users' table
-			event_id: 1
+			event_schedule_id: 1
 		}
 	]);
 

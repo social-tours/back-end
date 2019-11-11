@@ -24,7 +24,7 @@ async function messagingHandler(influencerId, content) {
 			)
 			.where({ influencer_id: influencerId, marketing_opt_in: true })
 			.whereNot({ comm_preference: 0 });
-		console.log(`messagingHandler ${content}: `, users);
+		console.log(`messagingHandler ${JSON.stringify(content)}: `, users);
 
 		selectMessagingService(users, content);
 	} catch (error) {
@@ -41,12 +41,13 @@ async function messagingHandler(influencerId, content) {
  */
 function selectMessagingService(users, content) {
 	for (let user of users) {
+		console.log("USER INFO:  ", user);
 		if (user.comm_preference === 0) {
 			console.log("Will not send notification");
 			return "Will not send notification";
 		} else if (user.comm_preference === 3) {
 			if (user.email) {
-				sendEmail(user.email, content);
+				sendEmail(user.email, content, content.title);
 			}
 			if (user.phone_nbr) {
 				sendSms(user.phone_nbr, content);
@@ -57,7 +58,7 @@ function selectMessagingService(users, content) {
 			}
 		} else if (user.comm_preference === 1) {
 			if (user.email) {
-				sendEmail(user.email, content);
+				sendEmail(user.email, content, content.title);
 			}
 		} else {
 			console.log("Unspecified communication preferences");
